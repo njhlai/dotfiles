@@ -1,0 +1,72 @@
+List of common key bindings.  All definitions are stored at:
+
+	~/.config/sxhkd/sxhkdrc
+
+Last review 2021-04-30.
+
+===============
+
+Super + Return                   |-Open an Xfce4 terminal
+Super + w                        |-Close focused node safely (apps might require confirmation)
+Super + Shift + w                |-Kill focused node (no confirmation whatsoever)
+Super + Esc                      |-Reload sxhkd
+Super + Shift + Esc              |-Reload bspwm + lemonbar
+
+Launching programs
+==================
+
+Super + {r,s,f,n}                |-Run rofi in {drun,ssh,file-browser,window} mode
+
+Node operations
+===============
+
+Super + {h,j,k,l}                |-Move focus in the given direction
+Super + Shift + {h,j,k,l}        |-Swap focused node with the one in the given direction
+Super + p                        |-Focus parent node
+Super + b                        |-Focus brother node
+Super + {comma/period}           |-Focus child node
+Super + Shift + Tab              |-Focus to the previously active node on the current desktop
+Alt + {Shift +,_} Tab            |-Cycle structurally through nodes on the current desktop
+Super + {o,i}                    |-Cycle historically through nodes across desktops
+Super + Alt + {h,j,k,l}          |-Expand tiled/floating node in the given direction
+Super + Shift + Alt + {h,j,k,l}  |-Contract tiled/floating node in the given direction
+Super + Alt + {q,e}              |-Snap to 2:1 or 1:2 ratio split
+Super + Alt + Space              |-Revert to normal ratio
+Super + Alt + r                  |-Rotate node clockwise
+Super + Alt + Shift + r          |-Rotate node counterclockwise
+Super + Ctrl + {h,j,k,l}         |-Set preselection for next node
+Super + Ctrl + Space             |-Cancel preselection
+Super + Ctrl + {1-9}             |-Set the presel ratio, relative to the focused node
+Super + Ctrl + Alt + {h,l}       |-Set the presel ratio at 1:2 or 2:1
+Super + t                        |-Set focused node to tiled state
+Super + Space                    |-Toggle floating state
+Super + f                        |-Toggle fullscreen state
+Super + Shift + t                |-Toggle pseudo_tiled state
+Super + Shift + <arrows>         |-Move floating node
+
+Desktop operations
+==================
+
+Super + {0-9}                    |-Switch to the designated desktop
+Super + Shift + {0-9}            |-Send focused node to the given desktop
+Super + Ctrl + {Left,Right}      |-Cycle through desktops on the current monitor
+Super + Tab                      |-Focus to the previously active desktop
+Super + ~                        |-Focus on 参 (home)
+Ctrl + Alt + b                   |-Focus on 伍 (terminal)
+Ctrl + Alt + m                   |-Focus on 壱 (messenger)
+Ctrl + Alt + Esc                 |-Focus on 陸 (media)
+Super + Ctrl + Shift + Space     |-Cancel all preselection for desktop
+Super + m                        |-Toggle between tiled and monocle layout
+
+Monitor operations
+==================
+
+Super + comma                    !!Switch focus to the next monitor
+Super + Shift + comma            !!Switch focus to the previous monitor
+
+Useful extras
+=============
+
+Super + F1                       |-Launch a floating node with this cheat sheet
+Print                            |-Get a screenshot of the entire viewport saved to ~/pictures/screenshots/
+Super + Print                    |-Get a screenshot of the mouse-selected region saved to ~/pictures/screenshots/

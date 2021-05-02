@@ -1,0 +1,100 @@
+/*
+ * Modified Dracula theme for sidebar style rofi
+ */
+ 
+configuration {
+	modi: "window,drun,ssh,file-browser";
+	width: 15;
+
+	font: "Fira Code 12";
+	show-icons: true;
+
+	display-ssh: "  ";
+	display-drun: "  ";
+	display-window: "  ";
+	display-file-browser: "節  ";
+	drun-display-format: "{icon} {name}";
+
+	terminal: "xfce4-terminal";
+	ssh-client: "ssh";
+	ssh-command: "{terminal} -e '{ssh-client} {host} [-p {port}]'";
+	parse-known-hosts: false;
+}
+
+* {
+	primary: #282a36;
+	secondary: #6272a4;
+
+	text: #f8f8f2;
+	selection: #d37961;
+
+	background-color: @primary;
+	
+	border: 0;
+	margin: 0;
+	padding: 0;
+	spacing: 0;
+}
+
+element {
+	padding: 5;
+	text-color: @secondary;
+}
+
+element selected {
+	text-color: @selection;
+	border: 2 2 solid 2 2;
+	border-radius: 8;
+	border-color: @selection;
+}
+
+element-icon {
+	size: 32;
+	border: 1;
+	border-color: @secondary;
+	border-radius: 5;
+	padding: 6;
+}
+
+element-icon  selected {
+	border-color: @selection;
+}
+
+prompt {
+	background-color: @secondary;
+	enabled: true;
+	font: "Inconsolata Nerd Font 14";
+	padding: 12 0 0 12;
+	text-color: @text;
+}
+
+entry {
+	background-color: @secondary;
+	padding: 12 0 12 3;
+	text-color: @text;
+}
+
+inputbar {
+	children: [prompt, entry];
+}
+
+listview {
+	padding: 8 0;
+	columns: 1;
+	/*lines: 8;*/
+}
+
+mainbox {
+	children: [inputbar, listview];
+	border: 4;
+	border-color: @secondary;
+	padding: 10;
+}
+
+window {
+	location: northwest;
+	anchor: northwest;
+	x-offset: 20;
+	y-offset: 20;
+	transparency: "real";
+}

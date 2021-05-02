@@ -1,0 +1,189 @@
+#!/bin/sh
+
+source $(dirname $0)/panelConfig
+
+# Get screen height and width and do bar width calculation
+SCREENHEIGHT=$(xrandr -q | grep Screen | awk '{print $10}' | sed s/,//)
+SCREENWIDTH=$(xrandr -q | grep Screen | awk '{print $8}')
+BARWIDTH=$(($SCREENWIDTH - $(($EDGEWIDTH * 2))))
+
+# pihole
+pihole_s=$(ssh $PIHOLE pihole status | awk '/Pi-hole/{print $5}')
+
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
+bspc subscribe report > "$PANEL_FIFO" &
+	
+{
+
+	## start left section
+	host() {
+		local ICON=$(echo -e "$(printf '%b'${HOME})")
+		local host="$(uname -n)"
+
+		local CMD=$(echo -e "%{B${SEC_0}}%{F${BG}} $ICON%{F-} %{F${WHITE}}${host}%{F-} %{F${SEC_0}}%{B${SEC_1}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}") 
+		echo "$CMD"
+	}
+
+	cpu() {
+		local ICON=$(echo -e "$(printf '%b'${CPU})")
+		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
+
+		temp=$(sensors | grep -oP 'Tdie.*?\+\K[0-9.]+')
+		sys_cores=$(grep -c "^processor" /proc/cpuinfo)
+		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
+		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
+
+		local CMD=$(echo -e "%{B${SEC_1}}%{F${WHITE}} ${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-} %{F${SEC_1}}%{B${SEC_2}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+		echo "$CMD"
+	}
+
+	ram() {
+		local ICON=$(echo -e "$(printf '%b'${RAM})")
+		local NEXTBCOLOUR=${TRANSPARENT}
+		local stat="$(playerctl -p mps-youtube,mpv status 2>/dev/null)"
+		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
+			local NEXTBCOLOUR=$RED
+		elif [ "${stat}" ] && [[ ${stat} == "Playing" || ${stat} == "Paused" ]] ; then
+			local NEXTBCOLOUR=$YELLOW
+		fi
+
+		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} \
+		END {printf "%02d %.2f", int((total-free-buffers-cached)*100/total), \
+		(total-free-buffers-cached)/(2^20)}' /proc/meminfo)"
+		# ram_perc="${ram_raw[0]}"
+		ram_used="${ram_raw[1]}"
+
+		local CMD=$(echo -e "%{B${SEC_2}}%{F${WHITE}} ${ICON} ${ram_used}GB %{F-} %{F${SEC_2}}%{B${NEXTBCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+		echo "$CMD"
+	}
+
+	pihole() {
+		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
+			local ICON=$(echo -e "$(printf '%b'${PI})")
+
+			local stat="$(playerctl -p mps-youtube,mpv status 2>/dev/null)"
+			local NEXTFCOLOUR=$TRANSPARENT
+			if [ "${stat}" ] && [[ ${stat} == "Playing" || ${stat} == "Paused" ]] ; then
+				local NEXTFCOLOUR=$YELLOW
+			fi
+
+			local CMD=$(echo -e "%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-} %{F${RED}}%{B${NEXTFCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+			echo "$CMD"
+		fi
+	}
+	## End left section
+
+
+	## start right section
+	SEP_R() {
+		local CMD=$(echo -e "%{B${TRANSPARENT}}%{F${SEC_0}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{F-}%{B-}")
+		echo "$CMD"
+	}
+
+	music() {
+		local ICON=$(echo -e "$(printf '%b'${MUSIC})")
+		local CMD=""
+
+		local players=$(playerctl -p mps-youtube,mpv -l 2>/dev/null)
+		for player in $players; do
+			if [[ -z $CMD ]]; then
+				local stat="$(playerctl -p ${player} status)"
+				if [ "${stat}" ] && [ "${stat}" = "Playing" ] ; then
+					local artist=$(playerctl -p ${player} metadata artist)
+					local title=$(playerctl -p ${player} metadata title)
+					local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${artist} - ${title} %{F-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+				elif [ "${stat}" ] && [ "${stat}" = "Paused" ] ; then
+					local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${player}: ${stat} %{F-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+				fi
+			fi
+		done
+		echo "$CMD"
+	}
+
+	getDay() {
+		local ICON=$(echo -e "$(printf '%b'${CLOCK})")
+		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+
+		local cmdDay=$(date '+%a')
+		local cmdDate=$(date '+%d %b')
+		local cmdHour=$(date +%H:%M)
+
+		local CMD=$(echo -e "%{B${SEC_0}}%{F${WHITE}}${cmdDay} ${SEP} ${cmdDate} ${SEP} ${cmdHour} ${ICON} %{B-}%{F-}")
+		echo "$CMD"
+	}
+	##End right section 
+
+	## Unused components
+	# SEP_L(){
+	# 	local CMD=$(echo -e "%{B${BG}}%{F${BG}} %{B-}%{F-}")
+	# 	echo "$CMD"
+	# }
+	
+	# disk() {
+	# 	local icon=$(pIcon ${BG} ${CDISK})
+	# 	local SEP=$(pIcon ${BG} ${RIGHT_SOFT_DIVIDER})
+	# 	read -r -a disk_raw <<< "$(df -B1 / 2> /dev/null | awk 'END{ print $3,$2,$5 }')"
+	# 	disk_used="${disk_raw[0]}"
+	# 	disk_total="${disk_raw[1]}"
+	# 	disk_perc="${disk_raw[2]}"
+	# 	local cmd="$(df -h /home | tail -1 | awk '{print int($4/$2*100)"%"}')"
+	# 	local cmdEnd=$(pText ${FG} "${cmd}" )
+	# 	local extinf=$(powerTextR ${SEC_4} ${FG} "${icon} ${disk_perc} $SEP Used: $(hrBytes "$disk_used") of $(hrBytes "$disk_total")" ${SEC_1} ${RIGHT_HARD_DIVIDER})
+	# 	echo "${extinf}"
+	# }
+
+	# mail() {
+	# 	local gmaildir=/home/user/.mails/Gmail/\[Gmail\].All\ Mail/new
+	# 	local cmd=$(pAction ${BLUE} ${BG} "i3 'exec termite -e mutt'" ${CMAIL})
+	# 	local count=0
+	# 	if [[ ! -n $(ls "${gmaildir}") ]]; then
+	# 			count=0
+	# 	else
+	# 			count=$(ls -1 "${gmaildir}" | wc -l)
+	# 	fi
+	# 	echo "${cmd} ${count}"
+	# }
+
+	declare -i counter=0
+	while :; do
+		# get pihole stats every 15 minutes
+		if [ $counter -eq 0 ] ; then
+			ads_b=$(ssh ${PIHOLE} pihole -c -j | jq | awk '/"ads_percentage_today":/{printf "%0.1f\n",$2}')
+		fi
+		counter=$(($(($counter+1)) % 900))
+
+		echo "S$(cpu)$(ram)$(pihole)$(music)"
+		echo "T$(SEP_R)$(getDay)"
+		# echo "S%{l}$(host)$(cpu)$(ram)$(WM)$(pihole)$(SEP_L)%{r}$(SEP_R)$(energy)$(disk)$(net)$(getDay)"
+		sleep 1
+	done
+} > "$PANEL_FIFO" &
+
+
+$(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
+		-a 32 \
+		-n "$PANEL_WM_NAME" \
+		-g ${BARWIDTH}x${BARHEIGHT}+${EDGEWIDTH}+${UPPERWIDTH} \
+		-u 2 \
+		-f "${FONT}" \
+		-f "${ICONS}" \
+		-f "${JPFONT}" \
+		-F "${WHITE}" \
+		-B "${TRANSPARENT}" | sh | while read line; do eval "$line"; done &
+
+
+wid=$(xdo id -a "$PANEL_WM_NAME")
+tries_left=20
+while [ -z "$wid" -a "$tries_left" -gt 0 ] ; do
+	sleep 0.05
+	wid=$(xdo id -a "$PANEL_WM_NAME")
+	tries_left=$((tries_left - 1))
+done
+[ -n "$wid" ] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+
+
+wait

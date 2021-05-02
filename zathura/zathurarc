@@ -1,0 +1,61 @@
+set window-title-basename "true"
+set selection-clipboard "clipboard"
+
+# Darker Dracula theme for Zathura
+# Dracula color theme uses #282a36 for background
+
+set notification-error-bg       "#ff5555" # Red
+set notification-error-fg       "#f8f8f2" # Foreground
+set notification-warning-bg     "#ffb86c" # Orange
+set notification-warning-fg     "#44475a" # Selection
+set notification-bg             "#d37961"
+set notification-fg             "#44475a" # Selection
+
+set completion-bg               "#212121" # Background
+set completion-fg               "#6272a4" # Comment
+set completion-group-bg         "#212121" # Background
+set completion-group-fg         "#6272a4" # Comment
+set completion-highlight-bg     "#44475a" # Selection
+set completion-highlight-fg     "#f8f8f2" # Foreground
+
+set index-bg                    "#212121" # Background
+set index-fg                    "#f8f8f2" # Foreground
+set index-active-bg             "#44475a" # Current Line
+set index-active-fg             "#f8f8f2" # Foreground
+
+set inputbar-bg                 "#212121" # Background
+set inputbar-fg                 "#f8f8f2" # Foreground
+set statusbar-bg                "#212121" # Background
+set statusbar-fg                "#f8f8f2" # Foreground
+
+set highlight-color             "#d37961"
+set highlight-active-color      "#ff79c6" # Pink
+
+set default-bg                  "#212121" # Background
+set default-fg                  "#f8f8f2" # Foreground
+
+set render-loading              true
+set render-loading-fg           "#212121" # Background
+set render-loading-bg           "#f8f8f2" # Foreground
+
+#
+# Recolor mode settings
+#
+
+set recolor 					"true"
+set recolor-lightcolor          "#212121" # Background
+set recolor-darkcolor           "#f8f8f2" # Foreground
+
+#
+# Startup options
+#
+set adjust-open width
+set recolor true
+
+# Adding reverse search between sublime and zathura
+set synctex true
+set synctex-editor-command "subl %{input}:%{line}"
+
+##############################################################
+
+# Shortcut keys

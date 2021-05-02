@@ -1,0 +1,41 @@
+/* hide tabs */
+#TabsToolbar{ visibility: collapse !important }
+
+/* hide status bar */
+#statuspanel { display:none !important }
+
+/*
+ * Auto-hide the URL-bar
+ * as seen in https://www.reddit.com/r/FirefoxCSS/comments/boetx7/annoying_page_jump_with_address_bar_autohide/engne27/
+ * by u/SkyrimForTheDragons/
+ *
+ * Source: https://github.com/Timvde/UserChrome-Tweaks/blob/master/toolbars/auto-hide.css
+ */
+#nav-bar:not([customizing="true"]) {
+	min-height: 0px !important;
+	max-height: 0px !important;
+	margin-top: 0px !important;
+	margin-bottom: -1px !important;
+	z-index: -5 !important;
+}
+
+/* Changed height from 32 so that back button isn't cut off */
+#navigator-toolbox:focus-within :-moz-any(#nav-bar) {
+	min-height: 40px !important;
+	max-height: 40px !important;
+	margin-top: 1px !important;
+	margin-bottom: -40px !important;
+	z-index: 5 !important;
+}
+
+#urlbar {
+	/* Center urlbar vertically with new toolbox height */
+	top: 5px !important; 
+	/* Needed for for FF 75 megabar */
+	--urlbar-toolbar-height: 40px !important;
+}
+
+/* Remove shadows */
+#urlbar[breakout][breakout-extend] > #urlbar-background {
+	box-shadow: none !important;
+}

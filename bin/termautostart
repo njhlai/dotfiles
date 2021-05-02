@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Autostart terminals
+startup_lock_file=/tmp/bspwm-startup.lock
+if [ ! -f $startup_lock_file ]; then
+	touch $startup_lock_file
+	xfce4-terminal &
+	xfce4-terminal -e 'bash -c "gotop -c modified_nord"' &
+	xfce4-terminal &
+fi

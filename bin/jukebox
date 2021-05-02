@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# dmenu script for playing yt on shuffle
+
+readonly options="$(cat <<-END
+	♫ JPop#${JPOPURL}
+END
+)"
+
+readonly chosen="$(cut -d# -f1 <(printf "%s" "$options") | dmenu -p "yt playlists:" "$@")"
+[[ -z "$chosen" ]] && exit
+readonly args="$(grep "^${chosen}#" <(printf "%s" "$options") | cut -d# -f2)"
+
+mpsyt --no-textart pl $args, dump, shuffle all

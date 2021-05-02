@@ -1,0 +1,174 @@
+# sxhkd config
+
+#
+### Apps, Launcher & Co.
+#
+
+## Terminal emulator
+super + Return
+	xfce4-terminal
+
+super + F1
+	xfce4-terminal -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
+
+
+## Program launcher (rofi)
+super + {r,s,shift + f,n}
+	rofi -show {drun -lines 8,ssh -no-show-icons -width 12 -lines 5,file-browser -no-show-icons -width 18 -lines 10,window -width 35 -lines 8}
+
+
+## Applications
+# !!Get a floating terminal
+super + x
+	urxvt -name my_float
+
+# !!Get mps-youtube to play playlists (still needs to be fixed... Termite?)
+super + shift + m
+	xfce4-terminal -e 'bash -c "jukebox"'; \
+	bspc node -d '^6'; \
+	bspc node -t pseudo_tiled
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# screenshot entire viewport
+Print
+	maim -u $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+
+# screenshot with mouse selection
+super + Print
+	maim -u -s $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+
+
+#
+### bspwm Hotkeys
+#
+
+## Basic
+# restart bspwm
+super + shift + Escape
+	bspc wm -r
+
+# close and kill
+super + {_,shift} + w
+	bspc node -{c,k}
+
+
+## state/flags
+# set the window state
+super + t
+	bspc node -t tiled
+
+# toggle floating/fullscreen layout
+super + {shift + t,space,f}
+	bspc node -t ~{pseudo_tiled,floating,fullscreen}
+
+# toggle monocle layout
+super + m
+	bspc desktop -l next
+
+# !!set the node flags
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+
+## focus/swap
+# focus/swap the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# focus the last desktop
+super + Tab
+	bspc desktop -f last
+
+# focus the last node within desktop
+super + shift + Tab
+	bspc node -f last.local
+
+# focus the home desktop
+super + grave
+	bspc desktop -f '^3'
+
+# focus the terminal/messenger/media desktop
+ctrl + {alt + b,alt + m,shift + Escape}
+	bspc desktop -f '^{5,1,6}'
+
+# focus the older or newer node in the focus history
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# !!send the newest marked node to the newest preselected node
+super + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+
+## preselect
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# preselect the direction with 2:1 ratio
+super + ctrl + alt + {h,l}
+	bspc node -o 0.{34 -p west,66 -p east}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+## move/resize
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# snap to 2:1 or 1:2 ratio
+super + alt + {q,e,space}
+	bspc node @parent -r 0.{66,34,52}
+
+# move a floating window
+super + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+## rotate 
+# rotate window clockwise/counterclockwise
+super + alt + {_,shift} + r
+	bspc node -R {_,-}90
+
+#
+### Unused stuff
+#
+# Lock
+# !!super + l
+#    i3lock-fancy-rapid 5 3

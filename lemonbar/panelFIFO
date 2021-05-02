@@ -1,0 +1,59 @@
+#!/bin/sh
+
+source $(dirname $0)/panelConfig
+
+num_mon=$(bspc query -M | wc -l)
+
+while read -r line ; do
+	case $line in
+		S*)
+			sysL="${line#?}"
+			;;
+		T*)
+			sysR="${line#?}"
+			;;
+		W*)
+			# bspwm's state
+			ICON="$(printf '%b'${HOME})"
+			host="$(uname -n)"
+			SEP="$(printf '%b'${LEFT_SOFT_DIVIDER})"
+
+			wm="%{B${SEC_0}}%{F${BG}} $ICON%{F-} %{F${WHITE}}${host} ${SEP} %{F-}%{B-}"
+			IFS=':'
+			set -- ${line#?}
+			while [ $# -gt 0 ] ; do
+				item=$1
+				name=${item#?}
+				case $item in
+					[mM]*)
+						[ $num_mon -lt 2 ] && shift && continue
+						wm="${wm}%{F${WHITE}}%{B${SEC_0}}%{A:bspc monitor -f ${name}:} ${name} %{A}%{B-}%{F-}"
+						;;
+					# [fFoOuU]*)
+					[FOU]*)
+						wm="${wm}%{F${WHITE}}%{B${SEC_0}}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}"
+						;;
+					# [LTG]*)
+					T*)
+						# node state
+						case $name in
+							F*)
+								name="Floating"
+								;;
+							T*)
+								name="Tiled"
+								;;
+							P*)
+								name="Pseudo-Tiled"
+								;;
+						esac
+						wm="${wm}%{F${WHITE}}%{B${SEC_0}}: ${name} %{B-}%{F-}"
+						;;
+				esac
+				shift
+			done
+			wm="${wm}%{F${SEC_0}}%{B${SEC_1}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}"
+			;;
+	esac
+	printf "%s\n" "%{l}${wm}${sysL}%{r}${sysR}"
+done

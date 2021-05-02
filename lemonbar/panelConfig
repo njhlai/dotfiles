@@ -1,0 +1,47 @@
+#!/bin/sh
+
+# panel info setup
+PANEL_FIFO=/tmp/panel-fifo
+PANEL_WM_NAME=bspwm_panel
+
+# bar height and width
+BARHEIGHT=16
+EDGEWIDTH=0
+UPPERWIDTH=0
+UNDERLINE_WIDTH=2
+GAP=5
+
+# fonts and icon 
+FONT="Inconsolata for Powerline:style=Regular:pixelsize=$(($BARHEIGHT - 2)):antialias=true:hinting=1:letterSpace=-5:dpi=96"
+ICONS="Inconsolata Nerd Font:style=Regular:pixelsize=$BARHEIGHT,3:letterSpace=-8:lineSpace=-2:dpi=96"
+JPFONT=":pixelsize=$(($BARHEIGHT - 5)):lang=ja"
+
+# colours: Modified Dracula
+BG="#534A65"
+FG="#d37961"
+RED="#ff5555"
+BLUE="#6272a4"
+YELLOW="#ffb86c"
+BLACK="#212121"
+WHITE="#f8f8f2"
+
+SEC_0="#282a36"
+SEC_1="#454a4f"
+SEC_2="#55595d"
+SEC_3="#979997"
+
+TRANSPARENT="#00000000"
+
+# dividers
+RIGHT_HARD_DIVIDER="\ue0b2"
+RIGHT_SOFT_DIVIDER="\ue0b3"
+LEFT_HARD_DIVIDER="\ue0b0"
+LEFT_SOFT_DIVIDER="\ue0b1"
+
+# icons
+PI="\uf315"
+HOME="\uf312"
+CPU="\ufc06"
+RAM="\uf85a"
+MUSIC="\uf885"
+CLOCK="\ufa19"
