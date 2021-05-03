@@ -7,9 +7,6 @@ SCREENHEIGHT=$(xrandr -q | grep Screen | awk '{print $10}' | sed s/,//)
 SCREENWIDTH=$(xrandr -q | grep Screen | awk '{print $8}')
 BARWIDTH=$(($SCREENWIDTH - $(($EDGEWIDTH * 2))))
 
-# pihole
-pihole_s=$(ssh $PIHOLE pihole status | awk '/Pi-hole/{print $5}')
-
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
@@ -20,14 +17,6 @@ bspc subscribe report > "$PANEL_FIFO" &
 {
 
 	## start left section
-	host() {
-		local ICON=$(echo -e "$(printf '%b'${HOME})")
-		local host="$(uname -n)"
-
-		local CMD=$(echo -e "%{B${SEC_0}}%{F${BG}} $ICON%{F-} %{F${WHITE}}${host}%{F-} %{F${SEC_0}}%{B${SEC_1}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}") 
-		echo "$CMD"
-	}
-
 	cpu() {
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
@@ -152,13 +141,13 @@ bspc subscribe report > "$PANEL_FIFO" &
 	while :; do
 		# get pihole stats every 15 minutes
 		if [ $counter -eq 0 ] ; then
+			pihole_s=$(ssh $PIHOLE pihole status | awk '/Pi-hole/{print $5}')
 			ads_b=$(ssh ${PIHOLE} pihole -c -j | jq | awk '/"ads_percentage_today":/{printf "%0.1f\n",$2}')
 		fi
 		counter=$(($(($counter+1)) % 900))
 
 		echo "S$(cpu)$(ram)$(pihole)$(music)"
 		echo "T$(SEP_R)$(getDay)"
-		# echo "S%{l}$(host)$(cpu)$(ram)$(WM)$(pihole)$(SEP_L)%{r}$(SEP_R)$(energy)$(disk)$(net)$(getDay)"
 		sleep 1
 	done
 } > "$PANEL_FIFO" &

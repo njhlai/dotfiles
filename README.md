@@ -1,6 +1,6 @@
 # dotfiles
 
-![Messy](.github/messy.png)
+![Messy](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/messy.png)
 
 ## About
 Personal dotfiles, almost all of which was assimilated and modified from all over the place.
@@ -26,12 +26,12 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 Will write a install script at some point...
 
 ## Screenshots
-![Clean](.github/clean.png)
+![Clean](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/clean.png)
 
-![Rofi](.github/rofi.png)
+![Rofi](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/rofi.png)
 
-![Terminals](.github/term.png)
+![Terminals](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/term.png)
 
-![Dev setup](.github/dev.png)
+![Dev setup](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/dev.png)
 
-![Web browser](.github/web.png)
+![Web browser](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/web.png)

@@ -45,3 +45,8 @@ CPU="\ufc06"
 RAM="\uf85a"
 MUSIC="\uf885"
 CLOCK="\ufa19"
+
+# final constants setup for host/uname display
+OS="$(printf '%b'${HOME})"
+HOST="$(uname -n)"
+SEP="$(printf '%b'${LEFT_SOFT_DIVIDER})"

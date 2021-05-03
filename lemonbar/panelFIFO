@@ -14,11 +14,7 @@ while read -r line ; do
 			;;
 		W*)
 			# bspwm's state
-			ICON="$(printf '%b'${HOME})"
-			host="$(uname -n)"
-			SEP="$(printf '%b'${LEFT_SOFT_DIVIDER})"
-
-			wm="%{B${SEC_0}}%{F${BG}} $ICON%{F-} %{F${WHITE}}${host} ${SEP} %{F-}%{B-}"
+			wm="%{B${SEC_0}}%{F${BG}} ${OS}%{F-} %{F${WHITE}}${HOST} ${SEP} %{F-}%{B-}"
 			IFS=':'
 			set -- ${line#?}
 			while [ $# -gt 0 ] ; do
