@@ -8,7 +8,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Item | Value |
 | :--- | :---- |
 | OS | Manjaro |
-| DM | xfce4 |
+| DE | Xfce |
 | WM | Bspwm |
 | Bar | Lemonbar |
 | Compositor | picom |
@@ -17,21 +17,16 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Font | Inconsolata |
 | Mono Font | Fira Code |
 | Notification | xfce4-notifyd |
-| Launcher | rofi, dmenu |
+| Launcher | Rofi, dmenu |
 | Wallpaper | feh |
-| Lock Screen | none |
-| Text Editor | sublime test 3, nano |
+| Text Editor | sublime-text-3, nano |
 
 ## Installation
-Will write a install script at some point...
+Will write an install script at some point...
 
 ## Screenshots
 ![Clean](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/clean.png)
-
 ![Rofi](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/rofi.png)
-
 ![Terminals](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/term.png)
-
 ![Dev setup](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/dev.png)
-
 ![Web browser](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/web.png)
