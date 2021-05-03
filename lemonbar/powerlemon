@@ -7,16 +7,23 @@ SCREENHEIGHT=$(xrandr -q | grep Screen | awk '{print $10}' | sed s/,//)
 SCREENWIDTH=$(xrandr -q | grep Screen | awk '{print $8}')
 BARWIDTH=$(($SCREENWIDTH - $(($EDGEWIDTH * 2))))
 
+# Get stable constants
+OS="$(printf '%b'${HOME})"
+HOST="$(uname -n)"
+
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
-
-bspc subscribe report > "$PANEL_FIFO" &
 	
 {
 
 	## start left section
+	host() {
+		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
+		echo "%{B${SEC_0}}%{F${BG}} ${OS}%{F-} %{F${WHITE}}${HOST} ${SEP} %{F-}%{B-}"
+	}
+
 	cpu() {
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
@@ -146,12 +153,14 @@ bspc subscribe report > "$PANEL_FIFO" &
 		fi
 		counter=$(($(($counter+1)) % 900))
 
+		echo "H$(host)"
 		echo "S$(cpu)$(ram)$(pihole)$(music)"
 		echo "T$(SEP_R)$(getDay)"
 		sleep 1
 	done
 } > "$PANEL_FIFO" &
 
+bspc subscribe report > "$PANEL_FIFO" &
 
 $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 		-a 32 \
