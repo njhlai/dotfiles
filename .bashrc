@@ -6,7 +6,7 @@
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
 
-xhost +local:root > /dev/null 2>&1
+xhost +local: > /dev/null 2>&1
 
 complete -cf sudo
 
