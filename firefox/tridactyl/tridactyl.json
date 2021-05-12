@@ -1,14 +1,17 @@
-/* user config for firefox-tridactyl. Use the following command to load
-:js let myConfig = JSON.parse(prompt('Paste the JSON string in the field below')); Object.keys(myConfig).forEach(key => tri.config.set(key, myConfig[key])); alert('Tridactyl settings saved!')
-*/
+/* user config for firefox-tridactyl. */
 {
 	"configversion":"2.0",
 	"theme":"dracula",
 	"nmaps":{
 		"h":"tabprev",
 		"l":"tabnext",
+		"H":"back",
+		"L":"forward",
+		"J":"scrollpage 1",
+		"K":"scrollpage -1",
 		"<C-`>":"mode ignore",
-		"<C-f>":null
+		"<C-f>":null,
+		"<C-b>":null
 	},
 	"ignoremaps":{
 		"<C-`>":"mode normal",
