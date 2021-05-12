@@ -43,6 +43,7 @@ bspc rule -a Zathura desktop='^4' split_dir="east" split_ratio="0.685" state=til
 bspc rule -a firefox desktop='^2' follow=on focus=on
 bspc rule -a Vlc desktop='^2' follow=on focus=on
 bspc rule -a discord desktop='^1' follow=on focus=on
+bspc rule -a Lutris desktop='^6' follow=on focus=on
 bspc rule -a Steam desktop='^6' state=pseudo_tiled rectangle=30x30+0+0 follow=on focus=on
 
 #bspc desktop -f '^5'
@@ -58,6 +59,9 @@ mygames=$(ls ~/.steam/steam/steamapps/ | grep appmanifest | sed 's/[^0-9]*//g')
 for game in $mygames; do
         bspc rule -a steam_app_$game desktop='^6' state=fullscreen follow=on
 done &
+# for some reason SC2 doesn't go fullscreen and instead goes tiled, so go float and then fullscreen and switch to fullscreen in game
+# TODO: find a fix for this
+bspc rule -a sc2_x64.exe desktop='^6' state=floating follow=on
 
 # Set desktop 参 as floating
 FLOATING_DESKTOP_ID=$(bspc query -D -d '^3')
