@@ -148,7 +148,7 @@ mkfifo "$PANEL_FIFO"
 	while :; do
 		# if pihole is not originally on, then keep querrying
 		if [[ -z ${pihole_s} ]] || [[ ${pihole_s} != "enabled" ]] ; then
-			pihole_s=$(ssh $PIHOLE pihole status | awk '/Pi-hole/{print $5}')
+			pihole_s=$(ssh $PIHOLE pihole status 2>/dev/null | awk '/Pi-hole/{print $5}')
 			counter=0
 		fi
 
