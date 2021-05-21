@@ -47,11 +47,14 @@ mkfifo "$PANEL_FIFO"
 			local NEXTBCOLOUR=$YELLOW
 		fi
 
-		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} \
-		END {printf "%02d %.2f", int((total-free-buffers-cached)*100/total), \
-		(total-free-buffers-cached)/(2^20)}' /proc/meminfo)"
-		# ram_perc="${ram_raw[0]}"
-		ram_used="${ram_raw[1]}"
+		# read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /^ctive(file):/{file=$2} /SReclaimable:/{slab=$2}\
+		# END {printf "%.2f %.2f", (total-free-buffers-cached)/(2^20), \
+		# ((2*cached/3)-file-slab)/(2^20)}' /proc/meminfo)"
+		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2}\
+		END {printf "%.2f %.2f", (total-free-buffers-cached)/(2^20), \
+		(free+buffers+cached-avail)/(2^20)}' /proc/meminfo)"
+		ram_used="${ram_raw[0]}"
+		# ram_immutable="${ram_raw[1]}"
 
 		local CMD=$(echo -e "%{B${SEC_2}}%{F${WHITE}} ${ICON} ${ram_used}GB %{F-} %{F${SEC_2}}%{B${NEXTBCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
 		echo "$CMD"
@@ -61,11 +64,9 @@ mkfifo "$PANEL_FIFO"
 		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
-			local stat="$(playerctl -p mps-youtube,mpv status 2>/dev/null)"
+			local stats="$(playerctl -a status 2>/dev/null)"
 			local NEXTFCOLOUR=$TRANSPARENT
-			if [ "${stat}" ] && [[ ${stat} == "Playing" || ${stat} == "Paused" ]] ; then
-				local NEXTFCOLOUR=$YELLOW
-			fi
+			[[ ${stats} =~ (^|[[:space:]])"Playing"($|[[:space:]]) ]] || [[ ${stats} =~ (^|[[:space:]])"Paused"($|[[:space:]]) ]] && local NEXTFCOLOUR=$YELLOW
 
 			local CMD=$(echo -e "%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-} %{F${RED}}%{B${NEXTFCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
 			echo "$CMD"
