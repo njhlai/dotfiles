@@ -19,7 +19,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Notification | xfce4-notifyd |
 | Launcher | Rofi, dmenu |
 | Wallpaper | feh |
-| Text Editor | sublime-text-3, nano |
+| Text Editor | Sublime Text, nano |
 
 ## Installation
 Will write an install script at some point...
