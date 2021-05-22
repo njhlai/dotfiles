@@ -64,7 +64,7 @@ mkfifo "$PANEL_FIFO"
 		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
-			local stats="$(playerctl -a status 2>/dev/null)"
+			local stats="$(playerctl -p mps-youtube,mpv status 2>/dev/null)"
 			local NEXTFCOLOUR=$TRANSPARENT
 			[[ ${stats} =~ (^|[[:space:]])"Playing"($|[[:space:]]) ]] || [[ ${stats} =~ (^|[[:space:]])"Paused"($|[[:space:]]) ]] && local NEXTFCOLOUR=$YELLOW
 
