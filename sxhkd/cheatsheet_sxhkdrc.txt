@@ -15,7 +15,7 @@ Super + Shift + Esc              |-Reload bspwm + lemonbar
 Launching programs
 ==================
 
-Super + {r,s,f,n}                |-Run rofi in {drun,ssh,file-browser,window} mode
+Super + {r,s,Shift + f,n}        |-Run rofi in {drun,ssh,file-browser,window} mode
 
 Node operations
 ===============
@@ -38,6 +38,7 @@ Super + Ctrl + {h,j,k,l}         |-Set preselection for next node
 Super + Ctrl + Space             |-Cancel preselection
 Super + Ctrl + {1-9}             |-Set the presel ratio, relative to the focused node
 Super + Ctrl + Alt + {h,l}       |-Set the presel ratio at 1:2 or 2:1
+Super + y                        |-Send current node to a preselected node
 Super + t                        |-Set focused node to tiled state
 Super + Space                    |-Toggle floating state
 Super + f                        |-Toggle fullscreen state
