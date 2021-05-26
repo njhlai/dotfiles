@@ -29,6 +29,19 @@
 			"nmaps":{"k":null,"l":null,"f":null,"j":null}
 		}
 	},
+	"searchurls":{
+		"g":"https://www.google.com/search?q=",
+		"gs":"https://scholar.google.com/scholar?q=",
+		"ddg":"https://duckduckgo.com/?q=",
+		"wk":"https://en.wikipedia.org/wiki/Special:Search/",
+		"yt":"https://www.youtube.com/results?search_query=",
+		"gh":"https://github.com/search?utf8=✓&q=",
+		"arch":"https://wiki.archlinux.org/index.php?search=",
+		"mdn":"https://developer.mozilla.org/en-US/search?q=",
+		"osm":"https://www.openstreetmap.org/search?query=",
+		"searx":"https://searx.me/?category_general=on&q=",
+		"qwant":"https://www.qwant.com/?q="
+	},
 	"hintfiltermode": "vimperator-reflow",
 	"hintchars": "1234567890"
 }
