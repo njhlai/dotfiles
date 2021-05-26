@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Testing dunst
+
+# pkill dunst
+# dunst -config ~/.config/dunst/dunstrc &
+
+dunstify -u critical "Test message: critical test 1"
+dunstify -u normal "Test message: normal test 2"
+dunstify -u low "Test message: low test 3"
+dunstify -u critical -h string:x-dunst-stack-tag:tests "Test message: critical test 4" -A "tested,default"
+dunstify -u normal -h string:x-dunst-stack-tag:tests "Test message: normal test 5"

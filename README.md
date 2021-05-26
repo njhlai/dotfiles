@@ -16,7 +16,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Terminal | xfce4-terminal |
 | Font | Inconsolata |
 | Mono Font | Fira Code |
-| Notification | xfce4-notifyd |
+| Notification | dunst |
 | Launcher | Rofi, dmenu |
 | Wallpaper | feh |
 | Text Editor | Sublime Text, nano |
@@ -26,9 +26,8 @@ Will write an install script at some point...
 
 ### Network Share Mounting
 Network share is through sshfs.
-
-	1. Make sure to manually mount the sshfs as root at least once, using user ssh keys, to ensure host's public key is in root's known_hosts file.
-	2. Edit fstab [accordingly](https://wiki.archlinux.org/title/SSHFS#Secure_user_access).
+1. Make sure to manually mount the sshfs as root at least once, using user ssh keys, to ensure host's public key is in root's known_hosts file.
+2. Edit fstab [accordingly](https://wiki.archlinux.org/title/SSHFS#Secure_user_access).
 
 ## Screenshots
 ![Clean](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/clean.png)
