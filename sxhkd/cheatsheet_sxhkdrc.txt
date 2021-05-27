@@ -7,6 +7,8 @@ Last review 2021-04-30.
 ===============
 
 Super + Return                   |-Open an Xfce4 terminal
+Super + d                        |-Pop one notication from history
+Super + x                        |-Dismiss last notification
 Super + w                        |-Close focused node safely (apps might require confirmation)
 Super + Shift + w                |-Kill focused node (no confirmation whatsoever)
 Super + Esc                      |-Reload sxhkd
@@ -30,6 +32,7 @@ Alt + {Shift +,_} Tab            |-Cycle structurally through nodes on the curre
 Super + {o,i}                    |-Cycle historically through nodes across desktops
 Super + Alt + {h,j,k,l}          |-Expand tiled/floating node in the given direction
 Super + Shift + Alt + {h,j,k,l}  |-Contract tiled/floating node in the given direction
+Super + Alt + {1-9}              |-Set split ratio
 Super + Alt + {q,e}              |-Snap to 2:1 or 1:2 ratio split
 Super + Alt + Space              |-Revert to normal ratio
 Super + Alt + r                  |-Rotate node clockwise
