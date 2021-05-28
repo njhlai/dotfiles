@@ -2,7 +2,7 @@ List of common key bindings.  All definitions are stored at:
 
 	~/.config/sxhkd/sxhkdrc
 
-Last review 2021-04-30.
+Last review 2021-05-27.
 
 ===============
 
@@ -13,6 +13,7 @@ Super + w                        |-Close focused node safely (apps might require
 Super + Shift + w                |-Kill focused node (no confirmation whatsoever)
 Super + Esc                      |-Reload sxhkd
 Super + Shift + Esc              |-Reload bspwm + lemonbar
+Super + ;                        |-Lock session using i3lock-color
 
 Launching programs
 ==================

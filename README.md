@@ -19,6 +19,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Notification | dunst |
 | Launcher | Rofi, dmenu |
 | Wallpaper | feh |
+| Lock Screen | i3lock-color |
 | Text Editor | Sublime Text, nano |
 
 ## Installation

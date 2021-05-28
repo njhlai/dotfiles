@@ -180,9 +180,7 @@ super + shift + {Left,Down,Up,Right}
 super + alt + {_,shift} + r
 	bspc node -R {_,-}90
 
-#
-### Unused stuff
-#
+
 # Lock
-# !!super + l
-#    i3lock-fancy-rapid 5 3
+super + semicolon
+    i3lock --veriftext="" --wrongtext="" --insidecolor=282a3600 --insidevercolor=282a3600 --insidewrongcolor=282a3600 --ringvercolor=6272a4ff --ringwrongcolor=ff0000ff --line-uses-inside --blur 3
