@@ -1,0 +1,7 @@
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+picom --xrender-sync-fence -b &
+nvidia-settings --load-config-only &
+sxhkd &
+unclutter &
+start-pulseaudio-x11 &
+$HOME/.local/bin/termautostart &

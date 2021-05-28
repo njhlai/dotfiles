@@ -8,8 +8,8 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Item | Value |
 | :--- | :---- |
 | OS | Manjaro |
-| DE | Xfce |
 | WM | Bspwm |
+| DM | LightDM |
 | Bar | Lemonbar |
 | Compositor | picom |
 | Shell | bash |
