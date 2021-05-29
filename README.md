@@ -13,10 +13,10 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Bar | Lemonbar |
 | Compositor | picom |
 | Shell | bash |
-| Terminal | alacritty, xfce4-terminal |
+| Terminal | Alacritty, xfce4-terminal |
 | Font | Inconsolata |
 | Mono Font | Fira Code |
-| Notification | dunst |
+| Notification | Dunst |
 | Launcher | Rofi, dmenu |
 | Wallpaper | feh |
 | Lock Screen | i3lock-color |
