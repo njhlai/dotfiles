@@ -186,4 +186,4 @@ super + alt + {_,shift} + r
 
 # Lock
 super + semicolon
-    i3lock --veriftext="" --wrongtext="" --insidecolor=282a3600 --insidevercolor=282a3600 --insidewrongcolor=282a3600 --ringvercolor=6272a4ff --ringwrongcolor=ff0000ff --line-uses-inside --blur 3
+    i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 3
