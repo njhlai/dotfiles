@@ -8,6 +8,7 @@
 	],
 	"font_size": 12,
 	"overlay_scroll_bars": "enabled",
+	"fade_fold_buttons": false,
 	"hide_build_panel": "no_errors",
 	"ignored_packages":
 	[
