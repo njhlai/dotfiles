@@ -4,9 +4,9 @@
 ### Apps, Launcher & Co.
 #
 
-## Terminal emulator
-super + Return
-	xfce4-terminal
+## Terminal emulators
+super + {_,shift} + Return
+	{alacritty,xfce4-terminal}
 
 super + F1
 	xfce4-terminal -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
