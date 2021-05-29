@@ -1,0 +1,21 @@
+window {
+	location: east;
+	anchor: east;
+	x-offset: -10;
+	y-offset: -50;
+	font: "Fira Code 35";
+}
+
+listview {
+	layout: vertical;
+	lines: 3;
+	padding: 0;
+}
+
+mainbox {
+	children: [listview];
+}
+
+element {
+	padding: 0 12;
+}

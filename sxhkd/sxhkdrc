@@ -16,6 +16,9 @@ super + F1
 super + {r,s,shift + f,n}
 	rofi -show {drun -lines 8,ssh -no-show-icons -width 12 -lines 5,file-browser -no-show-icons -width 18 -lines 10,window -width 35 -lines 8}
 
+super + x
+	powermenu
+
 
 ## dunstctl
 # Pop one notification from history
@@ -23,7 +26,7 @@ super + d
 	dunstctl history-pop
 
 # Dismiss the last notification
-super + x
+super + c
 	dunstctl close
 
 

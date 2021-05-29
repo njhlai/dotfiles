@@ -6,9 +6,8 @@ Last review 2021-05-27.
 
 ===============
 
-Super + Return                   |-Open an Xfce4 terminal
 Super + d                        |-Pop one notication from history
-Super + x                        |-Dismiss last notification
+Super + c                        |-Dismiss last notification
 Super + w                        |-Close focused node safely (apps might require confirmation)
 Super + Shift + w                |-Kill focused node (no confirmation whatsoever)
 Super + Esc                      |-Reload sxhkd
@@ -18,7 +17,9 @@ Super + ;                        |-Lock session using i3lock-color
 Launching programs
 ==================
 
+Super + Return                   |-Open an Xfce4 terminal
 Super + {r,s,Shift + f,n}        |-Run rofi in {drun,ssh,file-browser,window} mode
+Super + x                        |-Run powermenu, a rofi-style power menu
 
 Node operations
 ===============
@@ -57,9 +58,7 @@ Super + Shift + {0-9}            |-Send focused node to the given desktop
 Super + Ctrl + {Left,Right}      |-Cycle through desktops on the current monitor
 Super + Tab                      |-Focus to the previously active desktop
 Super + ~                        |-Focus on 参 (home)
-Ctrl + Alt + b                   |-Focus on 伍 (terminal)
-Ctrl + Alt + m                   |-Focus on 壱 (messenger)
-Ctrl + Alt + Esc                 |-Focus on 陸 (media)
+Ctrl + Alt + {b,m,Esc}           |-Focus on {伍 (terminal),壱 (messenger),陸 (media)}
 Super + Ctrl + Shift + Space     |-Cancel all preselection for desktop
 Super + m                        |-Toggle between tiled and monocle layout
 

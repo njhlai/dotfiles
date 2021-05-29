@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# rofi-style powermenu
+
+reboot=""
+lock=""
+power_off=""
+# suspend="⏾"
+# log_out=""
+
+chosen=$(printf '%s;%s;%s' "$lock" "$reboot" "$power_off" \
+	| rofi -theme 'powermenu.rasi' \
+			-dmenu \
+			-sep ';' \
+			-no-show-icons \
+			-width 3 \
+			-selected-row 0)
+
+case "$chosen" in
+	"$power_off")
+		poweroff
+		;;
+
+	"$reboot")
+		reboot
+		;;
+
+	"$lock")
+		i3lock --veriftext="" --wrongtext="" --insidecolor=282a3600 --insidevercolor=282a3600 --insidewrongcolor=282a3600 --ringvercolor=6272a4ff --ringwrongcolor=ff0000ff --line-uses-inside --blur 3
+		;;
+
+	*) exit 1 ;;
+esac
