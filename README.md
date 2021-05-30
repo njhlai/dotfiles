@@ -33,6 +33,7 @@ Network share is through sshfs.
 ## Screenshots
 ![Clean](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/clean.png)
 ![Rofi](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/rofi.png)
+![Power menu](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/powermenu.png)
 ![Terminals](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/term.png)
 ![Dev setup](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/dev.png)
 ![Web browser](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/web.png)
