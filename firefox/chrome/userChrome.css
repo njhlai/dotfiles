@@ -39,3 +39,10 @@
 #urlbar[breakout][breakout-extend] > #urlbar-background {
 	box-shadow: none !important;
 }
+
+/* Remove white flash before page load */
+@-moz-document url-prefix(about:), url-prefix(chrome://browser) {
+    browser[type="content"], tabpanels {
+		background: #212121 !important;
+	}
+}

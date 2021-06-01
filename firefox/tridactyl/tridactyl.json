@@ -1,4 +1,3 @@
-/* user config for firefox-tridactyl. */
 {
 	"configversion":"2.0",
 	"theme":"dracula",
@@ -11,7 +10,8 @@
 		"K":"scrollpage -1",
 		"<C-`>":"mode ignore",
 		"<C-f>":null,
-		"<C-b>":null
+		"<C-b>":null,
+		"<A-p>":null
 	},
 	"ignoremaps":{
 		"<C-`>":"mode normal",
