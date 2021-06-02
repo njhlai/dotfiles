@@ -31,15 +31,9 @@ super + c
 
 
 ## Applications
-# !!Get a floating terminal
-super + shift + Return
-	urxvt -name my_float
-
-# !!Get mps-youtube to play playlists (still needs to be fixed... Termite?)
+# Get mps-youtube to play playlists
 super + shift + m
-	xfce4-terminal -e 'bash -c "jukebox"'; \
-	bspc node -d '^6'; \
-	bspc node -t pseudo_tiled
+	alacritty --class jukebox -e 'jukebox'
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -186,4 +180,4 @@ super + alt + {_,shift} + r
 
 # Lock
 super + semicolon
-    i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 3
+    bspc desktop -f '^5' && i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 3

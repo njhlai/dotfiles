@@ -5,7 +5,7 @@
 startup_lock_file=/tmp/bspwm-startup.lock
 if [ ! -f $startup_lock_file ]; then
 	touch $startup_lock_file
-	alacritty &
-	alacritty -e bpytop &
-	alacritty &
+	alacritty --class primary &
+	alacritty --class top -e bpytop &
+	alacritty --class secondary &
 fi

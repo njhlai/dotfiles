@@ -2,6 +2,8 @@
 #
 # dmenu script for playing yt on shuffle
 
+. ~/.private/env.bash
+
 readonly options="$(cat <<-END
 	♫ JPop#${JPOPURL}
 END

@@ -21,6 +21,7 @@ Super + Return                   |-Open an Alacritty terminal
 Super + Shift + Return           |-Open a floating Xfce4 terminal
 Super + {r,s,Shift + f,n}        |-Run rofi in {drun,ssh,file-browser,window} mode
 Super + x                        |-Run powermenu, a rofi-style power menu
+Super + Shift + m                |-Run jukebox (mpsyt-wrapper)
 
 Node operations
 ===============
