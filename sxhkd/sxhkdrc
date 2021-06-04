@@ -35,17 +35,26 @@ super + c
 super + shift + m
 	alacritty --class jukebox -e 'jukebox'
 
-# make sxhkd reload its configuration files:
+# Make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# screenshot entire viewport
+# Screenshot entire viewport
 Print
 	maim -u $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
-# screenshot with mouse selection
+# Screenshot with mouse selection
 super + Print
 	maim -u -s $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+
+# Lock
+super + semicolon
+	bspc desktop -f '^5' && i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 3
+
+
+## Media keys
+XF86Audio{Prev,Play,Stop,Next} 
+	playerctl -p mps-youtube,mpv {previous,play-pause,stop,next}
 
 
 #
@@ -176,8 +185,3 @@ super + shift + {Left,Down,Up,Right}
 # rotate window clockwise/counterclockwise
 super + alt + {_,shift} + r
 	bspc node -R {_,-}90
-
-
-# Lock
-super + semicolon
-    bspc desktop -f '^5' && i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 3
