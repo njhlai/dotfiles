@@ -37,6 +37,8 @@
 		"yt":"https://www.youtube.com/results?search_query=",
 		"gh":"https://github.com/search?utf8=✓&q=",
 		"arch":"https://wiki.archlinux.org/index.php?search=",
+		"pkg":"https://archlinux.org/packages/?q=",
+		"aur":"https://aur.archlinux.org/packages/?O=0&K=",
 		"mdn":"https://developer.mozilla.org/en-US/search?q=",
 		"osm":"https://www.openstreetmap.org/search?query=",
 		"searx":"https://searx.me/?category_general=on&q=",
