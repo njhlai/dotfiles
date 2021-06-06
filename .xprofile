@@ -1,5 +1,6 @@
 picom --xrender-sync-fence -b &
 nvidia-settings --load-config-only &
+xset s off && xset dpms 0 0 0 &
 sxhkd &
 unclutter &
 start-pulseaudio-x11 && pactl unload-module module-suspend-on-idle &
