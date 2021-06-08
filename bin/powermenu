@@ -26,7 +26,7 @@ case "$chosen" in
 		;;
 
 	"$lock")
-		bspc desktop -f '^5' && i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 3
+		i3lock --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 5
 		;;
 
 	*) exit 1 ;;
