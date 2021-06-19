@@ -11,7 +11,8 @@
 		"<C-`>":"mode ignore",
 		"<C-f>":null,
 		"<C-b>":null,
-		"<A-p>":null
+		"<A-p>":null,
+		"d":null
 	},
 	"ignoremaps":{
 		"<C-`>":"mode normal",
