@@ -55,12 +55,12 @@ Super + Shift + <arrows>         |-Move floating node
 Desktop operations
 ==================
 
-Super + {0-9}                    |-Switch to the designated desktop
-Super + Shift + {0-9}            |-Send focused node to the given desktop
+Super + {1-6}                    |-Switch to the designated tiled desktop
+Super + Shift + {1-6}            |-Send focused node to the given tiled desktop
 Super + Ctrl + {Left,Right}      |-Cycle through desktops on the current monitor
 Super + Tab                      |-Focus to the previously active desktop
-Super + ~                        |-Focus on 参 (home)
-Ctrl + Alt + {b,m,Esc}           |-Focus on {伍 (terminal),壱 (messenger),陸 (media)}
+Super + ~                        |-Focus on 柒 (floating)
+Ctrl + Alt + {b,m,Esc}           |-Focus on {伍 (terminal),壹 (messenger),陸 (media)}
 Super + Ctrl + Shift + Space     |-Cancel all preselection for desktop
 Super + m                        |-Toggle between tiled and monocle layout
 
