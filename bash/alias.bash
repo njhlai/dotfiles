@@ -21,8 +21,8 @@ alias lt='la --tree'
 alias ytxa='youtube-dl -x --audio-quality 0 --audio-format flac'
 
 # rysnc aliases
-alias rsynclive='rsync -avu -i --progress --stats --out-format="%t %p %i %n %M %l" --delete'
-alias rsyncdry='rsync -avun -i --progress --stats --out-format="%t %p %i %n %M %l" --delete'
+alias rsynclive='rsync -avu -i --progress --stats --out-format="%t %p %i %n %M %l" --delete --filter=":- .gitignore"'
+alias rsyncdry='rsync -avun -i --progress --stats --out-format="%t %p %i %n %M %l" --delete --filter=":- .gitignore"'
 
 # misc
 alias np='nano -w PKGBUILD'

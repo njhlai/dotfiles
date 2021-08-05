@@ -4,7 +4,7 @@ source $(dirname $0)/panelConfig
 
 # Get screen height and width and do bar width calculation
 SCREENHEIGHT=$(xrandr -q | grep Screen | awk '{print $10}' | sed s/,//)
-SCREENWIDTH=$(xrandr -q | grep Screen | awk '{print $8}')
+SCREENWIDTH=1920
 BARWIDTH=$(($SCREENWIDTH - $(($EDGEWIDTH * 2))))
 
 # Get stable constants
@@ -172,7 +172,7 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 		-a 32 \
 		-n "$PANEL_WM_NAME" \
 		-g ${BARWIDTH}x${BARHEIGHT}+${EDGEWIDTH}+${UPPERWIDTH} \
-		-u 2 \
+		-u 0 \
 		-f "${FONT}" \
 		-f "${ICONS}" \
 		-f "${JPFONT}" \
@@ -180,11 +180,11 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 		-B "${TRANSPARENT}" | sh | while read line; do eval "$line"; done &
 
 
-wid=$(xdo id -a "$PANEL_WM_NAME")
+wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)
 tries_left=20
 while [ -z "$wid" -a "$tries_left" -gt 0 ] ; do
 	sleep 0.05
-	wid=$(xdo id -a "$PANEL_WM_NAME")
+	wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)
 	tries_left=$((tries_left - 1))
 done
 [ -n "$wid" ] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"

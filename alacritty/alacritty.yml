@@ -47,7 +47,7 @@ font:
     family: Fira Code Medium
     style: Bold Italic
 
-  size: 11
+  size: 9
 
 key_bindings:
   - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }

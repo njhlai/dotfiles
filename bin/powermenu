@@ -13,7 +13,7 @@ chosen=$(printf '%s;%s;%s' "$reboot" "$lock" "$power_off" \
 			-dmenu \
 			-sep ';' \
 			-no-show-icons \
-			-width 3 \
+			-width 4 \
 			-selected-row 1)
 
 case "$chosen" in

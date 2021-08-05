@@ -22,6 +22,8 @@ fi
 
 [ -f $userprofile ] && . $userprofile
 
+xrandr --output DP-0 --primary --mode 1920x1080 --rotate normal --rate 144.00 --output HDMI-0 --mode 2560x1080 --rotate right --right-of DP-0
+
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
 fi

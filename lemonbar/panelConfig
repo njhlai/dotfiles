@@ -6,10 +6,10 @@ PANEL_WM_NAME=bspwm_panel
 
 # bar height and width
 BARHEIGHT=16
-EDGEWIDTH=0
-UPPERWIDTH=0
-UNDERLINE_WIDTH=2
-GAP=5
+EDGEWIDTH=5
+UPPERWIDTH=3
+UNDERLINE_WIDTH=0
+GAP=8
 
 # fonts and icon 
 FONT="Inconsolata for Powerline:style=Regular:pixelsize=$(($BARHEIGHT - 2)):antialias=true:hinting=1:letterSpace=-5:dpi=96"
@@ -30,7 +30,7 @@ SEC_1="#454a4f"
 SEC_2="#55595d"
 SEC_3="#979997"
 
-TRANSPARENT="#00000000"
+TRANSPARENT="#CC282a36"
 
 # dividers
 RIGHT_HARD_DIVIDER="\ue0b2"

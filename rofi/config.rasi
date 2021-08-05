@@ -5,8 +5,9 @@
 configuration {
 	modi: "window,drun,ssh,file-browser";
 	width: 15;
+	monitor: "1";
 
-	font: "Fira Code 12";
+	font: "Fira Code 10";
 	show-icons: true;
 
 	display-ssh: "  ";
@@ -49,7 +50,7 @@ element selected {
 }
 
 element-icon {
-	size: 32;
+	size: 25;
 	border: 1;
 	border-color: @secondary;
 	border-radius: 5;
@@ -63,7 +64,7 @@ element-icon  selected {
 prompt {
 	background-color: @secondary;
 	enabled: true;
-	font: "Inconsolata Nerd Font 14";
+	font: "Inconsolata Nerd Font 12";
 	padding: 12 0 0 12;
 	text-color: @text;
 }

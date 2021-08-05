@@ -4,8 +4,8 @@
 	# Which monitor should the notifications be displayed on.
 	monitor = 0
 
-	# Display notification on focused monitor.
-	follow = mouse
+	# Display notification on main monitor.
+	follow = none
 
 	# The geometry of the window:
 	#   [{width}]x{height}[+/-{x}+/-{y}]
