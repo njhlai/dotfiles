@@ -35,5 +35,5 @@ esac
 #
 ## LaTeX path
 if [ -d ~/Dropbox/Latex ] ; then
-	export TEXMFHOME=~/Dropbox/Latex
+	export TEXMFHOME=~/latex/
 fi

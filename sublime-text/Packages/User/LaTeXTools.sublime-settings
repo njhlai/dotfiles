@@ -414,7 +414,7 @@
 
 		"linux" : {
 			"env": {
-				"TEXMFHOME": "$HOME/Dropbox/Latex"
+				"TEXMFHOME": "$HOME/latex"
 			}
 		}
 	},
