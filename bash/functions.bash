@@ -31,7 +31,7 @@ function colour_my_prompt {
 # cd with onefetch for git repos
 function cd {
 	builtin cd "$@" 
-	[[ -d $PWD/.git/ ]] && onefetch 2>/dev/null
+	[[ -d $PWD/.git/ || -f $PWD/.git ]] && onefetch 2>/dev/null
 }
 
 # ex - archive extractor
