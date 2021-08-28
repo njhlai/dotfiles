@@ -15,7 +15,7 @@ export GDK_DPI_SCALE=0.4 &
 . ~/.private/env.bash
 
 # set wallpaper. lemonbar and dunst
-feh --bg-fill ~/pictures/wallpapers/shouko.png &
+feh --bg-fill ~/pictures/wallpapers/shouko.png ~/pictures/wallpapers/girl_shell_hare.jpg &
 ~/.config/lemonbar/powerlemon &
 dunst -config ~/.config/dunst/dunstrc &
 
@@ -64,8 +64,10 @@ bspc rule -a Sublime_text desktop='^2' follow=on focus=on
 bspc rule -a firefox desktop='^1' follow=on focus=on
 bspc rule -a Vlc desktop='^1' follow=on focus=on
 
-## 捌 (reader)
+## 捌 (reader/listener)
 bspc rule -a Zathura desktop='^6' state=tiled follow=on focus=on
+bspc rule -a Alacritty:jukebox desktop='^6' state=tiled follow=on focus=on
+bspc rule -a Gpodder desktop='^6' state=tiled follow=on focus=on
 
 ## 玖 (pager)
 bspc rule -a Slack desktop='^7' follow=on focus=on
@@ -76,7 +78,6 @@ bspc rule -a discord desktop='^8' follow=on focus=on
 ## 肆 (media)
 bspc rule -a Lutris desktop='^4' follow=on focus=on
 bspc rule -a Steam desktop='^4' state=pseudo_tiled follow=on focus=on
-bspc rule -a Alacritty:jukebox desktop='^4' state=pseudo_tiled rectangle=650x1080+0+0 follow=on focus=on
 bspc rule -a vlc desktop='^4' follow=on focus=on
 
 ### games are all in 肆

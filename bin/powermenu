@@ -8,7 +8,7 @@ power_off=""
 # suspend="⏾"
 # log_out=""
 
-chosen=$(printf '%s;%s;%s' "$reboot" "$lock" "$power_off" \
+chosen=$(printf '%s;%s;%s' "$reboot" "$power_off" "$lock" \
 	| rofi -theme 'powermenu.rasi' \
 			-dmenu \
 			-sep ';' \
