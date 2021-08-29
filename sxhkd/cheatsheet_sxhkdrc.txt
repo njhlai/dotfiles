@@ -2,7 +2,7 @@ List of common key bindings.  All definitions are stored at:
 
 	~/.config/sxhkd/sxhkdrc
 
-Last review 2021-05-27.
+Last review 2021-08-29.
 
 ===============
 
@@ -38,6 +38,7 @@ Super + Alt + {h,j,k,l}          |-Expand tiled/floating node in the given direc
 Super + Shift + Alt + {h,j,k,l}  |-Contract tiled/floating node in the given direction
 Super + Alt + {1-9}              |-Set split ratio
 Super + Alt + {q,e}              |-Snap to 2:1 or 1:2 ratio split
+Super + Alt + {'\','{','}'}      |-Snap to 4x3, 16x9 or 21x9 aspect ratio for current node
 Super + Alt + Space              |-Revert to normal ratio
 Super + Alt + r                  |-Rotate node clockwise
 Super + Alt + Shift + r          |-Rotate node counterclockwise

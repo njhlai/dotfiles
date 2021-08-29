@@ -176,6 +176,10 @@ super + alt + {1-9}
 super + alt + {q,e,space}
 	bspc node @parent -r 0.{66,34,52}
 
+# Change aspect ratio on the fly
+super + alt + {backslash,bracketleft,bracketright}
+	ratio {4 3,16 9,21 9}
+
 # move a floating window
 super + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
