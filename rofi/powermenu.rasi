@@ -1,9 +1,12 @@
+@import "config"
+
 window {
 	location: east;
 	anchor: east;
 	x-offset: -10;
 	y-offset: -50;
 	font: "Fira Code 35";
+	width: 4%;
 }
 
 listview {

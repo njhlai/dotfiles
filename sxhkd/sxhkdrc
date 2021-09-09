@@ -14,7 +14,7 @@ super + F1
 
 ## Program launcher (rofi)
 super + {r,s,shift + f,n}
-	rofi -show {drun -lines 8,ssh -no-show-icons -width 12 -lines 5,file-browser -no-show-icons -width 18 -lines 10,window -width 35 -lines 8}
+	rofi -show {drun,ssh -no-show-icons -theme-str 'window\{ width: 12%; \} listview\{ lines: 5; \}',filebrowser -no-show-icons -theme-str 'window\{ width: 18%; \} listview\{ lines: 10; \}',window -theme-str 'window\{ width: 35%; \} listview\{ lines: 8; \}'}
 
 super + x
 	powermenu

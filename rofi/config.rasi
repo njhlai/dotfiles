@@ -3,8 +3,7 @@
  */
  
 configuration {
-	modi: "window,drun,ssh,file-browser";
-	width: 15;
+	modi: "window,drun,ssh,filebrowser";
 	monitor: "1";
 
 	font: "Fira Code 10";
@@ -13,7 +12,7 @@ configuration {
 	display-ssh: "  ";
 	display-drun: "  ";
 	display-window: "  ";
-	display-file-browser: "節  ";
+	display-filebrowser: "節  ";
 	drun-display-format: "{icon} {name}";
 
 	terminal: "xfce4-terminal";
@@ -22,31 +21,33 @@ configuration {
 	parse-known-hosts: false;
 }
 
+@theme "/dev/null"
+
 * {
 	primary: #282a36;
 	secondary: #6272a4;
 
 	text: #f8f8f2;
 	selection: #d37961;
-
-	background-color: @primary;
-	
-	border: 0;
-	margin: 0;
-	padding: 0;
-	spacing: 0;
 }
 
 element {
 	padding: 5;
 	text-color: @secondary;
+	background-color: inherit;
 }
 
 element selected {
-	text-color: @selection;
 	border: 2 2 solid 2 2;
 	border-radius: 8;
 	border-color: @selection;
+	text-color: @selection;
+	background-color: inherit;
+}
+
+element-text {
+	text-color: inherit;
+	background-color: inherit;
 }
 
 element-icon {
@@ -55,34 +56,40 @@ element-icon {
 	border-color: @secondary;
 	border-radius: 5;
 	padding: 6;
+  	text-color: inherit;
+  	background-color: inherit;
 }
 
 element-icon  selected {
 	border-color: @selection;
+	background-color: inherit;
 }
 
 prompt {
-	background-color: @secondary;
 	enabled: true;
 	font: "Inconsolata Nerd Font 12";
 	padding: 12 0 0 12;
 	text-color: @text;
+	background-color: inherit;
 }
 
 entry {
-	background-color: @secondary;
 	padding: 12 0 12 3;
 	text-color: @text;
+	background-color: inherit;
 }
 
 inputbar {
 	children: [prompt, entry];
+	spacing: 0;
+	background-color: @secondary;
 }
 
 listview {
 	padding: 8 0;
 	columns: 1;
-	/*lines: 8;*/
+	lines: 8;
+	background-color: inherit;
 }
 
 mainbox {
@@ -90,6 +97,7 @@ mainbox {
 	border: 4;
 	border-color: @secondary;
 	padding: 10;
+	background-color: inherit;
 }
 
 window {
@@ -97,5 +105,7 @@ window {
 	anchor: northwest;
 	x-offset: 20;
 	y-offset: 20;
-	transparency: "real";
+	width: 15%;
+
+	background-color: @primary;
 }
