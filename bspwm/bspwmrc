@@ -14,8 +14,8 @@ export GDK_SCALE=2 &
 export GDK_DPI_SCALE=0.4 &
 . ~/.private/env.bash
 
-# set wallpaper. lemonbar and dunst
-feh --bg-fill ~/pictures/wallpapers/shouko.png ~/pictures/wallpapers/girl_shell_hare.jpg &
+# setup wallpaper, lemonbar and dunst
+feh --bg-fill ${WALLPAPER} &
 ~/.config/lemonbar/powerlemon &
 dunst -config ~/.config/dunst/dunstrc &
 
@@ -59,6 +59,7 @@ fi
 
 ## 貳 (dev)
 bspc rule -a Sublime_text desktop='^2' follow=on focus=on
+bspc rule -a Sublime_merge desktop='^2' follow=on focus=on
 
 ## 壹 (browser)
 bspc rule -a firefox desktop='^1' follow=on focus=on
