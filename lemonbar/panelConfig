@@ -5,14 +5,14 @@ PANEL_FIFO=/tmp/panel-fifo
 PANEL_WM_NAME=bspwm_panel
 
 # bar height and width
-BARHEIGHT=16
+BARHEIGHT=17
 EDGEWIDTH=5
 UPPERWIDTH=3
 UNDERLINE_WIDTH=0
 GAP=8
 
 # fonts and icon 
-FONT="Inconsolata for Powerline:style=Regular:pixelsize=$(($BARHEIGHT - 2)):antialias=true:hinting=1:letterSpace=-5:dpi=96"
+FONT="Inconsolata for Powerline:style=Regular:pixelsize=$(($BARHEIGHT - 3)):antialias=true:hinting=1:letterSpace=-5:dpi=96"
 ICONS="Inconsolata Nerd Font:style=Regular:pixelsize=$BARHEIGHT,3:letterSpace=-8:lineSpace=-2:dpi=96"
 JPFONT=":pixelsize=$(($BARHEIGHT - 5)):lang=ja"
 
