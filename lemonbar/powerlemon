@@ -172,7 +172,7 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 		-a 32 \
 		-n "$PANEL_WM_NAME" \
 		-g ${BARWIDTH}x${BARHEIGHT}+${EDGEWIDTH}+${UPPERWIDTH} \
-		-u 0 \
+		-u 2 \
 		-f "${FONT}" \
 		-f "${ICONS}" \
 		-f "${JPFONT}" \
