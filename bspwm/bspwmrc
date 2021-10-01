@@ -21,11 +21,10 @@ dunst -config ~/.config/dunst/dunstrc &
 
 # This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
 bspc config window_gap $gap
-bspc config -m '^2' top_padding $((-$gap))
-bspc config -m '^1' top_padding $((4-$gap))
-for side in right bottom left ; do
+for side in top right bottom left ; do
 	bspc config ${side}_padding -$gap
 done &
+bspc config -m '^1' top_padding $((4-$gap))
 
 # configuration
 bspc config split_ratio          	0.52
