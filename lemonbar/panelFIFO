@@ -31,19 +31,18 @@ while read -r line ; do
 						# ;;
 					[fFoOuU]*)
 						# desktop state
+						FG=${GREY}
+						UL=${SEC_0}
 						case $item in
 							[f]*)
 								# free desktop
-								FG=${GREY}
-								UL=${SEC_0}
 								;;
 							[ou]*)
 								# occupied and urgent desktop
-								FG=${YELLOW}
-								UL=${SEC_0}
+								FG=${WHITE}
 								;;
 							[FOU]*)
-								# focused desktop
+								# focused occupied and urgent desktop
 								FG=${WHITE}
 								UL=${BLUE}
 								;;
