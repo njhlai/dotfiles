@@ -88,7 +88,7 @@ done &
 bspc rule -a sc2_x64.exe desktop='^4' state=fullscreen follow=on
 
 ## floating
-bspc rule -a Xfce4-terminal state=floating
+bspc rule -a Xfce4-terminal state=floating rectangle=866x450+527+315
 
 ## 伍 (floating)
 FLOATING_DESKTOP_ID=$(bspc query -D -d '^5')
