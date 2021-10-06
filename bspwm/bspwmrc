@@ -23,7 +23,7 @@ dunst -config ~/.config/dunst/dunstrc &
 bspc config window_gap $gap
 for side in top right bottom left ; do
 	bspc config ${side}_padding -$gap
-done &
+done
 bspc config -m '^1' top_padding $((4-$gap))
 
 # configuration
