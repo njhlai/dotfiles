@@ -71,6 +71,7 @@ bspc rule -a Gpodder desktop='^6' state=tiled follow=on focus=on
 ## 玖 (pager)
 bspc rule -a Slack desktop='^7' follow=on focus=on
 bspc rule -a Sublime_merge desktop='^7' follow=on focus=on
+bspc rule -a Insomnia desktop='^7' follow=on focus=on
 
 ## 拾 (messenger)
 bspc rule -a discord desktop='^8' follow=on focus=on
