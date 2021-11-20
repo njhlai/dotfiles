@@ -7,9 +7,43 @@
 	# Display notification on main monitor.
 	follow = none
 
-	# The geometry of the window:
-	#   [{width}]x{height}[+/-{x}+/-{y}]
-	geometry = "300x100-15+46"
+	### Geometry ###
+
+    # width
+    width = 300
+
+    # height
+    height = 100
+
+    # Position the notification
+    origin = top-right
+
+    # Offset from the origin
+    offset = 15x46
+
+    # Scale factor. It is auto-detected if value is 0.
+    scale = 0
+
+    # Maximum number of notification
+    notification_limit = 0
+
+    ### Progress bar ###
+
+    # Turn on the progess bar.
+    progress_bar = true
+
+    # Set the progress bar height.
+    progress_bar_height = 10
+
+    # Set the frame width of the progress bar
+    progress_bar_frame_width = 1
+
+    # Set the minimum width for the progress bar
+    progress_bar_min_width = 150
+
+    # Set the maximum width for the progress bar
+    progress_bar_max_width = 300
+
 
 	# Show how many messages are currently hidden (because of geometry).
 	indicate_hidden = yes
@@ -19,9 +53,6 @@
 
 	# The transparency of the window.
 	transparency = 0
-
-	# The height of the entire notification.
-	notification_height = 0
 
 	# Draw a line of "separator_height" pixel height between two notifications.
 	separator_height = 2
@@ -129,18 +160,8 @@
 	# Define the class of the windows spawned by dunst
 	class = Dunst
 
-	# Print a notification on startup.
-	# This is mainly for error detection, since dbus (re-)starts dunst automatically after a crash.
-	startup_notification = false
-
-	# Manage dunst's desire for talking
-	# Can be one of the following values:
-	#  crit: Critical features. Dunst aborts
-	#  warn: Only non-fatal warnings
-	#  mesg: Important Messages
-	#  info: all unimportant stuff
-	# debug: all less than unimportant stuff
-	verbosity = mesg
+	# Ignore the dbus closeNotification message.
+    ignore_dbusclose = false
 
 	# Define the corner radius of the notification window in pixel size.
 	corner_radius = 8
