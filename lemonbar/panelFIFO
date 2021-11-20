@@ -43,7 +43,7 @@ while read -r line ; do
 								;;
 							[FOU]*)
 								# focused occupied and urgent desktop
-								FG=${WHITE}
+								FG=${BLUE}
 								UL=${BLUE}
 								;;
 						esac
