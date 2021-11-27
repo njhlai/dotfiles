@@ -1,0 +1,2 @@
+# set download folder
+-o ~/downloads/%(title)s.%(ext)s
