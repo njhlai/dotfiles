@@ -11,7 +11,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | WM | Bspwm |
 | DM | LightDM |
 | Bar | Lemonbar |
-| Compositor | picom |
+| Compositor | picom \[ibhagwan\] |
 | Shell | bash |
 | Terminal | Alacritty, Sakura |
 | Font | Inconsolata |
