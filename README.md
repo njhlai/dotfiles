@@ -13,7 +13,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Bar | Lemonbar |
 | Compositor | picom |
 | Shell | bash |
-| Terminal | Alacritty, xfce4-terminal |
+| Terminal | Alacritty, Sakura |
 | Font | Inconsolata |
 | Mono Font | Fira Code |
 | Notification | Dunst |

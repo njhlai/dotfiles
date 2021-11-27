@@ -15,7 +15,7 @@ configuration {
 	display-filebrowser: "節  ";
 	drun-display-format: "{icon} {name}";
 
-	terminal: "xfce4-terminal";
+	terminal: "sakura";
 	ssh-client: "ssh";
 	ssh-command: "{terminal} -e '{ssh-client} {host} [-p {port}]'";
 	parse-known-hosts: false;

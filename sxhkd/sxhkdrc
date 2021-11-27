@@ -6,10 +6,10 @@
 
 ## Terminal emulators
 super + {_,shift} + Return
-	{alacritty,xfce4-terminal}
+	{alacritty,sakura}
 
 super + F1
-	xfce4-terminal -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
+	sakura -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
 
 
 ## Program launcher (rofi)
