@@ -24,5 +24,8 @@ alias ytxa='youtube-dl -x --audio-quality 0 --audio-format flac'
 alias rsynclive='rsync -avu -i --progress --stats --out-format="%t %p %i %n %M %l" --delete --filter=":- .gitignore"'
 alias rsyncdry='rsync -avun -i --progress --stats --out-format="%t %p %i %n %M %l" --delete --filter=":- .gitignore"'
 
+# mpv as a music player
+alias play='mpv --no-audio-display'
+
 # misc
 alias np='nano -w PKGBUILD'
