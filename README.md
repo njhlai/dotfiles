@@ -40,3 +40,4 @@ Network share is through sshfs.
 
 ## Caveats
 * Currently (nvidia v495.44 onwards at least, probably earlier) there is a bug in the nvidia driver which causes the driver to spam dbus a stupid amount of time and subsequently freezes the system, detailed [here](https://forums.developer.nvidia.com/t/bug-nvidia-v495-29-05-driver-spamming-dbus-enabled-applications-with-invalid-messages/192892). Currently need the [nvidia-fake-powerd](https://aur.archlinux.org/packages/nvidia-fake-powerd/) from the AUR to resolve this temporarily.
+* The `texlive-fontsextra` is very, very bloated, with a lot of unnecessary fonts for me. Debloated `texlive-fontsextra` using this [guide](https://h3fang.github.io/post/2019/texlive-fontsextra/).

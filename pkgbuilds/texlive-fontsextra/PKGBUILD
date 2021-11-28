@@ -1,0 +1,63 @@
+# This solution against texlive-fontsextra bloat is from He Fang (h3fang), found in:
+# https://github.com/h3fang/AUR/blob/main/texlive-fontsextra/PKGBUILD
+# None of this is my own work, all credits should go to h3fang.
+
+pkgname=texlive-fontsextra
+pkgver=2021.58704
+_revnr=${pkgver#2021.}
+pkgrel=1
+pkgdesc="TeX Live - extra fonts that I need"
+license=('GPL')
+arch=(any)
+depends=('texlive-core')
+groups=('texlive-most' 'modified')
+url='http://tug.org/texlive/'
+source=(
+	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/mathabx.tar.xz"
+	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/mathabx-type1.tar.xz"
+	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/calligra.tar.xz"
+	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/calligra-type1.tar.xz"
+	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/fontawesome5.tar.xz"
+	"https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/texlive-fontsextra/trunk/texlive-fontsextra.maps"
+)
+options=('!emptydirs')
+sha256sums=('b6cb795c466905d33f37f29d10fc9851bda1b517bfabf90c965dfe4206e8d89e'
+			'7a3df592ec65c261221db2c82f256844d646f2e72cd1b96cf0121580a8bad41b'
+			'22d148a349b08c70b7f04cd8af2ebea2c400495efcaf81288bc0b1ccdfff4d55'
+			'981abbc90cbf776705154feed49ebf2f2e5f8402b8e2e58fc04d0bc19a9a35bf'
+			'22c2a9a62d330c0e19507a70781a4ccecb779a0d4da3b3ff963e618305f1bc78'
+			'fd5e725f1c111ea528978cfc13f6a059ed9154f12687bb92f7de901297188362')
+
+build() {
+	cd "$srcdir"
+	touch CONTENTS
+	touch MAPS
+	for p in tlpkg/tlpobj/*.tlpobj; do
+		pstem=${p#tlpkg/tlpobj/}
+		pstem=${pstem%.tlpobj}
+		echo $pstem $(grep revision $p | awk '{print $2}') >> CONTENTS
+		echo $(grep -i $pstem.map $pkgname.maps) >> MAPS
+	done
+	sed -i '/^$/d' MAPS
+	rm -rf {tlpkg,doc,source} || true
+}
+
+package() {
+	cd "$srcdir"
+	install -m755 -d "$pkgdir"/var/lib/texmf/arch/installedpkgs
+	install -m644 CONTENTS "$pkgdir"/var/lib/texmf/arch/installedpkgs/${pkgname}_${_revnr}.pkgs
+	install -m644 MAPS "$pkgdir"/var/lib/texmf/arch/installedpkgs/$pkgname.maps
+	install -m755 -d "$pkgdir"/usr/share
+	wanteddirs=$(for d in *; do test -d $d && [[ $d != texmf* ]] && echo $d; done) || true
+	for dir in $wanteddirs; do
+		find $dir -type d -exec install -d -m755 "$pkgdir"/usr/share/texmf-dist/'{}' \;
+		find $dir -type f -exec install -m644 '{}' "$pkgdir"/usr/share/texmf-dist/'{}' \;
+	done
+	if [[ -d texmf-dist ]]; then
+		find texmf-dist -type d -exec install -d -m755 "$pkgdir"/usr/share/'{}' \;
+		find texmf-dist -type f -exec install -m644 '{}' "$pkgdir"/usr/share/'{}' \;
+	fi
+	if [[ -d "$pkgdir"/usr/share/texmf-dist/scripts ]]; then
+		find "$pkgdir"/usr/share/texmf-dist/scripts -type f -exec chmod a+x '{}' \;
+	fi
+}
