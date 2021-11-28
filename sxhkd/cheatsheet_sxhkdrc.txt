@@ -75,5 +75,5 @@ Useful extras
 =============
 
 Super + F1                       |-Launch a floating node with this cheat sheet
-Print                            |-Get a screenshot of the entire viewport saved to ~/pictures/screenshots/
-Super + Print                    |-Get a screenshot of the mouse-selected region saved to ~/pictures/screenshots/
+Print                            |-Get a screenshot of the current monitor saved
+Super + {_,Shift +,Ctrl +} Print |-Get a screenshot of the active node/mouse-selected region/entire viewport

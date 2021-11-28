@@ -39,13 +39,13 @@ super + shift + m
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# Screenshot entire viewport
+# Screenshot active monitor
 Print
-	maim -u $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+	monitormaim
 
-# Screenshot with mouse selection
-super + Print
-	maim -u -s $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+# Screenshot active node/with mouse selection/entire viewport
+super + {_,shift,ctrl} + Print
+	maim -u {-i $(printf %i $(xdo id)),-s,_} $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
 # Lock
 super + semicolon
