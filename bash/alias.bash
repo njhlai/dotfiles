@@ -18,7 +18,7 @@ alias la='l -a'
 alias lt='la --tree'
 
 # youtube-dl aliases
-alias ytxa='youtube-dl -x --audio-quality 0 --audio-format flac'
+alias ytxa='yt-dlp -x --audio-quality 0 --audio-format flac'
 
 # rysnc aliases
 alias rsyncdry='rsync -avun -i --progress --stats --human-readable --out-format="[%t] %o:%i [%M] %n (%'\'''\''l)" --delete --filter=":- .gitignore"'
