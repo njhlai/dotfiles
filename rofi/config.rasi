@@ -17,7 +17,7 @@ configuration {
 
 	terminal: "sakura";
 	ssh-client: "ssh";
-	ssh-command: "{terminal} -e '{ssh-client} {host} [-p {port}]'";
+	ssh-command: "{terminal} --class sshclient -e '{ssh-client} {host} [-p {port}]'";
 	parse-known-hosts: false;
 }
 
