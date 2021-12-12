@@ -14,10 +14,11 @@ export GDK_SCALE=2 &
 export GDK_DPI_SCALE=0.4 &
 . ~/.private/env.bash
 
-# setup wallpaper, lemonbar and dunst
+# setup wallpaper, lemonbar, dunst and restart terminals
 feh --bg-fill ${WALLPAPER} &
 ~/.config/lemonbar/powerlemon &
 dunst -config ~/.config/dunst/dunstrc &
+$HOME/.local/bin/termautostart &
 
 # This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
 bspc config window_gap $gap

@@ -1,5 +1,4 @@
 xrandr --output DP-0 --primary --mode 1920x1080 --rotate normal --rate 144.00 --output HDMI-0 --mode 2560x1080 --rotate right --right-of DP-0 &
-xrdb -merge $HOME/.Xresources &
 picom --xrender-sync-fence -b &
 nvidia-settings --load-config-only &
 nvidia-settings --assign CurrentMetaMode="DP-0: 1920x1080_144 +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}, HDMI-0: nvidia-auto-select +1920+0 {rotation=right, ForceFullCompositionPipeline=On}" &
@@ -7,4 +6,3 @@ xset s off && xset dpms 0 0 0 &
 sxhkd &
 unclutter &
 start-pulseaudio-x11 && pactl unload-module module-suspend-on-idle &
-$HOME/.local/bin/termautostart &
