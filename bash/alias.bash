@@ -21,8 +21,8 @@ alias lt='la --tree'
 alias ytxa='youtube-dl -x --audio-quality 0 --audio-format flac'
 
 # rysnc aliases
-alias rsynclive='rsync -avu -i --progress --stats --out-format="%t %p %i %n %M %l" --delete --filter=":- .gitignore"'
-alias rsyncdry='rsync -avun -i --progress --stats --out-format="%t %p %i %n %M %l" --delete --filter=":- .gitignore"'
+alias rsyncdry='rsync -avun -i --progress --stats --human-readable --out-format="[%t] %o:%i [%M] %n (%'\'''\''l)" --delete --filter=":- .gitignore"'
+alias rsynclive='rsync -avu -i --progress --stats --human-readable --out-format="[%t] %o:%i [%M] %n (%'\'''\''l)" --delete --filter=":- .gitignore"'
 
 # mpv as a music player
 alias play='mpv --no-audio-display'
