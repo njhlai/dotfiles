@@ -40,7 +40,7 @@ mkfifo "$PANEL_FIFO"
 	ram() {
 		local ICON=$(echo -e "$(printf '%b'${RAM})")
 		local NEXTBCOLOUR=${TRANSPARENT}
-		local stat="$(playerctl -p mps-youtube,mpv status 2>/dev/null)"
+		local stat="$(playerctl -p mpv status 2>/dev/null)"
 		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] ; then
 			local NEXTBCOLOUR=$RED
 		elif [ "${stat}" ] && [[ ${stat} == "Playing" || ${stat} == "Paused" ]] ; then
@@ -64,7 +64,7 @@ mkfifo "$PANEL_FIFO"
 		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
-			local stats="$(playerctl -p mps-youtube,mpv status 2>/dev/null)"
+			local stats="$(playerctl -p mpv status 2>/dev/null)"
 			local NEXTFCOLOUR=$TRANSPARENT
 			[[ ${stats} =~ (^|[[:space:]])"Playing"($|[[:space:]]) ]] || [[ ${stats} =~ (^|[[:space:]])"Paused"($|[[:space:]]) ]] && local NEXTFCOLOUR=$YELLOW
 
@@ -85,12 +85,12 @@ mkfifo "$PANEL_FIFO"
 		local ICON=$(echo -e "$(printf '%b'${MUSIC})")
 		local CMD=""
 
-		local players=$(playerctl -p mps-youtube,mpv -l 2>/dev/null)
+		local players=$(playerctl -p mpv -l 2>/dev/null)
 		for player in $players; do
 			if [[ -z $CMD ]]; then
 				local stat="$(playerctl -p ${player} status)"
 				if [ "${stat}" ] && [[ ${stat} == "Playing" ]] ; then
-					local artist=$(playerctl -p ${player} metadata artist)
+					local artist=$(playerctl -p ${player} metadata artist 2>/dev/null)
 					local title=$(playerctl -p ${player} metadata title)
 					local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${artist} - ${title} %{F-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
 				elif [ "${stat}" ] && [ "${stat}" = "Paused" ] ; then

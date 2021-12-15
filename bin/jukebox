@@ -1,16 +1,30 @@
 #!/bin/sh
 #
-# dmenu script for playing yt on shuffle
+# Open mpd stream using mpv
 
 . ~/.private/env.bash
 
-readonly options="$(cat <<-END
-	♫ JPop#${JPOPURL}
-END
-)"
+# probably better to check for mpv with mpd stream directly, but this workaround suffice for now
+# as long as I don't do anything stupid like deleting the pid file manually...
+MPD_MPV_PID_FILE=/tmp/mpdstream.pid
+if [ ! -f $startup_lock_file ]; then
+	touch ${MPD_MPV_PID_FILE}
+fi
+MPD_MPV_PID=$(cat ${MPD_MPV_PID_FILE})
 
-readonly chosen="$(cut -d# -f1 <(printf "%s" "$options") | dmenu -p "yt playlists:" "$@")"
-[[ -z "$chosen" ]] && exit
-readonly args="$(grep "^${chosen}#" <(printf "%s" "$options") | cut -d# -f2)"
+mpc $1 > /dev/null 2>&1
+case "$1" in
+	"toggle")
+		if [ ! -f /proc/${MPD_MPV_PID}/status ]; then
+			sleep 1 # need to let http stream establish properly first
+			mpv http://${MPDURL}/mpd.mp3 > /dev/null 2>&1&
+			echo $! > ${MPD_MPV_PID_FILE}
+		fi
+		;;
 
-mpsyt --no-textart pl $args, dump, shuffle all
+	"stop")
+		kill -9 ${MPD_MPV_PID} || true
+		;;
+
+	*) exit 1 ;;
+esac

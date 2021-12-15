@@ -31,9 +31,9 @@ super + c
 
 
 ## Applications
-# Get mps-youtube to play playlists
-super + shift + m
-	alacritty --class jukebox -e 'jukebox'
+# Turn on ncmpcpp for mpd
+super + m
+	alacritty --class jukebox -e 'ncmpcpp'
 
 # Make sxhkd reload its configuration files:
 super + Escape
