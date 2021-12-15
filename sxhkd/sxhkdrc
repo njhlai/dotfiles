@@ -52,10 +52,9 @@ super + semicolon
 	i3lock --screen 1 --greeter-text="Type password to unlock" --greeter-color=f8f8f2ff --greeter-pos="ix:iy+r+100" --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 5
 
 
-## Media keys
-XF86Audio{Prev,Play,Stop,Next} 
-	playerctl -p mps-youtube,mpv {previous,play-pause,stop,next} 2>/dev/null
-
+## Media keys (mainly to control MPD)
+XF86Audio{Prev,Play,Stop,Next}
+	jukebox {prev,toggle,stop,next}
 
 #
 ### bspwm Hotkeys
@@ -81,7 +80,7 @@ super + {shift + t,space,f}
 	bspc node -t ~{pseudo_tiled,floating,fullscreen}
 
 # toggle monocle layout
-super + m
+super + shift + m
 	bspc desktop -l next
 
 # !!set the node flags

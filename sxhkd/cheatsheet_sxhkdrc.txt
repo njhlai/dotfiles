@@ -21,7 +21,7 @@ Super + Return                   |-Open an Alacritty terminal
 Super + Shift + Return           |-Open a floating Xfce4 terminal
 Super + {r,s,Shift + f,n}        |-Run rofi in {drun,ssh,file-browser,window} mode
 Super + x                        |-Run powermenu, a rofi-style power menu
-Super + Shift + m                |-Run jukebox (mpsyt-wrapper)
+Super + m                        |-Run jukebox (mpsyt-wrapper)
 
 Node operations
 ===============
@@ -60,10 +60,11 @@ Super + {1-6}                    |-Switch to the designated tiled desktop
 Super + Shift + {1-6}            |-Send focused node to the given tiled desktop
 Super + Ctrl + {Left,Right}      |-Cycle through desktops on the current monitor
 Super + Tab                      |-Focus to the previously active desktop
-Super + ~                        |-Focus on 柒 (floating)
-Ctrl + Alt + {b,m,Esc}           |-Focus on {伍 (terminal),壹 (messenger),陸 (media)}
+Super + ~                        |-Focus on 伍 (floating)
+Ctrl + Alt + {b,m}               |-Focus on {参 (terminal),拾 (messenger)}
+Ctrl + Shift + Esc               |-Focus on 肆 (media)
 Super + Ctrl + Shift + Space     |-Cancel all preselection for desktop
-Super + m                        |-Toggle between tiled and monocle layout
+Super + Shift + m                |-Toggle between tiled and monocle layout
 
 Monitor operations
 ==================
