@@ -97,8 +97,8 @@ song_columns_list_format = (20)[red]{a} (50)[209]{t|f:Title} (20)[cyan]{b} (8f)[
 
 ##### various settings #####
 
-#execute_on_song_change = dunstify -u normal "Now Playing ♫" "$(mpc current)"
-#execute_on_player_state_change = ""
+execute_on_song_change = mpdFIFO
+execute_on_player_state_change = mpdFIFO
 
 #playlist_show_mpd_host = no
 #playlist_show_remaining_time = no

@@ -7,24 +7,19 @@
 # probably better to check for mpv with mpd stream directly, but this workaround suffice for now
 # as long as I don't do anything stupid like deleting the pid file manually...
 MPD_MPV_PID_FILE=/tmp/mpdstream.pid
-if [ ! -f $startup_lock_file ]; then
-	touch ${MPD_MPV_PID_FILE}
-fi
-MPD_MPV_PID=$(cat ${MPD_MPV_PID_FILE})
+[ -f ${MPD_MPV_PID_FILE} ] && MPD_MPV_PID=$(cat ${MPD_MPV_PID_FILE})
 
-mpc $1 > /dev/null 2>&1
+mpc $1 >& /dev/null
 case "$1" in
 	"toggle")
 		if [ ! -f /proc/${MPD_MPV_PID}/status ]; then
-			sleep 1 # need to let http stream establish properly first
-			mpv http://${MPDURL}/mpd.mp3 > /dev/null 2>&1&
+			sleep 0.5
+			mpv --no-cache --cache-secs=0 --demuxer-readahead-secs=0 http://${MPDURL}/mpd.mp3 >& /dev/null &
 			echo $! > ${MPD_MPV_PID_FILE}
 		fi
 		;;
 
 	"stop")
-		kill -9 ${MPD_MPV_PID} || true
+		[ -f /proc/${MPD_MPV_PID}/status ] && kill -9 ${MPD_MPV_PID} && rm ${MPD_MPV_PID_FILE}
 		;;
-
-	*) exit 1 ;;
 esac

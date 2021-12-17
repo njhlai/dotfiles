@@ -33,7 +33,7 @@ mkfifo "$PANEL_FIFO"
 		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
 		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
 
-		local CMD=$(echo -e "%{B${SEC_1}}%{F${WHITE}} ${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-} %{F${SEC_1}}%{B${SEC_2}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+		local CMD=$(echo -e "%{B${SEC_1}}%{F${WHITE}} ${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}%{F${SEC_1}}%{B${SEC_2}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
 		echo "$CMD"
 	}
 
@@ -42,9 +42,7 @@ mkfifo "$PANEL_FIFO"
 		local NEXTBCOLOUR=${TRANSPARENT}
 		local stat="$(playerctl -p mpv status 2>/dev/null)"
 		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] ; then
-			local NEXTBCOLOUR=$RED
-		elif [ "${stat}" ] && [[ ${stat} == "Playing" || ${stat} == "Paused" ]] ; then
-			local NEXTBCOLOUR=$YELLOW
+			local NEXTBCOLOUR=${RED}
 		fi
 
 		# read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /^ctive(file):/{file=$2} /SReclaimable:/{slab=$2}\
@@ -56,7 +54,7 @@ mkfifo "$PANEL_FIFO"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
 
-		local CMD=$(echo -e "%{B${SEC_2}}%{F${WHITE}} ${ICON} ${ram_used}GB %{F-} %{F${SEC_2}}%{B${NEXTBCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+		local CMD=$(echo -e "%{B${SEC_2}}%{F${WHITE}} ${ICON} ${ram_used}GB %{F-}%{B-}%{F${SEC_2}}%{B${NEXTBCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
 		echo "$CMD"
 	}
 
@@ -64,11 +62,7 @@ mkfifo "$PANEL_FIFO"
 		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
-			local stats="$(playerctl -p mpv status 2>/dev/null)"
-			local NEXTFCOLOUR=$TRANSPARENT
-			[[ ${stats} =~ (^|[[:space:]])"Playing"($|[[:space:]]) ]] || [[ ${stats} =~ (^|[[:space:]])"Paused"($|[[:space:]]) ]] && local NEXTFCOLOUR=$YELLOW
-
-			local CMD=$(echo -e "%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-} %{F${RED}}%{B${NEXTFCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
+			local CMD=$(echo -e "%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-}%{B-}%{F${RED}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
 			echo "$CMD"
 		fi
 	}
@@ -81,26 +75,6 @@ mkfifo "$PANEL_FIFO"
 		echo "$CMD"
 	}
 
-	music() {
-		local ICON=$(echo -e "$(printf '%b'${MUSIC})")
-		local CMD=""
-
-		local players=$(playerctl -p mpv -l 2>/dev/null)
-		for player in $players; do
-			if [[ -z $CMD ]]; then
-				local stat="$(playerctl -p ${player} status)"
-				if [ "${stat}" ] && [[ ${stat} == "Playing" ]] ; then
-					local artist=$(playerctl -p ${player} metadata artist 2>/dev/null)
-					local title=$(playerctl -p ${player} metadata title)
-					local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${artist} - ${title} %{F-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
-				elif [ "${stat}" ] && [ "${stat}" = "Paused" ] ; then
-					local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${player}: ${stat} %{F-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}")
-				fi
-			fi
-		done
-		echo "$CMD"
-	}
-
 	getDay() {
 		local ICON=$(echo -e "$(printf '%b'${CLOCK})")
 		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
@@ -109,7 +83,7 @@ mkfifo "$PANEL_FIFO"
 		local cmdDate=$(date '+%d %b')
 		local cmdHour=$(date +%H:%M)
 
-		local CMD=$(echo -e "%{B${SEC_0}}%{F${WHITE}}${cmdDay} ${SEP} ${cmdDate} ${SEP} ${cmdHour} ${ICON} %{B-}%{F-}")
+		local CMD=$(echo -e "%{B${SEC_0}}%{F${WHITE}}${cmdDay} ${SEP} ${cmdDate} ${SEP} ${cmdHour} ${ICON} %{F-}%{B-}")
 		echo "$CMD"
 	}
 	##End right section 
@@ -117,6 +91,26 @@ mkfifo "$PANEL_FIFO"
 	## Unused components
 	# SEP_L(){
 	# 	local CMD=$(echo -e "%{B${BG}}%{F${BG}} %{B-}%{F-}")
+	# 	echo "$CMD"
+	# }
+
+	# music() {
+	# 	local ICON=$(echo -e "$(printf '%b'${MUSIC})")
+	# 	local CMD=""
+
+	# 	local players=$(playerctl -p mpv -l 2>/dev/null)
+	# 	for player in $players; do
+	# 		if [[ -z $CMD ]]; then
+	# 			local stat="$(playerctl -p ${player} status)"
+	# 			if [ "${stat}" ] && [[ ${stat} == "Playing" ]] ; then
+	# 				local artist=$(playerctl -p ${player} metadata artist 2>/dev/null)
+	# 				local title=$(playerctl -p ${player} metadata title)
+	# 				local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${artist} - ${title} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
+	# 			elif [ "${stat}" ] && [ "${stat}" = "Paused" ] ; then
+	# 				local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${player}: ${stat} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
+	# 			fi
+	# 		fi
+	# 	done
 	# 	echo "$CMD"
 	# }
 	
@@ -160,7 +154,7 @@ mkfifo "$PANEL_FIFO"
 		counter=$(($(($counter+1)) % 900))
 
 		echo "H$(host)"
-		echo "S$(cpu)$(ram)$(pihole)$(music)"
+		echo "S$(cpu)$(ram)$(pihole)"
 		echo "T$(SEP_R)$(getDay)"
 		sleep 1
 	done

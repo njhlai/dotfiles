@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# mpd status FIFO
+
+. ~/.private/env.bash
+. ~/.config/lemonbar/panelConfig
+
+case "${MPD_PLAYER_STATE}" in
+	"play" | "pause")
+		metadata=$(mpc current -f "[%[%artist% - ]%title]|[%file%]" 2> /dev/null)
+		CMD=$(echo -e "M%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{F-}%{B-}%{B${YELLOW}}%{F${BLACK}} ${MUSIC} ${metadata} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
+		;;
+	*)
+		CMD=$(echo -e "M")
+		;;
+esac
+echo $CMD > $PANEL_FIFO
