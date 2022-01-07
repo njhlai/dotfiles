@@ -42,12 +42,12 @@ while read -r line ; do
 								;;
 							[ou]*)
 								# occupied and urgent desktop
-								FG=${WHITE}
+								FG=${BLUE}
 								;;
 							[FOU]*)
 								# focused occupied and urgent desktop
-								FG=${BLUE}
-								UL=${BLUE}
+								FG=${YELLOW}
+								UL=${YELLOW}
 								;;
 						esac
 						wm="${wm}%{F${FG}}%{B${SEC_0}}%{U${UL}}%{+u}%{A:bspc desktop -f ${name}:} ${name} %{A}%{B-}%{F-}%{-u}"
