@@ -20,6 +20,7 @@ case "$1" in
 		;;
 
 	"stop")
-		[ -f /proc/${MPD_MPV_PID}/status ] && kill -9 ${MPD_MPV_PID} && rm ${MPD_MPV_PID_FILE}
+		[ -f /proc/${MPD_MPV_PID}/status ] && kill -9 ${MPD_MPV_PID}
+		rm ${MPD_MPV_PID_FILE}
 		;;
 esac
