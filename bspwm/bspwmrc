@@ -84,7 +84,7 @@ bspc rule -a vlc desktop='^4' follow=on focus=on
 bspc rule -a mpv desktop='^4' follow=on focus=on
 
 ### games are all in 肆
-mygames=$(ls ~/.steam/steam/steamapps/ | grep appmanifest | sed 's/[^0-9]*//g')
+mygames=$(ls ~${DATALAKE}/games/steam/steamapps/ | grep appmanifest | sed 's/[^0-9]*//g')
 for game in $mygames; do
 	bspc rule -a steam_app_$game desktop='^4' state=fullscreen follow=on
 done &
