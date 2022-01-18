@@ -1,9 +1,10 @@
 #!/bin/sh
 
 echo "bspwm: starting..." >> .xsession-errors &
-# kill lingering lemonbar and dunst
+# kill lingering lemonbar, sxhkd and dunst
 pkill -x powerlemon
 pkill -x lemonbar
+pkill -USR1 -x sxhkd
 pkill dunst
 
 bspc monitor DP-0 -d 壹 貳 参 肆 伍
@@ -14,9 +15,10 @@ export GDK_SCALE=2 &
 export GDK_DPI_SCALE=0.4 &
 . ~/.private/env.bash
 
-# setup wallpaper, lemonbar, and dunst
+# setup wallpaper, lemonbar, sxhkd and dunst
 feh --bg-fill ${WALLPAPER} &
 ~/.config/lemonbar/powerlemon &
+sxhkd &
 dunst -config ~/.config/dunst/dunstrc &
 
 # This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
