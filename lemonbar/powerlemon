@@ -45,11 +45,8 @@ mkfifo "$PANEL_FIFO"
 			local NEXTBCOLOUR=${RED}
 		fi
 
-		# read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /^ctive(file):/{file=$2} /SReclaimable:/{slab=$2}\
-		# END {printf "%.2f %.2f", (total-free-buffers-cached)/(2^20), \
-		# ((2*cached/3)-file-slab)/(2^20)}' /proc/meminfo)"
-		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2}\
-		END {printf "%.2f %.2f", (total-free-buffers-cached)/(2^20), \
+		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /Shmem:/{shmem=$2} /SReclaimable:/{srec=$2}\
+		END {printf "%.2f %.2f", (total-free-buffers-cached-srec)/(2^20), \
 		(free+buffers+cached-avail)/(2^20)}' /proc/meminfo)"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
