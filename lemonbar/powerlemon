@@ -28,7 +28,7 @@ mkfifo "$PANEL_FIFO"
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
 
-		temp=$(sensors | grep -oP 'Tdie.*?\+\K[0-9.]+')
+		temp=$(sensors | grep -oP 'T(die|ctl).*?\+\K[0-9.]+' -m 1)
 		sys_cores=$(grep -c "^processor" /proc/cpuinfo)
 		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
 		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
