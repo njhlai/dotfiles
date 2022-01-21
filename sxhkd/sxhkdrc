@@ -33,7 +33,7 @@ super + c
 ## Applications
 # Turn on ncmpcpp for mpd
 super + m
-	alacritty --class jukebox -e 'ncmpcpp'
+	sakura --class jukebox -e 'ncmpcpp'
 
 # Make sxhkd reload its configuration files:
 super + Escape

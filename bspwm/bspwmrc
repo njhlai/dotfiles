@@ -67,7 +67,7 @@ bspc rule -a Vlc desktop='^1' follow=on focus=on
 
 ## 捌 (reader/listener)
 bspc rule -a Zathura desktop='^6' state=tiled follow=on focus=on
-bspc rule -a Alacritty:jukebox desktop='^6' state=tiled follow=on focus=on
+bspc rule -a jukebox desktop='^6' state=tiled follow=on focus=on
 bspc rule -a Gpodder desktop='^6' state=tiled follow=on focus=on
 
 ## 玖 (pager)
