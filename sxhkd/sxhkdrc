@@ -235,7 +235,7 @@ super + shift + {comma,period}
 # Help menu
 # Launch this help menu in a floating node
 super + F1
-	sakura -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
+	sakura -e $HOME/.config/sxhkd/sxhkdhelp
 
 
 # Screenshotting
