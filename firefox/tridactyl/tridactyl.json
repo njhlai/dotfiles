@@ -12,7 +12,16 @@
 		"<C-f>":null,
 		"<C-b>":null,
 		"<A-p>":null,
-		"d":null
+		"d":null,
+		"t":null,
+		"td":"tabdetach",
+		"to":"fillcmdline tabopen -c none",
+		"tp":"fillcmdline tabopen -c personal",
+		"tw":"fillcmdline tabopen -c work",
+		"tu":"fillcmdline tabopen -c ubc",
+		"tb":"fillcmdline tabopen -c banking",
+		"ts":"fillcmdline tabopen -c shopping",
+		"tt":"fillcmdline tabopen -c throwaway"
 	},
 	"ignoremaps":{
 		"<C-`>":"mode normal",
