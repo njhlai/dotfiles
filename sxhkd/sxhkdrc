@@ -1,17 +1,47 @@
 # sxhkd config
 
+####################################
+### Basics
 #
-### Apps, Launcher & Co.
+
+## dunstctl
+# Pop one notification from history
+super + d
+	dunstctl history-pop
+
+# Dismiss the last notification
+super + c
+	dunstctl close
+
+
+## Basics
+# {Close,Kill} focused node
+super + {_,shift} + w
+	bspc node -{c,k}
+
+# Lock session using i3lock-color
+super + semicolon
+	i3lock --screen 1 --greeter-text="Type password to unlock" --greeter-color=f8f8f2ff --greeter-pos="ix:iy+r+100" --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 5
+
+
+## Reloading
+# Reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Reload bspwm + lemonbar + sxhkd
+super + shift + Escape
+	bspc wm -r
+
+
+####################################
+### Launching Programs
 #
 
 ## Terminal emulators
 # Open {Alacritty,(floating) Sakura} terminal
 super + {_,shift} + Return
 	{alacritty,sakura}
-
-# Launch this help menu in a floating node
-super + F1
-	sakura -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
 
 
 ## Program launcher (rofi)
@@ -24,60 +54,18 @@ super + x
 	powermenu
 
 
-## dunstctl
-# Pop one notification from history
-super + d
-	dunstctl history-pop
-
-# Dismiss the last notification
-super + c
-	dunstctl close
-
-
 ## Applications
 # Launch ncmpcpp
 super + m
 	sakura --class jukebox -e 'ncmpcpp'
 
-# Make sxhkd reload its configuration files:
-# Reload sxhkd
-super + Escape
-	pkill -USR1 -x sxhkd
 
-# Screenshot current monitor
-Print
-	monitormaim
-
-# Screenshot {node,mouse selection,entire viewport}
-super + {_,shift,ctrl} + Print
-	maim -u {-i $(printf %i $(xdo id)),-s,_} $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
-
-# Lock session using i3lock-color
-super + semicolon
-	i3lock --screen 1 --greeter-text="Type password to unlock" --greeter-color=f8f8f2ff --greeter-pos="ix:iy+r+100" --verif-text="" --wrong-text="" --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 5
-
-
-## Media keys (mainly to control MPD)
-# MPD controls via jukebox (mpc wrapper)
-XF86Audio{Prev,Play,Stop,Next}
-	jukebox {prev,toggle,stop,next}
-
+####################################
+### bspwm: Node Operations
 #
-### bspwm Hotkeys
-#
-
-## Basic
-# Reload bspwm + lemonbar + sxhkd
-super + shift + Escape
-	bspc wm -r
-
-# {Close,Kill} focused node
-super + {_,shift} + w
-	bspc node -{c,k}
-
 
 ## state/flags
-# Set focused node to tiled state
+# Set to tiled state
 super + t
 	bspc node -t tiled
 
@@ -85,55 +73,27 @@ super + t
 super + {shift + t,space,f}
 	bspc node -t ~{pseudo_tiled,floating,fullscreen}
 
-# !!Toggle monocle layout
-super + shift + m
-	bspc desktop -l next
-
 # !!Set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
 
 ## focus/swap
-# {Focus/Swap} the node in the given direction
+# Focus the node in the given direction
 super + {h,j,k,l}
 	bspc node -f {west,south,north,east}
-
-# Swap focused node in the given direction
-super + shift + {h,j,k,l}
-	bspc node -s {west,south,north,east}
 
 # Focus the {parent,brother,child}
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# Cycle structurally through nodes on the current desktop
-alt + {_,shift + }Tab
-	bspc node -f {next,prev}.local
-
-# Focus the {previous,next} desktop in the current monitor
-super + ctrl + {Left,Right}
-	bspc desktop -f {prev,next}.local
-
-# Focus the last desktop
-super + Tab
-	bspc desktop -f last
-
 # Focus previously active node on the current desktop
 super + shift + Tab
 	bspc node -f last.local
 
-# Focus on 伍
-super + grave
-	bspc desktop -f '^5'
-
-# Focus on {参,拾}
-ctrl + {alt + b,alt + m}
-	bspc desktop -f '^{3,8}'
-
-# Focus on 肆
-ctrl + shift + Escape
-	bspc desktop -f '^4'
+# Cycle structurally through nodes in current desktop
+alt + {_,shift + }Tab
+	bspc node -f {next,prev}.local
 
 # Cycle historically through nodes across desktops
 super + {o,i}
@@ -141,9 +101,11 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# Focus to the designated desktop
-super + {1-4,grave,8,9,0}
-	bspc desktop -f '^{1-4,5,6,7,8}'
+
+## relocate
+# Swap focused node in the given direction
+super + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east}
 
 # Send focused node to the given tiled desktop
 super + shift + {1-4,grave,8,9,0}
@@ -152,28 +114,6 @@ super + shift + {1-4,grave,8,9,0}
 # Send current node to a preselected node
 super + y
 	bspc node -n last.!automatic --follow
-
-
-## preselect
-# Set preselection for next node
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# Set the presel ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# Set the presel ratio at 1:2 or 2:1
-super + ctrl + alt + {h,l}
-	bspc node -o 0.{34 -p west,66 -p east}
-
-# Cancel the presel for the focused node
-super + ctrl + space
-	bspc node -p cancel
-
-# Cancel all presel for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 
 ## move/resize
@@ -193,20 +133,122 @@ super + alt + {1-9}
 super + alt + {q,e}
 	bspc node @parent -r 0.{66,34}
 
+# Snap to 4x3 aspect ratio for current node
+super + alt + backslash
+	ratio 4 3
+
+# Snap to {16x9,21x9} aspect ratio for current node
+super + alt + {bracketleft,bracketright}
+	ratio {16 9,21 9}
+
 # Revert to normal ratio
 super + alt + space
 	bspc node @parent -r 0.52
 
-# Snap to {4x3,16x9,21x9} aspect ratio for current node
-#super + alt + {backslash,bracketleft,bracketright}
-#	ratio {4 3,16 9,21 9}
 
+## rotate
+# Rotate node {clockwise,counterclockwise}
+super + alt + {_,shift} + r
+	bspc node -R {_,-}90
+
+
+## preselect
+# Set preselection for next node
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# Set the presel ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# Set the presel ratio at 1:2 or 2:1
+super + ctrl + alt + {h,l}
+	bspc node -o 0.{34 -p west,66 -p east}
+
+# Cancel the presel for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+
+####################################
+### bspwm: Desktop Operations
+#
+
+## state/flags
+# !!Toggle monocle layout
+#super + shift + m
+#	bspc desktop -l next
+
+
+## focus
+# Focus to the designated desktop
+super + {1-4,grave,8,9,0}
+	bspc desktop -f '^{1-4,5,6,7,8}'
+
+# Focus the {previous,next} desktop in current monitor
+super + ctrl + {Left,Right}
+	bspc desktop -f {prev,next}.local
+
+# Focus the last desktop
+super + Tab
+	bspc desktop -f last
+
+# Focus on 伍
+super + grave
+	bspc desktop -f '^5'
+
+# Focus on {参,拾}
+ctrl + {alt + b,alt + m}
+	bspc desktop -f '^{3,8}'
+
+# Focus on 肆
+ctrl + shift + Escape
+	bspc desktop -f '^4'
+
+
+## preselect
+# Cancel all presel for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+
+## floating desktop
 # Move floating window
 super + shift + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
-## rotate 
-# Rotate node {clockwise,counterclockwise}
-super + alt + {_,shift} + r
-	bspc node -R {_,-}90
+####################################
+### bspwm: Monitor Operations
+#
+
+## focus
+# Switch focus to the {left,right} monitor
+super + shift + {comma,period}
+	bspc monitor -f {DP-0,HDMI-0}
+
+
+####################################
+### Extras
+#
+
+# Help menu
+# Launch this help menu in a floating node
+super + F1
+	sakura -e 'bash -c "less $HOME/.config/sxhkd/cheatsheet_sxhkdrc.txt"'
+
+
+# Screenshotting
+# Screenshot current monitor
+Print
+	monitormaim
+
+# Screenshot {node,mouse selection,entire viewport}
+super + {_,shift,ctrl} + Print
+	maim -u {-i $(printf %i $(xdo id)),-s,_} $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+
+
+## Media keys (mainly to control MPD)
+# MPD controls via jukebox (mpc wrapper)
+XF86Audio{Prev,Play,Stop,Next}
+	jukebox {prev,toggle,stop,next}
