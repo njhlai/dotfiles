@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# mpd status FIFO
+
+. ~/.private/env.bash
+icon="gmpc"
+metadata=$(mpc current -f "[%title%[\n%artist%]]|[%file%]" 2> /dev/null)
+
+if [ "${metadata}" ] ; then
+	dunstify "${metadata}" -h int:value:$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+') -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "$icon"
+else
+	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "$icon"
+fi

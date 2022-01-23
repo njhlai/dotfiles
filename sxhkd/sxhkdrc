@@ -59,6 +59,10 @@ super + x
 super + m
 	sakura --class jukebox -e 'ncmpcpp'
 
+# Get currently playing music
+super + shift + m
+	musicnotify
+
 
 ####################################
 ### bspwm: Node Operations
