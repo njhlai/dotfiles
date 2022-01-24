@@ -1,13 +1,18 @@
 #!/bin/sh
 #
-# mpd status FIFO
+# Music info display via dunst
 
 . ~/.private/env.bash
-icon="gmpc"
+
 metadata=$(mpc current -f "[%title%[\n%artist%]]|[%file%]" 2> /dev/null)
 
 if [ "${metadata}" ] ; then
-	dunstify "${metadata}" -h int:value:$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+') -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "$icon"
+	cover=/tmp/musicart.png
+	if [ ! -f ${cover} ] ; then
+		cover="gmpc"
+	fi
+
+	dunstify "${metadata}" -h int:value:$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+') -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "${cover}"
 else
-	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "$icon"
+	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "gmpc"
 fi
