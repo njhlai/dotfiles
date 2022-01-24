@@ -9,12 +9,12 @@
 MPD_MPV_PID_FILE=/tmp/mpdstream.pid
 [ -f ${MPD_MPV_PID_FILE} ] && MPD_MPV_PID=$(cat ${MPD_MPV_PID_FILE})
 
-mpc $1 >& /dev/null
+mpc $1 > /dev/null 2>&1
 case "$1" in
 	"toggle")
 		if [ ! -f /proc/${MPD_MPV_PID}/status ]; then
 			sleep 0.5
-			mpv --no-cache --cache-secs=0 --demuxer-readahead-secs=0 http://${MPDURL}/mpd.mp3 >& /dev/null &
+			mpv --no-cache --cache-secs=0 --demuxer-readahead-secs=0 http://${MPDURL}/mpd.mp3 > /dev/null 2>&1 &
 			echo $! > ${MPD_MPV_PID_FILE}
 		fi
 		;;
