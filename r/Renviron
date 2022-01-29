@@ -1,0 +1,4 @@
+R_PROFILE_USER = ${HOME}/.config/r/Rprofile
+R_LIBS_USER = ${HOME}/.local/lib/r/
+R_HISTFILE = ${HOME}/.cache/r/Rhistory
+R_BROWSER=firefox
