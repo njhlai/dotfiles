@@ -14,6 +14,9 @@ shopt -s checkwinsize
 shopt -s expand_aliases
 shopt -s histappend
 
+# ls coloring
+eval "$(dircolors ${HOME}/.dir_colors)"
+
 ## List of stuff to source for bash
 . ~/.config/bash/functions.bash
 . ~/.config/bash/alias.bash
