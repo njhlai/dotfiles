@@ -15,23 +15,23 @@ function colour_my_prompt {
 	local __git_branch=$(__git_ps1)
 
 	# Colour branch name depending on state
-	if [[ "${__git_branch}" =~ "*" ]]; then     # if repository is dirty
-		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;31m\][\[\033[03;31m\]%s\[\033[00m\]\[\033[01;31m\]]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] ' 
-	elif [[ "${__git_branch}" =~ "$" ]]; then   # if there is something stashed
-		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;33m\][\[\033[03;33m\]%s\[\033[00m\]\[\033[01;33m\]]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] ' 
-	elif [[ "${__git_branch}" =~ "%" ]]; then   # if there are only untracked files
-		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;35m\][\[\033[03;35m\]%s\[\033[00m\]\[\033[01;35m\]]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] ' 
-	elif [[ "${__git_branch}" =~ "+" ]]; then   # if there are staged files
-		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;36m\][\[\033[03;36m\]%s\[\033[00m\]\[\033[01;36m\]]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] ' 
+	if [[ ${__git_branch} =~ "*" ]]; then     # if repository is dirty
+		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;31m\][%s]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] '
+	elif [[ ${__git_branch} =~ "$" ]]; then   # if there is something stashed
+		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;33m\][%s]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] '
+	elif [[ ${__git_branch} =~ % ]]; then   # if there are only untracked files
+		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;35m\][%s]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] '
+	elif [[ ${__git_branch} =~ "+" ]]; then   # if there are staged files
+		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;36m\][%s]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] '
 	else
-		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;32m\][\[\033[03;32m\]%s\[\033[00m\]\[\033[01;32m\]]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] '
+		PS1='\[\e[38;5;241m\]\u\[\e[38;5;167m\]@\h\[\033[01;37m\] \W$(__git_ps1 " \[\033[01;32m\][%s]")\[\033[00m\] \[\e[38;5;167m\]>\[\033[00m\] '
 	fi
 }
 
 # cd with onefetch for git repos
 function cd {
-	builtin cd "$@" 
-	[[ -d $PWD/.git/ || -f $PWD/.git ]] && onefetch 2>/dev/null
+	builtin cd "$@"
+	[[ -d $PWD/.git/ || -f $PWD/.git ]] && onefetch 2> /dev/null
 }
 
 # ex - archive extractor

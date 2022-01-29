@@ -24,5 +24,5 @@ shopt -s histappend
 #
 ## LaTeX path
 if [ -d ~/Dropbox/Latex ] ; then
-	export TEXMFHOME=~/latex/
+	export TEXMFHOME=${HOME}/latex/
 fi
