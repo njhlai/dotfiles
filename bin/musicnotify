@@ -4,15 +4,18 @@
 
 . ~/.private/env.bash
 
-metadata=$(mpc current -f "[%title%[\n%artist%]]|[%file%]" 2> /dev/null)
+title=$(mpc current -f "%title%|%file%" 2> /dev/null)
 
-if [ "${metadata}" ] ; then
+if [ "${title}" ] ; then
 	cover=/tmp/musicart.png
 	if [ ! -f ${cover} ] ; then
 		cover="gmpc"
 	fi
 
-	dunstify "${metadata}" -h int:value:$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+') -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "${cover}"
+	metadata=$(mpc current -f "%artist%[\n<small><i>%album%</i></small>]" 2> /dev/null)
+	progress=$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+')
+
+	dunstify "${title}" "${metadata}" -h int:value:${progress} -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "${cover}"
 else
 	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "gmpc"
 fi
