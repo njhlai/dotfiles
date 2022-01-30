@@ -21,7 +21,8 @@
 		"tu":"fillcmdline tabopen -c ubc",
 		"tb":"fillcmdline tabopen -c banking",
 		"ts":"fillcmdline tabopen -c shopping",
-		"tt":"fillcmdline tabopen -c throwaway"
+		"tt":"fillcmdline tabopen -c throwaway",
+		"tl":"fillcmdline tab"
 	},
 	"ignoremaps":{
 		"<C-`>":"mode normal",
