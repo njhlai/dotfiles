@@ -33,7 +33,8 @@
 		{
 			"class": "label_control",
 			"parents": [{"class": "status_bar"}],
-			"font.size": 8
+			"font.size": 8,
+			"color": [175, 189, 196]
 		},
 		{
 			"class": "label_control",
