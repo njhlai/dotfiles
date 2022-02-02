@@ -22,7 +22,9 @@
 		"tb":"fillcmdline tabopen -c banking",
 		"ts":"fillcmdline tabopen -c shopping",
 		"tt":"fillcmdline tabopen -c throwaway",
-		"tl":"fillcmdline tab"
+		"tl":"fillcmdline tab",
+		"q":"back",
+		"e":"forward"
 	},
 	"ignoremaps":{
 		"<C-`>":"mode normal",
@@ -37,7 +39,7 @@
 	},
 	"subconfigs":{
 		"https://www.youtube.com/watch\\?v=.*":{
-			"nmaps":{"k":null,"l":null,"f":null,"j":null}
+			"nmaps":{"f":null,"j":null,"k":null,"l":null}
 		}
 	},
 	"searchurls":{
@@ -51,10 +53,11 @@
 		"pkg":"https://archlinux.org/packages/?q=",
 		"aur":"https://aur.archlinux.org/packages/?O=0&K=",
 		"mdn":"https://developer.mozilla.org/en-US/search?q=",
+		"deepl":"https://www.deepl.com/translator#ja/en/",
 		"osm":"https://www.openstreetmap.org/search?query=",
 		"searx":"https://searx.me/?category_general=on&q=",
 		"qwant":"https://www.qwant.com/?q="
 	},
-	"hintfiltermode": "vimperator-reflow",
-	"hintchars": "1234567890"
+	"hintfiltermode":"vimperator-reflow",
+	"hintchars":"1234567890"
 }
