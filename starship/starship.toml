@@ -1,0 +1,43 @@
+add_newline = false
+
+[character]
+success_symbol = "[└─>](bold green)"
+error_symbol = "[└─>](bold green)"
+
+[username]
+format = "[$user]($style) "
+show_always = true
+
+[hostname]
+format = "@ [$hostname]($style) "
+style = "bold fg:#d75f5f"
+ssh_only = false
+
+[directory]
+format = "in [$path]($style)[$read_only]($read_only_style) "
+truncation_length = 1
+fish_style_pwd_dir_length = 1
+
+[git_branch]
+style = "bold blue"
+
+[git_status]
+staged = "[+\\(${count}\\)](fg:green bold)"
+untracked = "[%\\(${count}\\)](fg:#ff92df bold)"
+modified = "[!\\(${count}\\)](fg:red bold)"
+stashed = "[?\\(${count}\\)](fg:yellow bold)"
+renamed = "[r](fg:cyan bold)"
+deleted = "[d](fg:red bold)"
+ahead = "[⇡${count}](fg:green bold)"
+diverged = "⇕[⇡${ahead_count}](fg:green bold)[⇣${behind_count}](fg:red bold)"
+behind = "[⇣${count}](fg:red bold)"
+style = "bold blue"
+
+[python]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[battery]
+disabled = true

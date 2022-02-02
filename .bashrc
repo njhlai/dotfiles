@@ -29,3 +29,5 @@ eval "$(dircolors ${HOME}/.dir_colors)"
 if [ -d ~/Dropbox/Latex ] ; then
 	export TEXMFHOME=${HOME}/latex/
 fi
+
+eval "$(starship init bash)"
