@@ -1,12 +1,12 @@
 {
 	"color_scheme": "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
 	"dictionary": "Packages/Language - English/en_GB.dic",
-	"font_face": "Fira Code",
+	"font_face": "Iosevka",
 	"font_options":
 	[
 		"subpixel_antialias"
 	],
-	"font_size": 10,
+	"font_size": 12,
 	"overlay_scroll_bars": "enabled",
 	"always_show_minimap_viewport": true,
 	"fade_fold_buttons": false,

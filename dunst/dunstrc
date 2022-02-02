@@ -80,7 +80,7 @@
 
 	### Text ###
 
-	font = Fira Code 11
+	font = Inconsolata Nerd Font 12
 
 	# The spacing between lines.
 	line_height = 0

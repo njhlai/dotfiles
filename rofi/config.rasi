@@ -6,7 +6,7 @@ configuration {
 	modi: "window,drun,ssh,filebrowser";
 	monitor: "1";
 
-	font: "Fira Code 10";
+	font: "Inconsolata 12";
 	show-icons: true;
 
 	display-ssh: "  ";

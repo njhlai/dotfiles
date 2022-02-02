@@ -15,7 +15,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Shell | bash |
 | Terminal | Alacritty, Sakura |
 | Font | Inconsolata |
-| Mono Font | Fira Code |
+| Mono Font | Iosevka |
 | Notification | Dunst |
 | Launcher | Rofi, dmenu |
 | Wallpaper | feh |

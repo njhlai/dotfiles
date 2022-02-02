@@ -5,7 +5,7 @@ window {
 	anchor: east;
 	x-offset: -10;
 	y-offset: -50;
-	font: "Fira Code 35";
+	font: "Iosevka 35";
 	width: 4%;
 }
 
