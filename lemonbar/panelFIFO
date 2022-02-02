@@ -12,9 +12,6 @@ while read -r line ; do
 		S*)
 			sysL="${line#?}"
 			;;
-		M*)
-			music="${line#?}"
-			;;
 		T*)
 			sysR="${line#?}"
 			;;
@@ -74,5 +71,5 @@ while read -r line ; do
 			wm="${wm}%{F${SEC_0}}%{B${SEC_1}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}"
 			;;
 	esac
-	printf "%s\n" "%{l}${host}${wm}${sysL}%{c}${music}%{r}${sysR}"
+	printf "%s\n" "%{l}${host}${wm}${sysL}%{c}%{r}${sysR}"
 done
