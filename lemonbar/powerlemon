@@ -21,7 +21,7 @@ mkfifo "$PANEL_FIFO"
 	## start left section
 	host() {
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
-		echo "%{B${SEC_0}}%{F${BG}} ${OS}%{F-} %{F${WHITE}}${HOST} ${SEP} %{F-}%{B-}"
+		echo "%{B${SEC_0}}%{F${PURPLE}} ${OS}%{F-} %{F${WHITE}}${SEP} %{F-}%{B-}"
 	}
 
 	cpu() {
