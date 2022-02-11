@@ -53,6 +53,7 @@
 		"pkg":"https://archlinux.org/packages/?q=",
 		"aur":"https://aur.archlinux.org/packages/?O=0&K=",
 		"mdn":"https://developer.mozilla.org/en-US/search?q=",
+		"pdb":"https://www.protondb.com/search?q=",
 		"deepl":"https://www.deepl.com/translator#ja/en/",
 		"osm":"https://www.openstreetmap.org/search?query=",
 		"searx":"https://searx.me/?category_general=on&q=",
