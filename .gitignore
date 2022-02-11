@@ -1,6 +1,9 @@
 # error.log
 **/error.log
 
+# lazygit state
+lazygit/state.yml
+
 # sublime
 sublime-text/Packages/User/Package Control.last-run
 sublime-text/Packages/User/Package Control.ca-list
