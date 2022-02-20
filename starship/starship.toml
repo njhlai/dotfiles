@@ -1,11 +1,14 @@
+format = """
+$all$jobs$line_break$character
+"""
 add_newline = false
 
 [character]
-success_symbol = "[└─>](bold green)"
-error_symbol = "[└─>](bold green)"
+success_symbol = "[\u2570\u2500>](bold green)"
+error_symbol = "[\u2570\u2500>](bold green)"
 
 [username]
-format = "[$user]($style) "
+format = "[\u256d\u2500](bold green) [$user]($style) "
 show_always = true
 
 [hostname]
@@ -28,16 +31,26 @@ modified = "[!\\(${count}\\)](fg:red bold)"
 stashed = "[?\\(${count}\\)](fg:yellow bold)"
 renamed = "[r](fg:cyan bold)"
 deleted = "[d](fg:red bold)"
-ahead = "[⇡${count}](fg:green bold)"
-diverged = "⇕[⇡${ahead_count}](fg:green bold)[⇣${behind_count}](fg:red bold)"
-behind = "[⇣${count}](fg:red bold)"
+ahead = "[\u21e1${count}](fg:green bold)"
+diverged = "\u21d5[\u21e1${ahead_count}](fg:green bold)[\u21e3${behind_count}](fg:red bold)"
+behind = "[\u21e3${count}](fg:red bold)"
 style = "bold blue"
 
+# programming languages settings
+[java]
+symbol = "\ue256 "
+
+[kotlin]
+symbol = "🅺 "
+
 [python]
-symbol = " "
+symbol = "\ue606 "
+
+[rlang]
+symbol = "\ufcd2 "
 
 [rust]
-symbol = " "
+symbol = "\ue7a8 "
 
 [battery]
 disabled = true
