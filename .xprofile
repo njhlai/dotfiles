@@ -4,4 +4,3 @@ nvidia-settings --load-config-only &
 nvidia-settings --assign CurrentMetaMode="DP-0: 1920x1080_144 +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}, HDMI-0: nvidia-auto-select +1920+0 {rotation=right, ForceFullCompositionPipeline=On}" &
 xset s off && xset dpms 0 0 0 &
 unclutter -b
-start-pulseaudio-x11 && pactl unload-module module-suspend-on-idle &
