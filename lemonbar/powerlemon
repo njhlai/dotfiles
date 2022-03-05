@@ -40,7 +40,6 @@ mkfifo "$PANEL_FIFO"
 	ram() {
 		local ICON=$(echo -e "$(printf '%b'${RAM})")
 		local NEXTBCOLOUR=${TRANSPARENT}
-		local stat="$(playerctl -p mpv status 2>/dev/null)"
 		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] ; then
 			local NEXTBCOLOUR=${RED}
 		fi

@@ -7,7 +7,7 @@ pkill -x lemonbar
 pkill -USR1 -x sxhkd
 pkill dunst
 
-bspc monitor DP-0 -d 壹 貳 参 肆 伍
+bspc monitor DP-0 -d 壹 贰 参 肆 伍
 bspc monitor HDMI-0 -d 捌 玖 拾
 gap=6
 
