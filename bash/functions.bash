@@ -4,9 +4,10 @@
 
 # cd with onefetch for git repos
 function cd {
+	local LASTREPO=$(basename $(git rev-parse --show-toplevel 2> /dev/null) 2> /dev/null)
 	builtin cd "$@"
 	if [[ -d $PWD/.git/ || -f $PWD/.git ]] ; then
-		onefetch
+		[ "$LASTREPO" != $(basename $(git rev-parse --show-toplevel)) ] && onefetch
 	fi
 }
 
