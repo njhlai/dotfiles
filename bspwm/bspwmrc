@@ -16,7 +16,7 @@ export GDK_DPI_SCALE=0.4 &
 . ~/.private/env.bash
 
 # setup wallpaper, lemonbar, sxhkd and dunst
-feh --bg-fill ${WALLPAPER} &
+feh --bg-fill ${WALLPAPER} --no-fehbg &
 ~/.config/lemonbar/powerlemon &
 sxhkd &
 dunst -config ~/.config/dunst/dunstrc &
