@@ -4,41 +4,41 @@
 #
 # Executed by startx (run your window manager from here)
 
-userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 userprofile=$HOME/.xprofile
-sysresources=/etc/X11/xinit/.Xresources
+usersession=$HOME/.xsession
+userresources=$HOME/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
+sysresources=/etc/X11/xinit/.Xresources
+sysxinitdir=/etc/X11/xinit/xinitrc.d
 
-# merge in defaults and keymaps
-
-if [ -f $sysresources ]; then
-    xrdb -merge $sysresources
-fi
-
-if [ -f $sysmodmap ]; then
-    xmodmap $sysmodmap
-fi
-
+# Load user profile
 [ -f $userprofile ] && . $userprofile
 
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
+# Load resources
+for resources in $sysresources $userresources; do
+    [ -f $resources ] && xrdb -merge $resources
+done
+unset resources
 
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
+# Load keymaps
+for modmap in $sysmodmap $usermodmap; do
+    [ -f $modmap ] && xmodmap $modmap
+done
+unset modmap
 
-# start some nice programs
-if [ -d /etc/X11/xinit/xinitrc.d ] ; then
-    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-        [ -x "$f" ] && . "$f"
+# Run all system xinitrc shell scripts
+if [ -d "$sysxinitdir" ] ; then
+    for f in "$sysxinitdir"/?*.sh ; do
+        [ -x "$f" -a ! -d "$f" ] && . "$f"
     done
     unset f
 fi
 
-# maybe call .xsession here instead, to be consistent with when using lightdm?
-$HOME/.local/bin/termautostart &
+# Run user xsession shell script
+[ -x "$usersession" -a ! -d "$usersession" ] && . "$usersession"
+
+# set error file location
+ERRFILE="${HOME}/.cache/X11/xsession-errors"
 
 exec bspwm
