@@ -63,7 +63,6 @@ bspc rule -a Sublime_text desktop='^2' follow=on focus=on
 
 ## 壹 (browser)
 bspc rule -a firefox desktop='^1' follow=on focus=on
-bspc rule -a Vlc desktop='^1' follow=on focus=on
 
 ## 捌 (reader/listener)
 bspc rule -a Zathura desktop='^6' state=tiled follow=on focus=on
@@ -83,8 +82,9 @@ bspc rule -a discord desktop='^8' follow=on focus=on
 ## 肆 (media)
 bspc rule -a Lutris desktop='^4' follow=on focus=on
 bspc rule -a Steam desktop='^4' state=pseudo_tiled follow=on focus=on
-bspc rule -a vlc desktop='^4' follow=on focus=on
 bspc rule -a mpv desktop='^4' follow=on focus=on
+bspc rule -a vlc desktop='^4' follow=on focus=on
+bspc rule -a Vlc desktop='^4' follow=on focus=on
 
 ### games are all in 肆
 mygames=$(ls ${DATALAKE}/games/steam/steamapps/ | grep appmanifest | sed 's/[^0-9]*//g')
