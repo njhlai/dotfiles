@@ -30,4 +30,5 @@ if [ -d ~/Dropbox/Latex ] ; then
 	export TEXMFHOME=${HOME}/latex/
 fi
 
+eval "$(pyenv init -)"
 eval "$(starship init bash)"
