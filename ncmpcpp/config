@@ -1,7 +1,7 @@
 ##### directories ######
 
-#ncmpcpp_directory = ~/.config/ncmpcpp
-#lyrics_directory = ~/.lyrics
+ncmpcpp_directory = ~/.config/ncmpcpp
+lyrics_directory = ~/.local/share/ncmpcpp/lyrics
 
 ##### connection settings #####
 
