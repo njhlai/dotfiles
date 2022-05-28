@@ -15,17 +15,12 @@ shopt -s expand_aliases
 shopt -s histappend
 
 ## List of stuff to source for bash
+. ~/.config/bash/env.bash
 . ~/.config/bash/functions.bash
 . ~/.config/bash/alias.bash
 . ~/.config/bash/colour.bash
 . ~/.private/env.bash
 . /usr/share/nvm/init-nvm.sh
-
-#
-## LaTeX path
-if [ -d ~/Dropbox/Latex ] ; then
-	export TEXMFHOME=${HOME}/latex/
-fi
 
 eval "$(pyenv init -)"
 eval "$(starship init bash)"
