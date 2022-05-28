@@ -2,9 +2,11 @@
 # colourful bash 
 #
 
-# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+# Enable colors for ls, etc.
 if type -P dircolors >/dev/null ; then
-	if [[ -f ~/.dir_colors ]] ; then
+	if [[ -f ${HOME}/.config/dir_colors ]] ; then
+		eval $(dircolors ${HOME}/.config/dir_colors)
+	elif [[ -f ~/.dir_colors ]] ; then
 		eval $(dircolors -b ~/.dir_colors)
 	elif [[ -f /etc/DIR_COLORS ]] ; then
 		eval $(dircolors -b /etc/DIR_COLORS)
