@@ -162,6 +162,8 @@ EXEC 47;30
 .py 01;32
 .java 01;32
 .kt 01;32
+.rs 01;32
+.cpp 01;32
 
 # config files
 .conf 00;32
