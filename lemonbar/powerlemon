@@ -23,26 +23,52 @@ mkfifo "$PANEL_FIFO"
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
 		echo "%{B${SEC_0}}%{F${PURPLE}}  ${OS}%{F-} %{F${WHITE}}${SEP} %{F-}%{B-}"
 	}
+	## End left section
+
+
+	## start centre section
+	getDay() {
+		local ICON=$(echo -e "$(printf '%b'${CLOCK})")
+
+		local cmdDay=$(date '+%a')
+		local cmdDate=$(date '+%d %b')
+		local cmdHour=$(date +%H:%M)
+
+		local CMD=$(echo -e "%{B${SALMON}}%{F${BLACK}} ${ICON}  ${cmdDay}  ${cmdDate}  ${cmdHour} %{F-}%{B-}")
+		echo "$CMD"
+	}
+	## end centre section
+
+
+	## start right section
+	pihole() {
+		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
+			local ICON=$(echo -e "$(printf '%b'${PI})")
+
+			local CMD=$(echo -e "%{F${RED}}%{B${TRANSPARENT}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${RED}}%{F${BLACK}}${ICON} ${ads_b}% %{F-}%{B-}")
+			echo "$CMD"
+		fi
+	}
 
 	cpu() {
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
-		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
+		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+		local PREVBCOLOUR=${TRANSPARENT}
+		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] ; then
+			local PREVBCOLOUR=${RED}
+		fi
 
 		temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
 		sys_cores=$(grep -c "^processor" /proc/cpuinfo)
 		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
 		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
 
-		local CMD=$(echo -e "%{B${SEC_1}}%{F${WHITE}} ${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}%{F${SEC_1}}%{B${SEC_2}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
+		local CMD=$(echo -e "%{F${CYAN}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}")
 		echo "$CMD"
 	}
 
 	ram() {
 		local ICON=$(echo -e "$(printf '%b'${RAM})")
-		local NEXTBCOLOUR=${TRANSPARENT}
-		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] ; then
-			local NEXTBCOLOUR=${RED}
-		fi
 
 		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /Shmem:/{shmem=$2} /SReclaimable:/{srec=$2}\
 		END {printf "%.2f %.2f", (total-free-buffers-cached-srec)/(2^20), \
@@ -50,46 +76,25 @@ mkfifo "$PANEL_FIFO"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
 
-		local CMD=$(echo -e "%{B${SEC_2}}%{F${WHITE}} ${ICON} ${ram_used}GB %{F-}%{B-}%{F${SEC_2}}%{B${NEXTBCOLOUR}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
+		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${ram_used}GB %{F-}%{B-}")
+		echo "$CMD"
+	}
+	## End right section
+
+
+	## seperators
+	SEP_L(){
+		local CMD=$(echo -e "%{B${TRANSPARENT}}%{F${SALMON}}$(printf '%b'${LEFT_HARD_DIVIDER})%{F-}%{B-}")
 		echo "$CMD"
 	}
 
-	pihole() {
-		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
-			local ICON=$(echo -e "$(printf '%b'${PI})")
-
-			local CMD=$(echo -e "%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-}%{B-}%{F${RED}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
-			echo "$CMD"
-		fi
-	}
-	## End left section
-
-
-	## start right section
 	SEP_R() {
-		local CMD=$(echo -e "%{B${TRANSPARENT}}%{F${SEC_0}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{F-}%{B-}")
+		local CMD=$(echo -e "%{B${TRANSPARENT}}%{F${SALMON}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{F-}%{B-}")
 		echo "$CMD"
 	}
 
-	getDay() {
-		local ICON=$(echo -e "$(printf '%b'${CLOCK})")
-		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
-
-		local cmdDay=$(date '+%a')
-		local cmdDate=$(date '+%d %b')
-		local cmdHour=$(date +%H:%M)
-
-		local CMD=$(echo -e "%{B${SEC_0}}%{F${WHITE}}${cmdDay} ${SEP} ${cmdDate} ${SEP} ${cmdHour} ${ICON} %{F-}%{B-}")
-		echo "$CMD"
-	}
-	##End right section 
 
 	## Unused components
-	# SEP_L(){
-	# 	local CMD=$(echo -e "%{B${BG}}%{F${BG}} %{B-}%{F-}")
-	# 	echo "$CMD"
-	# }
-
 	# music() {
 	# 	local ICON=$(echo -e "$(printf '%b'${MUSIC})")
 	# 	local CMD=""
@@ -150,8 +155,8 @@ mkfifo "$PANEL_FIFO"
 		counter=$(($(($counter+1)) % 900))
 
 		echo "H$(host)"
-		echo "S$(cpu)$(ram)$(pihole)"
-		echo "T$(SEP_R)$(getDay)"
+		echo "T$(SEP_R)$(getDay)$(SEP_L)"
+		echo "S$(pihole)$(cpu)$(ram)"
 		sleep 1
 	done
 } > "$PANEL_FIFO" &

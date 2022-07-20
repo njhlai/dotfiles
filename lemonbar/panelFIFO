@@ -9,10 +9,10 @@ while read -r line ; do
 		H*)
 			host="${line#?}"
 			;;
-		S*)
-			sysL="${line#?}"
-			;;
 		T*)
+			sysC="${line#?}"
+			;;
+		S*)
 			sysR="${line#?}"
 			;;
 		W*)
@@ -68,8 +68,8 @@ while read -r line ; do
 				esac
 				shift
 			done
-			wm="${wm}%{F${SEC_0}}%{B${SEC_1}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}"
+			wm="${wm}%{F${SEC_0}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{B-}%{F-}"
 			;;
 	esac
-	printf "%s\n" "%{l}${host}${wm}${sysL}%{c}%{r}${sysR}"
+	printf "%s\n" "%{l}${host}${wm}%{c}${sysC}%{r}${sysR}"
 done

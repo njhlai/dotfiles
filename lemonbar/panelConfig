@@ -9,7 +9,6 @@ BARHEIGHT=17
 EDGEWIDTH=5
 UPPERWIDTH=3
 UNDERLINE_WIDTH=2
-GAP=8
 
 # fonts and icon 
 FONT="Inconsolata for Powerline:style=Regular:pixelsize=$(($BARHEIGHT - 3)):antialias=true:hinting=1:letterSpace=-5:dpi=96"
@@ -17,22 +16,23 @@ ICONS="Inconsolata Nerd Font:style=Regular:pixelsize=$BARHEIGHT,3:letterSpace=-8
 JPFONT=":pixelsize=$(($BARHEIGHT - 5)):lang=ja"
 
 # colours: Modified Dracula
-BG="#534A65"
+BG="#534a65"
 FG="#d37961"
 RED="#ff5555"
 BLUE="#6272a4"
+CYAN="#8be9fd"
+GREEN="#50fa7b"
 YELLOW="#ffb86c"
+SALMON="#d37961"
 BLACK="#212121"
 WHITE="#f8f8f2"
 GREY="#2d333f"
+LIGHT_GREY="#979997"
 PURPLE="#bd93f9"
 
 SEC_0="#282a36"
-SEC_1="#454a4f"
-SEC_2="#55595d"
-SEC_3="#979997"
 
-TRANSPARENT="#CC282a36"
+TRANSPARENT="#66282a36"
 
 # dividers
 RIGHT_HARD_DIVIDER="\ue0b2"
