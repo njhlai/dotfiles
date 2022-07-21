@@ -4,7 +4,7 @@
  
 configuration {
 	modi: "window,drun,ssh,filebrowser";
-	monitor: "1";
+	monitor: "primary";
 
 	font: "Inconsolata 12";
 	show-icons: true;
