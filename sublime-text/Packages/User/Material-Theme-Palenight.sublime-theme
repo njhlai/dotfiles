@@ -1,0 +1,67 @@
+{
+	"variables":
+	{
+	},
+	"rules":
+	[
+		{
+			"class": "tabset_control",
+			"content_margin": [0, 0, 0, 0],
+			"tab_height": 25,
+			"font.size": 8,
+			"layer0.tint": [40, 42, 54]
+		},
+		{
+			"class": "tab_control",
+			"layer0.tint": [255, 255, 255]
+		},
+		{
+			"class": "quick_panel",
+			"layer0.tint": [40, 42, 54]
+		},
+		{
+			"class": "panel_control",
+			"layer1.tint": [40, 42, 54]
+		},
+		{
+			"class": "sidebar_container",
+			"layer0.tint": [40, 42, 54]
+		},
+		{
+			"class": "sidebar_tree",
+			"row_padding": [9, 2],
+			"indent": 6,
+			"layer0.tint": [40, 42, 54]
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row"}],
+			"font.size": 9
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row", "attributes": ["expandable"]}],
+			"color": [175, 189, 196],
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{"class": "tree_row", "attributes": ["hover"]}],
+			"color": [255, 255, 255]
+		},
+		{
+			"class": "status_bar",
+			"layer0.tint": [40, 42, 54]
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "status_bar"}],
+			"font.size": 8,
+			"color": [175, 189, 196]
+		},
+		{
+			"class": "label_control",
+			"parents": [{"class": "button_control"}],
+			"color": [175, 189, 196]
+		}
+	]
+}
