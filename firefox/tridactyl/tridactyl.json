@@ -56,10 +56,8 @@
 		"aur":"https://aur.archlinux.org/packages/?O=0&K=",
 		"mdn":"https://developer.mozilla.org/en-US/search?q=",
 		"pdb":"https://www.protondb.com/search?q=",
-		"deepl":"https://www.deepl.com/translator#ja/en/",
-		"osm":"https://www.openstreetmap.org/search?query=",
-		"searx":"https://searx.me/?category_general=on&q=",
-		"qwant":"https://www.qwant.com/?q="
+		"deepl":"https://www.deepl.com/translator#%s1/%s2/%s3",
+		"osm":"https://www.openstreetmap.org/search?query="
 	},
 	"hintfiltermode":"vimperator-reflow",
 	"hintchars":"1234567890"
