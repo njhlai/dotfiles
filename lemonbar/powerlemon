@@ -8,7 +8,7 @@ SCREENWIDTH=1920
 BARWIDTH=$(($SCREENWIDTH - $(($EDGEWIDTH * 2))))
 
 # Get stable constants
-OS="$(printf '%b'${HOME})"
+OS=$(grep -oP 'NAME="\K[A-Za-z]+' -m 1 /etc/os-release | tr a-z A-Z)
 HOST="$(uname -n)"
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
@@ -20,8 +20,9 @@ mkfifo "$PANEL_FIFO"
 
 	## start left section
 	host() {
+		local ICON=$(echo -e "$(printf '%b'${!OS})")
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
-		echo "%{B${SEC_0}}%{F${PURPLE}}  ${OS}%{F-} %{F${WHITE}}${SEP} %{F-}%{B-}"
+		echo "%{B${SEC_0}}%{F${PURPLE}}  ${ICON}%{F-} %{F${WHITE}}${SEP} %{F-}%{B-}"
 	}
 	## End left section
 
