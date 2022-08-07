@@ -147,7 +147,7 @@ super + alt + {bracketleft,bracketright}
 
 # Revert to normal ratio
 super + alt + space
-	bspc node @parent -r 0.52
+	bspc node @parent -r 0.5
 
 
 ## rotate
