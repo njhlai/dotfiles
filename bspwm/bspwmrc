@@ -93,6 +93,7 @@ for game in ${mygames}; do
 	bspc rule -a steam_app_$game desktop='^4' state=fullscreen follow=on
 done &
 bspc rule -a sc2_x64.exe desktop='^4' state=fullscreen follow=on
+bspc rule -a Overwatch.exe desktop='^4' state=fullscreen follow=on
 
 ## floating
 bspc rule -a Sakura state=floating rectangle=1010x450+455+315
