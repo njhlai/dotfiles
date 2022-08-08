@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # screenshot current monitor
 # credit: github.com/naelstrof
@@ -24,7 +24,7 @@ for mon in ${MONITORS}; do
 			if (( ${YMOUSE} >= ${MONY} )); then
 				if (( ${YMOUSE} <= ${MONY}+${MONH} )); then
 					# We have found our monitor!
-					maim -u -g "${MONW}x${MONH}+${MONX}+${MONY}" $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
+					maim -u -g "${MONW}x${MONH}+${MONX}+${MONY}" ${HOME}/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 					exit 0
 				fi
 			fi

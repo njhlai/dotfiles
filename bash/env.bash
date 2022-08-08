@@ -3,7 +3,7 @@
 #
 
 # either /etc/profile.d/home-local-bin.sh exists, or declare .local/bin is in PATH
-[ -f /etc/profile.d/home-local-bin.sh ] || export PATH="$HOME/.local/bin:$PATH"
+[[ -f /etc/profile.d/home-local-bin.sh ]] || export PATH="$HOME/.local/bin:$PATH"
 
 # from .profile
 export EDITOR=/usr/bin/nano

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 echo "bspwm: starting..." 1>&2
 # kill lingering lemonbar, sxhkd and dunst
@@ -9,10 +9,11 @@ pkill dunst
 
 bspc monitor DP-0 -d 壹 贰 参 肆 伍
 bspc monitor HDMI-0 -d 捌 玖 拾
-gap=6
 
+# remaining set up and variable declaration
 export GDK_SCALE=2 &
 export GDK_DPI_SCALE=0.4 &
+gap=6
 . ~/.private/env.bash
 
 # setup wallpaper, lemonbar, sxhkd and dunst
@@ -22,11 +23,11 @@ sxhkd &
 dunst -config ~/.config/dunst/dunstrc &
 
 # This creates negative padding equal to window gap so that gaps are shown only between windows and not on desktop edges.
-bspc config window_gap $gap
+bspc config window_gap ${gap}
 for side in top right bottom left ; do
-	bspc config ${side}_padding -$gap
+	bspc config ${side}_padding -${gap}
 done
-bspc config -m '^1' top_padding $((4-$gap))
+bspc config -m '^1' top_padding $((4-${gap}))
 
 # configuration
 bspc config split_ratio          	0.5
@@ -47,7 +48,7 @@ bspc rule -a Alacritty desktop='^3' follow=on focus=on
 
 ### Building receptacles for 参
 startup_lock_file=/tmp/bspwm-startup.lock
-if [ ! -f $startup_lock_file ]; then
+if [[ ! -f $startup_lock_file ]] ; then
 	touch $startup_lock_file
 	bspc desktop -f '^3'
 	bspc node @/ -i
@@ -88,7 +89,7 @@ bspc rule -a Vlc desktop='^4' follow=on focus=on
 
 ### games are all in 肆
 mygames=$(ls ${DATALAKE}/games/steam/steamapps/ | grep appmanifest | sed 's/[^0-9]*//g')
-for game in $mygames; do
+for game in ${mygames}; do
 	bspc rule -a steam_app_$game desktop='^4' state=fullscreen follow=on
 done &
 bspc rule -a sc2_x64.exe desktop='^4' state=fullscreen follow=on
@@ -102,7 +103,7 @@ FLOATING_DESKTOP_ID=$(bspc query -D -d '^5')
 bspc subscribe node_add | while read -a msg ; do
 	desk_id=${msg[2]}
 	wid=${msg[4]}
-	[ "$FLOATING_DESKTOP_ID" = "$desk_id" ] && bspc node "$wid" -t floating
+	[[ ${FLOATING_DESKTOP_ID} == ${desk_id} ]] && bspc node "${wid}" -t floating
 done &
 
 echo "bspwm: finished setting up" 1>&2

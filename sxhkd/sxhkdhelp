@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Autoparse sxhkdrc into a help menu with fuzzy search
 # credit: u/thugcee
 # source: https://www.reddit.com/r/bspwm/comments/aejyze/tip_show_sxhkd_keybindings_with_fuzzy_search/
 
-cat $HOME/.config/sxhkd/sxhkdrc | awk '/^[a-zA-Z_]/ && last {print $0,"\t",last} {last=""} /^#/{last=substr($0,3)}' | column -t -s $'\t' | fzf --no-sort --layout=reverse-list
+cat ${HOME}/.config/sxhkd/sxhkdrc | awk '/^[a-zA-Z_]/ && last {print $0,"\t",last} {last=""} /^#/{last=substr($0,3)}' | column -t -s $'\t' | fzf --no-sort --layout=reverse-list

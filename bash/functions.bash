@@ -7,7 +7,7 @@ function cd {
 	local LASTREPO=$(basename $(git rev-parse --show-toplevel 2> /dev/null) 2> /dev/null)
 	builtin cd "$@"
 	if [[ -d $PWD/.git/ || -f $PWD/.git ]] ; then
-		[ "$LASTREPO" != $(basename $(git rev-parse --show-toplevel)) ] && onefetch
+		[[ $LASTREPO != $(basename $(git rev-parse --show-toplevel)) ]] && onefetch
 	fi
 }
 
@@ -15,7 +15,7 @@ function cd {
 # usage: ex <file>
 ex ()
 {
-	if [ -f $1 ] ; then
+	if [[ -f $1 ]] ; then
 		case $1 in
 			*.tar.bz2)   tar xjf $1   ;;
 			*.tar.gz)    tar xzf $1   ;;

@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 #
 # pdflatex building script
 
 ARGUMENT="$1"
 AUXNAME="${ARGUMENT%.tex}.aux"
 
-pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -file-line-error "$ARGUMENT" | grep ".*:[0-9]*:.*" 
+pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -file-line-error "${ARGUMENT}" | grep ".*:[0-9]*:.*"
 bibtex -terse "$AUXNAME"
-pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -file-line-error excerpt.tex | grep ".*:[0-9]*:.*"
-pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -file-line-error excerpt.tex | grep ".*:[0-9]*:.*"
+pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -file-line-error "${ARGUMENT}" | grep ".*:[0-9]*:.*"
+pdflatex -synctex=1 -shell-escape -interaction=nonstopmode -file-line-error "${ARGUMENT}" | grep ".*:[0-9]*:.*"

@@ -1,22 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 #
 # resize focused window to aspect ratio
 # credit: u/ReligionIsDumbAsHell 
 # source: https://www.reddit.com/r/bspwm/comments/pdff19/i_wrote_a_script_to_resize_the_focused_window_to/
 
-if [ $# -eq 2 ]; then
+if (( $# == 2 )) ; then
 	x=$1
 	y=$2
 fi
  
-node=($(bspc query -T -n | jq -r .client.tiledRectangle.width,.client.tiledRectangle.height,.id))
-parent=($(bspc query -T -n @parent | jq -r .splitRatio,.splitType,.firstChild.id))
+node=( $(bspc query -T -n | jq -r .client.tiledRectangle.width,.client.tiledRectangle.height,.id) )
+parent=( $(bspc query -T -n @parent | jq -r .splitRatio,.splitType,.firstChild.id) )
  
 # vertical split: adjust width
-if [ "${parent[1]}" = "vertical" ]; then
+if [[ ${parent[1]} == "vertical" ]] ; then
 	width=$(printf "%.0f" $(echo "scale=4;${node[1]}*$x/$y" | bc))
 
-	if [ "${node[2]}" = "${parent[2]}" ]; then
+	if [[ ${node[2]} == ${parent[2]} ]] ; then
 		# left window
 		bspc node -z right $((width-node[0])) 0
 	else
@@ -28,7 +28,7 @@ if [ "${parent[1]}" = "vertical" ]; then
 else
 	height=$(printf "%.0f\n" $(echo "scale=4;${node[0]}*$y/$x" | bc))
 	
-	if [ "${node[2]}" = "${parent[2]}" ]; then
+	if [[ ${node[2]} == ${parent[2]} ]] ; then
 		# top window
 		bspc node -z bottom 0 $((height-node[1]))
 	else

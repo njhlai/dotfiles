@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # rofi-style powermenu
 
@@ -8,7 +8,7 @@ power_off=""
 # suspend="⏾"
 # log_out=""
 
-chosen=$(printf '%s;%s;%s' "$reboot" "$power_off" "$lock" \
+chosen=$(printf '%s;%s;%s' "${reboot}" "${power_off}" "${lock}" \
 	| rofi -theme 'powermenu.rasi' \
 			-dmenu \
 			-sep ';' \
@@ -16,16 +16,16 @@ chosen=$(printf '%s;%s;%s' "$reboot" "$power_off" "$lock" \
 			-width 4 \
 			-selected-row 1)
 
-case "$chosen" in
-	"$power_off")
+case "${chosen}" in
+	"${power_off}")
 		poweroff
 		;;
 
-	"$reboot")
+	"${reboot}")
 		reboot
 		;;
 
-	"$lock")
+	"${lock}")
 		i3lock --screen 1 --greeter-text="Type password to unlock" --greeter-color=f8f8f2ff --greeter-pos="ix:iy+r+100" --verif-text="" --wrong-text=""  --inside-color=282a3600 --insidever-color=282a3600 --insidewrong-color=282a3600 --ringver-color=6272a4ff --ringwrong-color=ff0000ff --line-uses-inside --blur 5
 		;;
 

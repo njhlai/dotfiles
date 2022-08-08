@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-source $(dirname $0)/panelConfig
+. $(dirname $0)/panelConfig
 
 # Get screen height and width and do bar width calculation
 SCREENHEIGHT=$(xrandr -q | grep Screen | awk '{print $10}' | sed s/,//)
 SCREENWIDTH=1920
-BARWIDTH=$(($SCREENWIDTH - $(($EDGEWIDTH * 2))))
+BARWIDTH=$((${SCREENWIDTH} - $((${EDGEWIDTH} * 2))))
 
 # Get stable constants
 OS=$(grep -oP 'NAME="\K[A-Za-z]+' -m 1 /etc/os-release | tr a-z A-Z)
@@ -43,7 +43,7 @@ mkfifo "$PANEL_FIFO"
 
 	## start right section
 	pihole() {
-		if [ "${pihole_s}" ] && [ "${pihole_s}" = "enabled" ] ; then
+		if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
 			local CMD=$(echo -e "%{F${RED}}%{B${TRANSPARENT}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${RED}}%{F${BLACK}}${ICON} ${ads_b}% %{F-}%{B-}")
@@ -55,7 +55,7 @@ mkfifo "$PANEL_FIFO"
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
 		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 		local PREVBCOLOUR=${TRANSPARENT}
-		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] ; then
+		if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			local PREVBCOLOUR=${RED}
 		fi
 
@@ -102,13 +102,13 @@ mkfifo "$PANEL_FIFO"
 
 	# 	local players=$(playerctl -p mpv -l 2>/dev/null)
 	# 	for player in $players; do
-	# 		if [[ -z $CMD ]]; then
+	# 		if [[ -z $CMD ]] ; then
 	# 			local stat="$(playerctl -p ${player} status)"
-	# 			if [ "${stat}" ] && [[ ${stat} == "Playing" ]] ; then
+	# 			if [[ ${stat} && ${stat} == "Playing" ]] ; then
 	# 				local artist=$(playerctl -p ${player} metadata artist 2>/dev/null)
 	# 				local title=$(playerctl -p ${player} metadata title)
 	# 				local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${artist} - ${title} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
-	# 			elif [ "${stat}" ] && [ "${stat}" = "Paused" ] ; then
+	# 			elif [[ ${stat} && ${stat} == "Paused" ]] ; then
 	# 				local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${player}: ${stat} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
 	# 			fi
 	# 		fi
@@ -133,7 +133,7 @@ mkfifo "$PANEL_FIFO"
 	# 	local gmaildir=/home/user/.mails/Gmail/\[Gmail\].All\ Mail/new
 	# 	local cmd=$(pAction ${BLUE} ${BG} "i3 'exec termite -e mutt'" ${CMAIL})
 	# 	local count=0
-	# 	if [[ ! -n $(ls "${gmaildir}") ]]; then
+	# 	if [[ ! -n $(ls "${gmaildir}") ]] ; then
 	# 			count=0
 	# 	else
 	# 			count=$(ls -1 "${gmaildir}" | wc -l)
@@ -144,13 +144,13 @@ mkfifo "$PANEL_FIFO"
 	declare -i counter=0
 	while :; do
 		# if pihole is not originally on, then keep querrying
-		if [[ -z ${pihole_s} ]] || [[ ${pihole_s} != "enabled" ]] ; then
+		if [[ -z ${pihole_s} || ${pihole_s} != "enabled" ]] ; then
 			pihole_s=$(ssh $PIHOLE pihole status 2>/dev/null | awk '/Pi-hole/{print $5}')
 			counter=0
 		fi
 
 		# get pihole stats every 15 minutes
-		if [ "${pihole_s}" ] && [[ ${pihole_s} == "enabled" ]] && [ $counter -eq 0 ] ; then
+		if [[ "${pihole_s}" && ${pihole_s} == "enabled" && $counter == 0 ]] ; then
 			ads_b=$(ssh ${PIHOLE} pihole -c -j | jq | awk '/"ads_percentage_today":/{printf "%0.1f\n",$2}')
 		fi
 		counter=$(($(($counter+1)) % 900))
@@ -178,12 +178,12 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 
 wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)
 tries_left=20
-while [ -z "$wid" -a "$tries_left" -gt 0 ] ; do
+while [[ -z ${wid} && ${tries_left} > 0 ]] ; do
 	sleep 0.05
 	wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)
 	tries_left=$((tries_left - 1))
 done
-[ -n "$wid" ] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "$wid"
+[[ -n ${wid} ]] && xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" "${wid}"
 
 
 wait

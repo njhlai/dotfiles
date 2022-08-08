@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-source $(dirname $0)/panelConfig
+. $(dirname $0)/panelConfig
 
 num_mon=$(bspc query -M | wc -l)
 
 while read -r line ; do
-	case $line in
+	case ${line} in
 		H*)
 			host="${line#?}"
 			;;
@@ -23,7 +23,7 @@ while read -r line ; do
 			while [ $# -gt 0 ] ; do
 				item=$1
 				name=${item#?}
-				case $item in
+				case ${item} in
 					# [mM]*)
 						# monitor state
 						# [ $num_mon -lt 2 ] && shift && continue

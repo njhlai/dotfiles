@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Music info display via dunst
 
@@ -6,11 +6,10 @@
 
 title=$(mpc current -f "%title%|%file%" 2> /dev/null)
 
-if [ "${title}" ] ; then
+if [[ ${title} ]] ; then
 	cover=/tmp/musicart.png
-	if [ ! -f ${cover} ] ; then
-		cover="gmpc"
-	fi
+	[[ ! -f ${cover} ]] && ffmpeg -i "${LOCAL_MPD_MUSIC_DIR}/$(mpc current -f %file% 2> /dev/null)" "${cover}" -y > /dev/null 2>&1
+	[[ -f ${cover} ]] || cover="gmpc"
 
 	metadata=$(mpc current -f "%artist%[\n<small><i>%album%</i></small>]" 2> /dev/null)
 	progress=$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+')

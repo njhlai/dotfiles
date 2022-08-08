@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Autostart terminals
 
 startup_lock_file=/tmp/bspwm-startup.lock
-if [ ! -f $startup_lock_file ]; then
+if [[ ! -f ${startup_lock_file} ]] ; then
 	alacritty --class primary &
 	alacritty --class top -e bpytop &
 	alacritty --class secondary -e sh -c 'neofetch; exec $SHELL' &

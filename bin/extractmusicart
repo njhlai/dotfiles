@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Extract art from music
 
@@ -6,7 +6,7 @@
 
 cover=/tmp/musicart.png
 
-[ -f ${cover} ] && rm ${cover}
+[[ -f ${cover} ]] && rm ${cover}
 
 # extract image via ffmpeg
 ffmpeg -i "${LOCAL_MPD_MUSIC_DIR}/$(mpc current -f %file% 2> /dev/null)" "${cover}" -y > /dev/null 2>&1

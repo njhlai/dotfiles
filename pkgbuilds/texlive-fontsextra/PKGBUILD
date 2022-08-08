@@ -53,11 +53,11 @@ package() {
 		find $dir -type d -exec install -d -m755 "$pkgdir"/usr/share/texmf-dist/'{}' \;
 		find $dir -type f -exec install -m644 '{}' "$pkgdir"/usr/share/texmf-dist/'{}' \;
 	done
-	if [[ -d texmf-dist ]]; then
+	if [[ -d texmf-dist ]] ; then
 		find texmf-dist -type d -exec install -d -m755 "$pkgdir"/usr/share/'{}' \;
 		find texmf-dist -type f -exec install -m644 '{}' "$pkgdir"/usr/share/'{}' \;
 	fi
-	if [[ -d "$pkgdir"/usr/share/texmf-dist/scripts ]]; then
+	if [[ -d "$pkgdir"/usr/share/texmf-dist/scripts ]] ; then
 		find "$pkgdir"/usr/share/texmf-dist/scripts -type f -exec chmod a+x '{}' \;
 	fi
 }
