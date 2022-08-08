@@ -44,7 +44,7 @@ bspc config presel_feedback_color 	"#ff5555"
 
 # Apps settings
 ## 参 (terminal)
-bspc rule -a Alacritty desktop='^3' follow=on focus=on
+bspc rule -a ${TERMINAL^} desktop='^3' follow=on focus=on
 
 ### Building receptacles for 参
 startup_lock_file=/tmp/bspwm-startup.lock
@@ -54,9 +54,9 @@ if [[ ! -f $startup_lock_file ]] ; then
 	bspc node @/ -i
 	bspc node @/ -p west -i
 	bspc node @/2 -o 0.6 -p south -i
-	bspc rule -a Alacritty:primary -o node=@/1
-	bspc rule -a Alacritty:top -o node=@/2/1
-	bspc rule -a Alacritty:secondary -o node=@/2/2
+	bspc rule -a ${TERMINAL^}:primary -o node=@/1
+	bspc rule -a ${TERMINAL^}:top -o node=@/2/1
+	bspc rule -a ${TERMINAL^}:secondary -o node=@/2/2
 fi
 
 ## 貳 (dev)

@@ -2,9 +2,18 @@
 #
 # Autostart terminals
 
+. ~/.private/env.bash
+
 startup_lock_file=/tmp/bspwm-startup.lock
 if [[ ! -f ${startup_lock_file} ]] ; then
-	alacritty --class primary &
-	alacritty --class top -e bpytop &
-	alacritty --class secondary -e sh -c 'neofetch; exec $SHELL' &
+	${TERMINAL} --class primary &
+	${TERMINAL} --class top -e bpytop &
+	case ${TERMINAL} in
+		sakura)
+			sakura --class secondary -x 'sh -c "neofetch; exec $SHELL"' &
+			;;
+		*)
+			${TERMINAL} --class secondary -e sh -c 'neofetch; exec $SHELL' &
+			;;
+	esac
 fi
