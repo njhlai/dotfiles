@@ -51,25 +51,12 @@ mkfifo "$PANEL_FIFO"
 		fi
 	}
 
-	cpu() {
-		local ICON=$(echo -e "$(printf '%b'${CPU})")
-		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+	ram() {
+		local ICON=$(echo -e "$(printf '%b'${RAM})")
 		local PREVBCOLOUR=${TRANSPARENT}
 		if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			local PREVBCOLOUR=${RED}
 		fi
-
-		temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
-		sys_cores=$(grep -c "^processor" /proc/cpuinfo)
-		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
-		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
-
-		local CMD=$(echo -e "%{F${CYAN}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}")
-		echo "$CMD"
-	}
-
-	ram() {
-		local ICON=$(echo -e "$(printf '%b'${RAM})")
 
 		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /Shmem:/{shmem=$2} /SReclaimable:/{srec=$2}\
 		END {printf "%.2f %.2f", (total-free-buffers-cached-srec)/(2^20), \
@@ -77,7 +64,20 @@ mkfifo "$PANEL_FIFO"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
 
-		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${ram_used}GB %{F-}%{B-}")
+		local CMD=$(echo -e "%{F${CYAN}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${ICON} ${ram_used}GB %{F-}%{B-}")
+		echo "$CMD"
+	}
+
+	cpu() {
+		local ICON=$(echo -e "$(printf '%b'${CPU})")
+		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+
+		temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
+		sys_cores=$(grep -c "^processor" /proc/cpuinfo)
+		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
+		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
+
+		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}")
 		echo "$CMD"
 	}
 	## End right section
@@ -157,7 +157,7 @@ mkfifo "$PANEL_FIFO"
 
 		echo "H$(host)"
 		echo "T$(SEP_R)$(getDay)$(SEP_L)"
-		echo "S$(pihole)$(cpu)$(ram)"
+		echo "S$(pihole)$(ram)$(cpu)"
 		sleep 1
 	done
 } > "$PANEL_FIFO" &
