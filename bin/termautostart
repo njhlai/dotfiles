@@ -4,16 +4,18 @@
 
 . ~/.private/env.bash
 
+run=(${TERMINAL} --class)
+shflag="-e"
+shcom=(sh -c 'neofetch; exec ${SHELL}')
+if [[ ${TERMINAL} == "sakura" ]] ; then
+	run=(${TERMINAL} --name)
+	shflag="-x"
+	shcom=('sh -c "neofetch; exec ${SHELL}"')
+fi
+
 startup_lock_file=/tmp/bspwm-startup.lock
 if [[ ! -f ${startup_lock_file} ]] ; then
-	${TERMINAL} --class primary &
-	${TERMINAL} --class top -e bpytop &
-	case ${TERMINAL} in
-		sakura)
-			sakura --class secondary -x 'sh -c "neofetch; exec $SHELL"' &
-			;;
-		*)
-			${TERMINAL} --class secondary -e sh -c 'neofetch; exec $SHELL' &
-			;;
-	esac
+	${run[@]} primary &
+	${run[@]} top -e bpytop &
+	${run[@]} secondary ${shflag} "${shcom[@]}" &
 fi
