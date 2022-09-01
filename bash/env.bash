@@ -2,16 +2,9 @@
 # provides env variables to ~/.bashrc
 #
 
-# either /etc/profile.d/home-local-bin.sh exists, or declare .local/bin is in PATH
-[[ -f /etc/profile.d/home-local-bin.sh ]] || export PATH="$HOME/.local/bin:$PATH"
-
-# from .profile
-export EDITOR=/usr/bin/nano
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-
 # configs
-export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
+export AWS_CONFIG_FILE="${HOME}/.config/aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="${HOME}/.config/aws/credentials"
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export CUDA_CACHE_PATH="${HOME}/.cache/nv"
 export GPODDER_HOME="${DATALAKE}/gpodder"
@@ -29,6 +22,7 @@ export PYENV_ROOT="${HOME}/.local/share/pyenv"
 export PYTHONSTARTUP="${HOME}/.config/python/pythonrc"
 export R_ENVIRON_USER="${HOME}/.config/r/Renviron"
 export RUSTUP_HOME="${HOME}/.local/share/rustup"
+export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 export TEXMFHOME="${HOME}/latex"
 export TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
 export TEXMFCONFIG="${HOME}/.config/texlive/texmf-config"
