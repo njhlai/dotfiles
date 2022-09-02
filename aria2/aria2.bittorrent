@@ -1,0 +1,23 @@
+# The max upload speed for all torrents combined.
+max-overall-upload-limit=128K
+
+# Fully encrypt the negotiation as well and the payload of all bit torrent traffic.
+bt-force-encryption=true
+
+# Timeout values for servers and clients.
+bt-tracker-connect-timeout=10
+bt-tracker-interval=900
+bt-tracker-timeout=10
+
+# Download the torrent file into memory.
+follow-torrent=mem
+
+# The amount of time and the upload-to-download ratio you wish to seed to.
+#seed-ratio=1.0
+seed-time=60
+
+# All other aria2 settings
+continue
+file-allocation=falloc
+max-connection-per-server=4
+summary-interval=0
