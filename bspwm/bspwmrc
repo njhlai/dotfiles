@@ -7,8 +7,20 @@ pkill -x lemonbar
 pkill -USR1 -x sxhkd
 pkill dunst
 
-bspc monitor DP-0 -d 壹 贰 参 肆 伍
-bspc monitor HDMI-0 -d 捌 玖 拾
+# set up monitors
+declare -i mon_count=0
+declare -a workspace
+workspace[0]="壹 贰 参 肆 伍"
+workspace[1]="捌 玖 拾"
+MONITOR=( $(xrandr | grep -oP "\K[A-Z0-9\-]+?(?= connected)") )
+for mon in ${MONITOR[@]}; do
+	bspc monitor ${mon} -d ${workspace[${mon_count}]}
+	mon_count=$((${mon_count}+1))
+done
+unset mon_count
+unset workspace
+unset MONITOR
+unset mon
 
 # remaining set up and variable declaration
 export GDK_SCALE=2 &
