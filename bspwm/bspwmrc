@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "bspwm: starting..." 1>&2
+
 # kill lingering lemonbar, sxhkd and dunst
 pkill -x powerlemon
 pkill -x lemonbar
@@ -108,7 +109,7 @@ bspc rule -a sc2_x64.exe desktop='^4' state=fullscreen follow=on
 bspc rule -a Overwatch.exe desktop='^4' state=fullscreen follow=on
 
 ## floating
-bspc rule -a Sakura state=floating rectangle=1010x450+455+315
+bspc rule -a floatterm state=floating rectangle=1010x450+455+315
 
 ## 伍 (floating)
 FLOATING_DESKTOP_ID=$(bspc query -D -d '^5')

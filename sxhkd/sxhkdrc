@@ -41,7 +41,7 @@ super + shift + Escape
 ## Terminal emulators
 # Open {Alacritty,(floating) Sakura} terminal
 super + {_,shift} + Return
-	{$TERMINAL,sakura}
+	{$TERMINAL,sakura --class floatterm}
 
 
 ## Program launcher (rofi)
