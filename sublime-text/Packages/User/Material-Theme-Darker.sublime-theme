@@ -7,8 +7,7 @@
 		{
 			"class": "tabset_control",
 			"content_margin": [0, 0, 0, 0],
-			"tab_height": 25,
-			"font.size": 8
+			"tab_height": 25
 		},
 		{
 			"class": "sidebar_tree",

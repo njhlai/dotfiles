@@ -8,7 +8,6 @@
 			"class": "tabset_control",
 			"content_margin": [0, 0, 0, 0],
 			"tab_height": 25,
-			"font.size": 8,
 			"layer0.tint": [40, 42, 54]
 		},
 		{
