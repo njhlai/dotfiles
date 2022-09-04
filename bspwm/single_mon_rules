@@ -1,0 +1,10 @@
+## 捌 (reader/listener)
+bspc rule -a Zathura desktop='^2' split_ratio=0.6 state=tiled follow=on focus=on
+
+## 伍 (pager/messenger)
+bspc rule -a sshclient desktop='^5' follow=on focus=on
+
+## 肆 (media)
+bspc rule -a jukebox desktop='^4' state=tiled follow=on focus=on
+
+echo "bspwm: finished setting up rules" 1>&2

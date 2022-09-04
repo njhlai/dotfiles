@@ -1,0 +1,37 @@
+## 捌 (reader/listener)
+bspc rule -a firefox:Toolkit desktop='^6' state=pseudo_tiled follow=on focus=on
+bspc rule -a Gpodder desktop='^6' state=tiled follow=on focus=on
+bspc rule -a jukebox desktop='^6' state=tiled follow=on focus=on
+bspc rule -a Zathura desktop='^6' state=tiled follow=on focus=on
+
+## 玖 (pager)
+bspc rule -a Insomnia desktop='^7' follow=on focus=on
+bspc rule -a Slack desktop='^7' follow=on focus=on
+bspc rule -a Sublime_merge desktop='^7' follow=on focus=on
+bspc rule -a sshclient desktop='^7' follow=on focus=on
+
+## 拾 (messenger)
+bspc rule -a discord desktop='^8' follow=on focus=on
+
+## 肆 (media)
+bspc rule -a Lutris desktop='^4' follow=on focus=on
+bspc rule -a Steam desktop='^4' state=pseudo_tiled follow=on focus=on
+
+### games are all in 肆
+mygames=$(ls ${DATALAKE}/games/steam/steamapps/ | grep appmanifest | sed 's/[^0-9]*//g')
+for game in ${mygames}; do
+	bspc rule -a steam_app_$game desktop='^4' state=fullscreen follow=on
+done &
+bspc rule -a Overwatch.exe desktop='^4' state=fullscreen follow=on
+bspc rule -a sc2_x64.exe desktop='^4' state=fullscreen follow=on
+
+## 伍 (floating)
+FLOATING_DESKTOP_ID=$(bspc query -D -d '^5')
+
+bspc subscribe node_add | while read -a msg ; do
+	desk_id=${msg[2]}
+	wid=${msg[4]}
+	[[ ${FLOATING_DESKTOP_ID} == ${desk_id} ]] && bspc node "${wid}" -t floating
+done &
+
+echo "bspwm: finished setting up rules" 1>&2
