@@ -14,7 +14,7 @@ alias free='free -h'
 
 # lsd aliases
 alias l='lsd'
-alias la='l -a'
+alias la='l -A'
 alias lt='la --tree'
 
 # rysnc aliases
