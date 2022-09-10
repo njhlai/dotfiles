@@ -11,6 +11,9 @@ BARWIDTH=$((${SCREENWIDTH} - $((${EDGEWIDTH} * 2))))
 OS=$(grep -oP 'NAME="\K[A-Za-z]+' -m 1 /etc/os-release | tr a-z A-Z)
 HOST="$(uname -n)"
 
+# set initial battery colour, if applicable
+[[ -f /sys/class/power_supply/BAT0/charge_full ]] && BATCOLOUR=${GREEN}
+
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
@@ -51,10 +54,47 @@ mkfifo "$PANEL_FIFO"
 		fi
 	}
 
+	bat() {
+		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ;  then
+			local bat_full=$(cat /sys/class/power_supply/BAT0/charge_full)
+			local bat_now=$(cat /sys/class/power_supply/BAT0/charge_now)
+			local bat_stat=$(cat /sys/class/power_supply/BAT0/status)
+			local bat_perc=$(( 100 * ${bat_now} / ${bat_full} ))
+
+			if [[ ${bat_stat} == "Charging" ]]; then
+				local ICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
+				BATCOLOUR=${YELLOW}
+			elif [[ ${bat_perc} < 25 ]] ; then
+				local ICON=$(echo -e "$(printf '%b'${BAT_QUART})")
+				BATCOLOUR=${RED}
+			elif [[ ${bat_perc} < 50 ]] ; then
+				local ICON=$(echo -e "$(printf '%b'${BAT_HALF})")
+				BATCOLOUR=${YELLOW}
+			elif [[ ${bat_perc} < 75 ]]; then
+				local ICON=$(echo -e "$(printf '%b'${BAT_3QUART})")
+				BATCOLOUR=${GREEN}
+			else
+				local ICON=$(echo -e "$(printf '%b'${BAT_FULL})")
+				BATCOLOUR=${GREEN}
+			fi
+
+			local PREVBCOLOUR=${TRANSPARENT}
+			if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
+				local PREVBCOLOUR=${RED}
+			fi
+
+			local CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}}${ICON} ${bat_perc}% %{F-}%{B-}")
+			echo "$CMD"
+		fi
+	}
+
 	ram() {
 		local ICON=$(echo -e "$(printf '%b'${RAM})")
+
 		local PREVBCOLOUR=${TRANSPARENT}
-		if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
+		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
+			local PREVBCOLOUR=${BATCOLOUR}
+		elif [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			local PREVBCOLOUR=${RED}
 		fi
 
@@ -157,7 +197,7 @@ mkfifo "$PANEL_FIFO"
 
 		echo "H$(host)"
 		echo "T$(SEP_R)$(getDay)$(SEP_L)"
-		echo "S$(pihole)$(ram)$(cpu)"
+		echo "S$(pihole)$(bat)$(ram)$(cpu)"
 		sleep 1
 	done
 } > "$PANEL_FIFO" &
