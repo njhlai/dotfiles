@@ -13,8 +13,8 @@ UPPERWIDTH=3
 UNDERLINE_WIDTH=2
 
 # fonts and icon 
-FONT="Inconsolata for Powerline:style=Regular:pixelsize=$((${BARHEIGHT} - 3)):antialias=true:hinting=1:letterSpace=-5:dpi=96"
-ICONS="Inconsolata Nerd Font:style=Regular:pixelsize=${BARHEIGHT},3:letterSpace=-8:lineSpace=-2:dpi=96"
+FONT="Inconsolata for Powerline:style=Regular:pixelsize=$((${BARHEIGHT} - 3)):antialias=true:hinting=1:dpi=96"
+ICONS="Symbols Nerd Font:style=2048-ems:pixelsize=${BARHEIGHT}:dpi=96"
 JPFONT=":pixelsize=$((${BARHEIGHT} - 5)):lang=ja"
 
 # colours: Modified Dracula
