@@ -8,7 +8,6 @@ title=$(mpc current -f "%title%|%file%" 2> /dev/null)
 
 if [[ ${title} ]] ; then
 	cover=/tmp/musicart.png
-	[[ ! -f ${cover} ]] && ffmpeg -i "${LOCAL_MPD_MUSIC_DIR}/$(mpc current -f %file% 2> /dev/null)" "${cover}" -y > /dev/null 2>&1
 	[[ -f ${cover} ]] || cover="gmpc"
 
 	metadata=$(mpc current -f "%artist%[\n<small><i>%album%</i></small>]" 2> /dev/null)
