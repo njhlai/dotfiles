@@ -63,19 +63,19 @@ mkfifo "$PANEL_FIFO"
 
 			if [[ ${bat_stat} == "Charging" ]]; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
-				BATCOLOUR=${YELLOW}
+				local BATCOLOUR=${YELLOW}
 			elif [[ ${bat_perc} < 25 ]] ; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_QUART})")
-				BATCOLOUR=${RED}
+				local BATCOLOUR=${RED}
 			elif [[ ${bat_perc} < 50 ]] ; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_HALF})")
-				BATCOLOUR=${YELLOW}
+				local BATCOLOUR=${YELLOW}
 			elif [[ ${bat_perc} < 75 ]]; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_3QUART})")
-				BATCOLOUR=${GREEN}
+				local BATCOLOUR=${GREEN}
 			else
 				local BATICON=$(echo -e "$(printf '%b'${BAT_FULL})")
-				BATCOLOUR=${GREEN}
+				local BATCOLOUR=${GREEN}
 			fi
 
 			local PREVBCOLOUR=${TRANSPARENT}
@@ -90,9 +90,9 @@ mkfifo "$PANEL_FIFO"
 
 		local PREVBCOLOUR=${TRANSPARENT}
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
-			local PREVBCOLOUR=${BATCOLOUR}
+			PREVBCOLOUR=${BATCOLOUR}
 		elif [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
-			local PREVBCOLOUR=${RED}
+			PREVBCOLOUR=${RED}
 		fi
 
 		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /Shmem:/{shmem=$2} /SReclaimable:/{srec=$2}\
@@ -101,7 +101,7 @@ mkfifo "$PANEL_FIFO"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
 
-		local CMD=$(echo -e "${CMD}%{F${CYAN}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${RAMICON} ${ram_used}GB %{F-}%{B-}")
+		CMD=$(echo -e "${CMD}%{F${CYAN}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${RAMICON} ${ram_used}GB %{F-}%{B-}")
 		echo "$CMD"
 	}
 
@@ -109,10 +109,10 @@ mkfifo "$PANEL_FIFO"
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
 		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 
-		temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
-		sys_cores=$(grep -c "^processor" /proc/cpuinfo)
-		cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
-		cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
+		local temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
+		local sys_cores=$(grep -c "^processor" /proc/cpuinfo)
+		local cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
+		local cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
 
 		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}")
 		echo "$CMD"
