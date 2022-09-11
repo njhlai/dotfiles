@@ -59,7 +59,7 @@ mkfifo "$PANEL_FIFO"
 			local bat_full=$(cat /sys/class/power_supply/BAT0/charge_full)
 			local bat_now=$(cat /sys/class/power_supply/BAT0/charge_now)
 			local bat_stat=$(cat /sys/class/power_supply/BAT0/status)
-			local bat_perc=$(( 100 * ${bat_now} / ${bat_full} ))
+			local bat_perc=$(( (100 * ${bat_now} + ${bat_full} - 1) / ${bat_full} ))
 
 			if [[ ${bat_stat} == "Charging" ]]; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
