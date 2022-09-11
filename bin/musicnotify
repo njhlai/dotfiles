@@ -16,6 +16,5 @@ if [[ ${title} ]] ; then
 	# open issue in dunst-project/dunst/issues/1061, temp fix using replaceid based on github.com/owl4ce/dotfiles/commit/77f9edb9375328d7f38846b85abf9bb743f965eb
 	dunstify "${title}" "${metadata}" -h int:value:${progress} -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "${cover}" -r 1061
 else
-	# open issue in dunst-project/dunst/issues/1061, temp fix using replaceid based on github.com/owl4ce/dotfiles/commit/77f9edb9375328d7f38846b85abf9bb743f965eb
-	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "gmpc" -r 1061
+	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "gmpc"
 fi
