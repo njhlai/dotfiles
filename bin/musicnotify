@@ -8,7 +8,7 @@ title=$(mpc current -f "%title%|%file%" 2> /dev/null)
 
 if [[ ${title} ]] ; then
 	cover=/tmp/musicart.png
-	[[ -f ${cover} ]] || cover="gmpc"
+	[[ -f ${cover} ]] || cover="juk"
 
 	metadata=$(mpc current -f "%artist%[\n<small><i>%album%</i></small>]" 2> /dev/null)
 	progress=$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+')
@@ -16,5 +16,5 @@ if [[ ${title} ]] ; then
 	# open issue in dunst-project/dunst/issues/1061, temp fix using replaceid based on github.com/owl4ce/dotfiles/commit/77f9edb9375328d7f38846b85abf9bb743f965eb
 	dunstify "${title}" "${metadata}" -h int:value:${progress} -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "${cover}" -r 1061
 else
-	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "gmpc"
+	dunstify "STOPPED" -h string:x-dunst-stack-tag:music -a "MPD" -u low -i "juk"
 fi
