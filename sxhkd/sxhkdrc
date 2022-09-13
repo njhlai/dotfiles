@@ -236,13 +236,19 @@ super + shift + {comma,period}
 ### Extras
 #
 
-# Help menu
+## Help menu
 # Launch this help menu in a floating node
 super + F1
 	sakura --class floatterm -e $HOME/.config/sxhkd/sxhkdhelp
 
 
-# Screenshotting
+## Calendar
+# Get current month's calendar
+super + shift + c
+	dunstify "$(cal | head -n 1)" "$(cal "+0 months" | tail -n 7 | sed "s,$(date '+%-d'),<u><b>$(date '+%-d')</b></u>,g")" -h string:x-dunst-stack-tag:cal -u normal -i office-calendar
+
+
+## Screenshotting
 # Screenshot current monitor
 Print
 	monitormaim
