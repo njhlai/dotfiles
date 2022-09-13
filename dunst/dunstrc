@@ -80,7 +80,7 @@
 
 	### Text ###
 
-	font = Inconsolata Nerd Font 12
+	font = Iosevka Nerd Font 12
 
 	# The spacing between lines.
 	line_height = 0
