@@ -31,10 +31,13 @@ modified = "[!\\(${count}\\)](fg:red bold)"
 stashed = "[?\\(${count}\\)](fg:yellow bold)"
 renamed = "[r\\(${count}\\)](fg:cyan bold)"
 deleted = "[d\\(${count}\\)](fg:red bold)"
-ahead = "[\u21e1${count}](fg:green bold)"
-diverged = "\u21d5[\u21e1${ahead_count}](fg:green bold)[\u21e3${behind_count}](fg:red bold)"
-behind = "[\u21e3${count}](fg:red bold)"
+ahead = "[\uf63e${count}](fg:green bold)"
+diverged = "[\u21d5\\(](fg:#979997 bold)[\uf63e${ahead_count}](fg:green bold)[\uf63b${behind_count}](fg:red bold)[\\)](fg:#979997 bold)"
+behind = "[\uf63b${count}](fg:red bold)"
 style = "bold blue"
+
+[aws]
+disabled = true
 
 # programming languages settings
 [java]
