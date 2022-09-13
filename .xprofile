@@ -1,12 +1,12 @@
 # monitors settings
-xrandr --output DP-0 --primary --mode 1920x1080 --rotate normal --rate 144.00 --output HDMI-0 --mode 2560x1080 --rotate right --right-of DP-0 &
+xrandr --output DP-0 --primary --mode 1920x1080 --rotate normal --rate 165.00 --output HDMI-0 --mode 2560x1080 --rotate right --right-of DP-0 &
 
 # start picom
 picom --xrender-sync-fence -b &
 
 # load nvidia-settings
 nvidia-settings --config="$HOME"/.config/nvidia/nvidia-settings-rc --load-config-only
-nvidia-settings --assign CurrentMetaMode="DP-0: 1920x1080_144 +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}, HDMI-0: nvidia-auto-select +1920+0 {rotation=right, ForceFullCompositionPipeline=On}" &
+nvidia-settings --assign CurrentMetaMode="DP-0: 1920x1080_165 +0+0 {ForceFullCompositionPipeline=On, AllowGSYNCCompatible=On}, HDMI-0: nvidia-auto-select +1920+0 {rotation=right, ForceFullCompositionPipeline=On}" &
 
 # turn off display sleeping
 xset s off && xset dpms 0 0 0 &
