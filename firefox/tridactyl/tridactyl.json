@@ -13,6 +13,9 @@
 		"<C-b>":null,
 		"<A-p>":null,
 		"d":null,
+		"f":null,
+		";f":"hint",
+		";c":"hint -c summary,[class*='expand'],[class*='togg']",
 		"t":null,
 		"td":"tabdetach",
 		"to":"fillcmdline tabopen -c none",
@@ -38,7 +41,7 @@
 	},
 	"subconfigs":{
 		"http(s)?://www\\.youtube\\.com/watch\\?v=.*":{
-			"nmaps":{"f":null,"j":null,"k":null,"l":null}
+			"nmaps":{"j":null,"k":null,"l":null}
 		},
 		"http(s)?://libreddit\\.spike\\.codes/.*":{
 			"nmaps":{";i":"hint -c .post_media_image,.gallery img",";I":"hint -tc .post_media_image,.gallery img"}
