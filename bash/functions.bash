@@ -11,8 +11,18 @@ function cd {
 	fi
 }
 
+# repo - convenient function to jump to repo location
+repo () {
+	repopwd="${REPOS}/$1"
+	if [[ -d ${repopwd} ]] ; then
+		cd ${repopwd}
+	else
+		echo "the repo '$1' is not present locally!"
+	fi
+}
+complete -W "$(ls ${REPOS} | sed -z 's,\n, ,g')" repo
+
 # ex - archive extractor
-# usage: ex <file>
 ex ()
 {
 	if [[ -f $1 ]] ; then
