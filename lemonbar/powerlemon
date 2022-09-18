@@ -22,7 +22,7 @@ mkfifo "$PANEL_FIFO"
 	host() {
 		local ICON=$(echo -e "$(printf '%b'${!OS})")
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
-		echo "%{B${SEC_0}}%{F${PURPLE}}  ${ICON}%{F-} %{F${WHITE}}${SEP} %{F-}%{B-}"
+		echo "%{B${SEC_0}}%{F${PURPLE}}  ${ICON}%{F-}  %{F${WHITE}}${SEP}%{F-}%{B-}"
 	}
 	## End left section
 
@@ -51,11 +51,11 @@ mkfifo "$PANEL_FIFO"
 		fi
 	}
 
-	batram() {
+	battemp() {
 		local CMD=
 
 		# get battery info if applicable
-		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ;  then
+		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
 			local bat_full=$(cat /sys/class/power_supply/BAT0/charge_full)
 			local bat_now=$(cat /sys/class/power_supply/BAT0/charge_now)
 			local bat_stat=$(cat /sys/class/power_supply/BAT0/status)
@@ -78,22 +78,37 @@ mkfifo "$PANEL_FIFO"
 				local BATCOLOUR=${GREEN}
 			fi
 
+			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
 			local PREVBCOLOUR=${TRANSPARENT}
 			if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
-				local PREVBCOLOUR=${RED}
+				PREVBCOLOUR=${RED}
+				SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 			fi
 
-			CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}}${BATICON} ${bat_perc}% %{F-}%{B-}")
+			CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}${SEP}%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}}${BATICON} ${bat_perc}% %{F-}%{B-}")
 		fi
 
-		local RAMICON=$(echo -e "$(printf '%b'${RAM})")
+		local TEMPICON=$(echo -e "$(printf '%b'${TEMP})")
+		local UNIT=$(echo -e "$(printf '%b'${CELCIUS})")
 
+		local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
 		local PREVBCOLOUR=${TRANSPARENT}
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
 			PREVBCOLOUR=${BATCOLOUR}
+			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 		elif [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			PREVBCOLOUR=${RED}
+			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 		fi
+
+		local temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
+
+		CMD=$(echo -e "${CMD}%{F${WHITE}}%{B${PREVBCOLOUR}}${SEP}%{B-}%{F-}%{B${WHITE}}%{F${BLACK}}${TEMPICON} ${temp}${UNIT} %{F-}%{B-}")
+		echo "$CMD"
+	}
+
+	ram() {
+		local ICON=$(echo -e "$(printf '%b'${RAM})")
 
 		read -r -a ram_raw <<< "$(awk '/MemTotal:/{total=$2} /MemFree:/{free=$2} /MemAvailable:/{avail=$2} /Buffers:/{buffers=$2} /^Cached:/{cached=$2} /Shmem:/{shmem=$2} /SReclaimable:/{srec=$2}\
 		END {printf "%.2f %.2f", (total-free-buffers-cached-srec)/(2^20), \
@@ -101,20 +116,18 @@ mkfifo "$PANEL_FIFO"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
 
-		CMD=$(echo -e "${CMD}%{F${CYAN}}%{B${PREVBCOLOUR}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${RAMICON} ${ram_used}GB %{F-}%{B-}")
+		CMD=$(echo -e "${CMD}%{F${CYAN}}%{B${WHITE}}$(printf '%b'${RIGHT_SOFT_DIVIDER})%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${ICON} ${ram_used}GB %{F-}%{B-}")
 		echo "$CMD"
 	}
 
 	cpu() {
 		local ICON=$(echo -e "$(printf '%b'${CPU})")
-		local SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 
-		local temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
 		local sys_cores=$(grep -c "^processor" /proc/cpuinfo)
 		local cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
 		local cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
 
-		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}$(printf '%b'${RIGHT_HARD_DIVIDER})%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${cpu_perc}% ${SEP} ${temp}C %{F-}%{B-}")
+		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}$(printf '%b'${RIGHT_SOFT_DIVIDER})%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${cpu_perc}%   %{F-}%{B-}")
 		echo "$CMD"
 	}
 	## End right section
@@ -194,7 +207,7 @@ mkfifo "$PANEL_FIFO"
 
 		echo "H$(host)"
 		echo "T$(SEP_R)$(getDay)$(SEP_L)"
-		echo "S$(pihole)$(batram)$(cpu)"
+		echo "S$(pihole)$(battemp)$(ram)$(cpu)"
 		sleep 1
 	done
 } > "$PANEL_FIFO" &
