@@ -11,6 +11,7 @@ function cd {
 	fi
 }
 
+
 # repo - convenient function to jump to repo location
 repo () {
 	repopwd="${REPOS}/$1"
@@ -20,7 +21,13 @@ repo () {
 		echo "the repo '$1' is not present locally!"
 	fi
 }
-complete -W "$(ls ${REPOS} | sed -z 's,\n, ,g')" repo
+
+# completion
+_repo_completion () {
+	[[ ${#COMP_WORDS[@]} != 2 ]] || COMPREPLY=($(compgen -W "$(ls ${REPOS} | sed -z 's,\n, ,g')" "${COMP_WORDS[1]}"))
+}
+complete -F _repo_completion repo
+
 
 # ex - archive extractor
 ex ()
