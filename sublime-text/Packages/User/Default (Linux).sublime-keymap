@@ -1,4 +1,5 @@
 [
 	{"keys": ["ctrl+tab"], "command": "next_view"},
 	{"keys": ["ctrl+shift+tab"], "command": "prev_view"},
+	{"keys": ["primary+t"], "command": "lsp_show_diagnostics_panel", "context": [{"key": "setting.lsp_active"}]},
 ]

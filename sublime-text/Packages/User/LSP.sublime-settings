@@ -1,0 +1,10 @@
+{
+	"clients":
+	{
+		"clangd":
+		{
+			"enabled": true
+		}
+	},
+	"show_inlay_hints": true
+}
