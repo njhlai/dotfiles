@@ -202,7 +202,7 @@ super + grave
 	bspc desktop -f '^5'
 
 # Focus on {参,拾}
-ctrl + {alt + b,alt + m}
+ctrl + alt + {b,m}
 	bspc desktop -f '^{3,8}'
 
 # Focus on 肆

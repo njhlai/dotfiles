@@ -7,7 +7,7 @@
 # probably better to check for mpv with mpd stream directly, but this workaround suffice for now
 # as long as I don't do anything stupid like deleting the pid file manually...
 MPD_MPV_PID_FILE=/tmp/mpdstream.pid
-[ -f ${MPD_MPV_PID_FILE} ] && MPD_MPV_PID=$(cat ${MPD_MPV_PID_FILE})
+[[ -f ${MPD_MPV_PID_FILE} ]] && MPD_MPV_PID=$(cat ${MPD_MPV_PID_FILE})
 
 mpc $1 > /dev/null 2>&1
 case "$1" in
