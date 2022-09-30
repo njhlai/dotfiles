@@ -6,6 +6,6 @@ bspc rule -a Skype desktop='^5' follow=on focus=on
 bspc rule -a sshclient desktop='^5' follow=on focus=on
 
 ## 肆 (media)
-bspc rule -a jukebox desktop='^4' state=tiled follow=on focus=on
+bspc rule -a jukebox desktop=${JUKEBOX_DESKTOP} state=tiled follow=on focus=on
 
 echo "bspwm: finished setting up rules" 1>&2

@@ -57,7 +57,13 @@ super + x
 ## Applications
 # Launch ncmpcpp
 super + m
-	sakura --class jukebox -e 'ncmpcpp'
+	[[ -n $(pgrep ncmpcpp) ]] && \
+		bspc query -N -n .leaf -d ${JUKEBOX_DESKTOP} | \
+		while read id; do bspc query -T -n $id; done | \
+		jq 'select(.client.className=="jukebox").id' | \
+		head -n 1 | \
+		if read id; then bspc node $id -f; fi \
+	|| sakura --class jukebox -e 'ncmpcpp'
 
 # Get currently playing music
 super + shift + m
