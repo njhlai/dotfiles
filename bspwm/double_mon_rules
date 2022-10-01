@@ -1,6 +1,5 @@
 ## 捌 (reader/listener)
 bspc rule -a firefox:Toolkit desktop='^6' state=pseudo_tiled follow=on focus=on
-bspc rule -a Gpodder desktop='^6' state=tiled follow=on focus=on
 bspc rule -a jukebox desktop=${JUKEBOX_DESKTOP} state=tiled follow=on focus=on
 bspc rule -a Zathura desktop='^6' state=tiled follow=on focus=on
 
