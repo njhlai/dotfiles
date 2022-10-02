@@ -4,10 +4,10 @@
 #
 # Executed by startx (run your window manager from here)
 
-usermodmap=${HOME}/.Xmodmap
-userprofile=${HOME}/.xprofile
-usersession=${HOME}/.xsession
-userresources=${HOME}/.Xresources
+usermodmap=${HOME}/.config/X11/Xmodmap
+userprofile=${HOME}/.config/X11/xprofile
+usersession=${HOME}/.config/X11/xsession
+userresources=${HOME}/.config/X11/Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysxinitdir=/etc/X11/xinit/xinitrc.d
