@@ -10,7 +10,13 @@ if [[ ${title} ]] ; then
 	cover=/tmp/musicart.png
 	[[ -f ${cover} ]] || cover="juk"
 
-	metadata=$(mpc current -f "%artist%[\n<small><i>%album%</i></small>]" 2> /dev/null)
+	genre=$(mpc current -f %file% 2> /dev/null | awk -F "/" '{print $1}')
+	if [[ ${genre} == "Pop" ]] ; then
+		metadata=$(mpc current -f "<small>%artist%[\n<i>%album%</i>]</small>" 2> /dev/null)
+	else
+		metadata=$(mpc current -f "<small>%artist%[\n<i>%composer%</i>]</small>" 2> /dev/null)
+	fi
+
 	progress=$(mpc status 2> /dev/null | grep -oP '\[[a-z]*\].*?\(\K[0-9]+')
 
 	# open issue in dunst-project/dunst/issues/1061, temp fix using replaceid based on github.com/owl4ce/dotfiles/commit/77f9edb9375328d7f38846b85abf9bb743f965eb
