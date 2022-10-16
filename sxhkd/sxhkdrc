@@ -235,7 +235,7 @@ super + shift + {Left,Down,Up,Right}
 ## focus
 # Switch focus to the {left,right} monitor
 super + shift + {comma,period}
-	bspc monitor -f {DP-0,HDMI-0}
+	bspc monitor -f {DisplayPort-0,HDMI-A-0}
 
 
 ####################################
