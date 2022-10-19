@@ -64,13 +64,13 @@ mkfifo "$PANEL_FIFO"
 			if [[ ${bat_stat} == "Charging" ]]; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
 				local BATCOLOUR=${YELLOW}
-			elif [[ ${bat_perc} < 25 ]] ; then
+			elif (( ${bat_perc} < 25 )) ; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_QUART})")
 				local BATCOLOUR=${RED}
-			elif [[ ${bat_perc} < 50 ]] ; then
+			elif (( ${bat_perc} < 50 )) ; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_HALF})")
 				local BATCOLOUR=${YELLOW}
-			elif [[ ${bat_perc} < 75 ]]; then
+			elif (( ${bat_perc} < 75 )); then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_3QUART})")
 				local BATCOLOUR=${GREEN}
 			else
@@ -228,7 +228,7 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 
 wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)
 tries_left=20
-while [[ -z ${wid} && ${tries_left} > 0 ]] ; do
+while [[ -z ${wid} && ${tries_left} -gt 0 ]] ; do
 	sleep 0.05
 	wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)
 	tries_left=$((tries_left - 1))
