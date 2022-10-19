@@ -251,7 +251,7 @@ super + F1
 ## Calendar
 # Get current month's calendar
 super + shift + c
-	dunstify "$(cal | head -n 1)" "$(cal "+0 months" | tail -n 7 | sed "s,$(date '+%-d'),<u><b>$(date '+%-d')</b></u>,g")" -h string:x-dunst-stack-tag:cal -u normal -i office-calendar
+	calnotify
 
 
 ## Screenshotting
