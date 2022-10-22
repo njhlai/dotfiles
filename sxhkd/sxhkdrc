@@ -55,6 +55,10 @@ super + x
 
 
 ## Applications
+# Launch ranger
+super + e
+	sakura --class floatterm -e ranger
+
 # Launch ncmpcpp
 super + m
 	[[ -n $(pgrep ncmpcpp) ]] && \
