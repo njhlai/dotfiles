@@ -272,3 +272,7 @@ super + {_,shift,ctrl} + Print
 # MPD controls via jukebox (mpc wrapper)
 XF86Audio{Prev,Play,Stop,Next}
 	jukebox {prev,toggle,stop,next}
+
+# Volume controls
+XF86Audio{RaiseVolume,LowerVolume,Mute}
+	wpctl {set-volume @DEFAULT_AUDIO_SINK@ 0.05+, set-volume @DEFAULT_AUDIO_SINK@ 0.05-, set-mute @DEFAULT_AUDIO_SINK@ toggle}
