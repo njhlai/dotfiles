@@ -3,4 +3,4 @@
 # Startup scripts
 
 # Autostart terminals
-$HOME/.local/bin/termautostart &
+$HOME/.local/bin/termautostart

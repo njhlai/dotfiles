@@ -8,7 +8,6 @@ run=(${TERMINAL} --class)
 shflag="-e"
 shcom=(sh -c 'neofetch; exec ${SHELL}')
 if [[ ${TERMINAL} == "sakura" ]] ; then
-	run=(${TERMINAL} --name)
 	shflag="-x"
 	shcom=('sh -c "neofetch; exec ${SHELL}"')
 fi

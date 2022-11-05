@@ -67,9 +67,9 @@ if [[ ! -f $startup_lock_file ]] ; then
 	bspc node @/ -i
 	bspc node @/ -p west -i
 	bspc node @/2 -o 0.6 -p south -i
-	bspc rule -a ${TERMINAL^}:primary -o node=@/1
-	bspc rule -a ${TERMINAL^}:top -o node=@/2/1
-	bspc rule -a ${TERMINAL^}:secondary -o node=@/2/2
+	bspc rule -a primary -o node=@/1
+	bspc rule -a top -o node=@/2/1
+	bspc rule -a secondary -o node=@/2/2
 fi
 
 ## 貳 (dev)
