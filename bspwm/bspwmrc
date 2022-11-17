@@ -57,16 +57,7 @@ bspc config presel_feedback_color 	"#ff5555"
 
 # Apps settings
 ## 参 (terminal)
-bspc rule -a ${TERMINAL^} desktop='^3' follow=on focus=on
-
-### Building receptacles for 参
-startup_lock_file=/tmp/bspwm-startup.lock
-if [[ ! -f $startup_lock_file ]] ; then
-	touch $startup_lock_file
-	bspc desktop -f '^3'
-	bspc node @/ -i
-	bspc rule -a primary -o node=@
-fi
+bspc rule -a primary desktop='^3' follow=on focus=on
 
 ## 貳 (dev)
 bspc rule -a Sublime_text desktop='^2' follow=on focus=on
