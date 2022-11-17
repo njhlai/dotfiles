@@ -3,4 +3,5 @@
 # Startup scripts
 
 # Autostart terminals
-$HOME/.local/bin/termautostart
+. ~/.private/env.bash
+${TERMINAL} --class primary -e zellij &

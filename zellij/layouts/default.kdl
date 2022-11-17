@@ -1,0 +1,9 @@
+layout {
+    pane split_direction="vertical" {
+        pane name="PrimaryTerminal" focus=true
+        pane split_direction="horizontal" {
+            pane command="bpytop" size="62%"
+            pane command="neofetch" size="38%"
+        }
+    }
+}
