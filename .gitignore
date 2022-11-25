@@ -1,5 +1,5 @@
-# error.log
-**/error.log
+# error logs
+**/*.log
 
 # lazygit state
 lazygit/state.yml

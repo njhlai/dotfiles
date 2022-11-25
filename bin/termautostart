@@ -15,6 +15,6 @@ fi
 startup_lock_file=/tmp/bspwm-startup.lock
 if [[ ! -f ${startup_lock_file} ]] ; then
 	${run[@]} primary &
-	${run[@]} top -e bpytop &
+	${run[@]} top -e btop &
 	${run[@]} secondary ${shflag} "${shcom[@]}" &
 fi
