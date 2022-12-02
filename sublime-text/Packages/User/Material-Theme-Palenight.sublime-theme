@@ -11,20 +11,12 @@
 			"layer0.tint": [40, 42, 54]
 		},
 		{
-			"class": "tab_control",
-			"layer0.tint": [255, 255, 255]
-		},
-		{
 			"class": "quick_panel",
 			"layer0.tint": [40, 42, 54]
 		},
 		{
 			"class": "panel_control",
 			"layer1.tint": [40, 42, 54]
-		},
-		{
-			"class": "sidebar_container",
-			"layer0.tint": [40, 42, 54]
 		},
 		{
 			"class": "sidebar_tree",
