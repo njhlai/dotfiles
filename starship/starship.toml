@@ -40,11 +40,23 @@ style = "bold blue"
 disabled = true
 
 # programming languages settings
+[golang]
+symbol = "\ufcd1 "
+
 [java]
 symbol = "\ue256 "
 
 [kotlin]
 symbol = "\uf533 "
+
+[lua]
+symbol = "\ue620 "
+
+[perl]
+symbol = "\ue769 "
+
+[php]
+symbol = "\ue608 "
 
 [python]
 symbol = "\ue606 "
@@ -52,8 +64,14 @@ symbol = "\ue606 "
 [rlang]
 symbol = "\ufcd2 "
 
+[ruby]
+symbol = "\ue23e "
+
 [rust]
 symbol = "\ue7a8 "
+
+[scala]
+format = "via [$symbol ($version )]($style)"
 
 [battery]
 disabled = true
