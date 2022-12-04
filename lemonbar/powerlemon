@@ -56,12 +56,10 @@ mkfifo "$PANEL_FIFO"
 
 		# get battery info if applicable
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
-			local bat_full=$(cat /sys/class/power_supply/BAT0/charge_full)
-			local bat_now=$(cat /sys/class/power_supply/BAT0/charge_now)
-			local bat_stat=$(cat /sys/class/power_supply/BAT0/status)
-			local bat_perc=$(( (100 * ${bat_now} + ${bat_full} - 1) / ${bat_full} ))
+			read -r -a bat <<< $(upower -i $(upower -e | grep "BAT") | awk '/percentage:/{perc=$2} /state:/{state=$2}END {printf "%s %.0f",state,perc}')
+			local bat_perc=${bat[1]}
 
-			if [[ ${bat_stat} == "Charging" ]]; then
+			if [[ ${bat[0]} == "charging" ]]; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
 				local BATCOLOUR=${YELLOW}
 			elif (( ${bat_perc} < 25 )) ; then
