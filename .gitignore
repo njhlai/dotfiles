@@ -4,6 +4,9 @@
 # lazygit state
 lazygit/state.yml
 
+# ranger plugins
+ranger/plugins
+
 # sublime
 sublime-text/Packages/User/Package Control.last-run
 sublime-text/Packages/User/Package Control.ca-list
