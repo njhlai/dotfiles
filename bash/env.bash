@@ -3,8 +3,6 @@
 #
 
 # configs
-export AWS_CONFIG_FILE="${HOME}/.config/aws/config"
-export AWS_SHARED_CREDENTIALS_FILE="${HOME}/.config/aws/credentials"
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export CUDA_CACHE_PATH="${HOME}/.cache/nv"
 export GDBHISTFILE="${HOME}/.local/state/gdb/history"
