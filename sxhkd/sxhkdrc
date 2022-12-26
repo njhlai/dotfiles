@@ -254,7 +254,7 @@ super + F1
 
 ## Calendar
 # Get current month's calendar
-super + shift + c
+super + q
 	calnotify
 
 
