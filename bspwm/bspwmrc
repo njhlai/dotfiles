@@ -67,6 +67,7 @@ bspc rule -a firefox desktop='^1' follow=on focus=on
 
 ## 肆 (media)
 bspc rule -a mpv desktop='^4' follow=on focus=on
+bspc rule -a puddletag desktop '^4' follow=on focus=on
 bspc rule -a vlc desktop='^4' follow=on focus=on
 bspc rule -a Vlc desktop='^4' follow=on focus=on
 
