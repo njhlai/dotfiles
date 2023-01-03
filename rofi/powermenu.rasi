@@ -3,7 +3,7 @@
 window {
 	location: east;
 	anchor: east;
-	x-offset: -10;
+	x-offset: -15;
 	y-offset: -50;
 	font: "Iosevka 35";
 	width: 4%;
