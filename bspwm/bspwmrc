@@ -11,7 +11,7 @@ pkill dunst
 # set up monitors
 declare -i mon_count=0
 declare -a workspace
-workspace[0]="壹 贰 参 肆 伍"
+workspace[0]="壹 贰 参 肆 伍 陆"
 workspace[1]="捌 玖 拾"
 MONITORS=$(xrandr -q | grep -oP "\K[a-zA-Z0-9\-]+?(?= connected)")
 for mon in ${MONITORS}; do
@@ -67,9 +67,11 @@ bspc rule -a firefox desktop='^1' follow=on focus=on
 
 ## 肆 (media)
 bspc rule -a mpv desktop='^4' follow=on focus=on
-bspc rule -a puddletag desktop '^4' follow=on focus=on
 bspc rule -a vlc desktop='^4' follow=on focus=on
 bspc rule -a Vlc desktop='^4' follow=on focus=on
+
+## 伍 (others)
+bspc rule -a puddletag desktop '^5' follow=on focus=on
 
 ## floating
 bspc rule -a floatterm state=floating rectangle=1010x450+455+315
