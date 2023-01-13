@@ -70,17 +70,17 @@ message_delay_time = 5
 ## - a - use alternative character set
 ##
 
-song_list_format = {$(209)%t$9}|{$8%f$9}{ - $2%a$9}$R{$3%l$9}
-song_status_format = {{$(209)%t$9}{ - $2%a$9{ $7[%b]$9}}}|{$8%f$9}
-song_library_format = {$(209)%t$9}|{$8%f$9}
-alternative_header_first_line_format = $b$1$aqqu$/a$9 {$(209)%t$9}|{$8%f$9} $1$atqq$/a$9$/b
-alternative_header_second_line_format = {$2%a$9{ $7[%b]$9}}|{$8%D$9}
-current_item_prefix = $(209)$r
-current_item_suffix = $/r$(end)
-current_item_inactive_column_prefix = $0
-current_item_inactive_column_suffix = $9
-now_playing_prefix = $b$u
-now_playing_suffix = $/u$/b
+song_list_format = {$(247)%t$9}|{$8%f$9}{ - $2%a$9}$R{$3%l$9}
+song_status_format = {{$(247)%t$9}{ - $2%a$9{ $6[%b]$9}}}|{$8%f$9}
+song_library_format = {$(247)%t$9}|{$8%f$9}
+alternative_header_first_line_format = $b{$(247)%t$9}|{$8%f$9}$/b
+alternative_header_second_line_format = {$2%a$9{ $6[%b]$9}}|{$8%D$9}
+current_item_prefix = $b$r
+current_item_suffix = $/r$/b
+current_item_inactive_column_prefix = $5
+current_item_inactive_column_suffix = $5
+now_playing_prefix = $b$u$r
+now_playing_suffix = $/r$/u$/b
 browser_playlist_prefix = "$8{playlist}:$9 "
 #selected_item_prefix = $6
 #selected_item_suffix = $9
@@ -93,7 +93,7 @@ browser_sort_format = {%t}|{%f}{ - %a} {%l}
 
 ##### columns settings #####
 
-song_columns_list_format = (20)[red]{a} (50)[209]{t|f:Title} (20)[cyan]{b} (8f)[green]{lr}
+song_columns_list_format = (20)[red]{a} (50)[247]{t|f:Title} (20)[magenta]{b} (8f)[blue]{lr}
 
 ##### various settings #####
 
@@ -115,7 +115,7 @@ discard_colors_if_item_is_selected = yes
 volume_change_step = 0
 autocenter_mode = yes
 centered_cursor = yes
-#progressbar_look = =>
+progressbar_look = ━━━
 
 #default_place_to_search_in = database
 user_interface = alternative
@@ -174,19 +174,19 @@ empty_tag_marker = <>
 ##### colors definitions #####
 
 colors_enabled = yes
-empty_tag_color = cyan
-header_window_color = default
+empty_tag_color = blue
+header_window_color = blue
 #volume_color = green
-state_line_color = default
-state_flags_color = default:b
-main_window_color = yellow
+state_line_color = blue
+state_flags_color = blue:b
+main_window_color = blue
 #color1 = white
 #color2 = green
 progressbar_color = black:b
-progressbar_elapsed_color = green:b
-statusbar_color = default
-statusbar_time_color = default:b
-player_state_color = default:b
+progressbar_elapsed_color = blue:b
+statusbar_color = blue
+statusbar_time_color = blue:b
+player_state_color = blue:b
 alternative_ui_separator_color = black:b
 #window_border_color = green
 #active_window_border = red
