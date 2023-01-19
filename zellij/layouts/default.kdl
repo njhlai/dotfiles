@@ -2,8 +2,8 @@ layout {
     pane split_direction="vertical" {
         pane name="PrimaryTerminal" focus=true
         pane split_direction="horizontal" {
-            pane command="btop" size="62%"
-            pane command="neofetch" size="38%"
+            pane command="btop" size="60%"
+            pane command="neofetch"
         }
     }
 }
