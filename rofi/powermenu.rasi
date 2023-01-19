@@ -5,7 +5,7 @@ window {
 	anchor: east;
 	x-offset: -15;
 	y-offset: -50;
-	font: "Iosevka 35";
+	font: "Iosevka Nerd Font Mono 35";
 	width: 4%;
 }
 

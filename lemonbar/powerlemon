@@ -211,7 +211,7 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 		-u $UNDERLINE_WIDTH \
 		-f "${FONT}" \
 		-f "${ICONS}" \
-		-f "${JPFONT}" \
+		-f "${CNFONT}" \
 		-F "${WHITE}" \
 		-B "${TRANSPARENT}" | sh | while read line; do eval "$line"; done &
 
