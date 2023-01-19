@@ -18,7 +18,7 @@
 	"indent_to_bracket": true,
 	"show_indentation": false,
 	"word_wrap": true,
-	"trim_trailing_white_space_on_save": true,
+	"trim_trailing_white_space_on_save": "all",
 	"theme": "Material-Theme-Palenight.sublime-theme",
 	"material_theme_small_statusbar": true,
 	"material_theme_bullet_tree_indicator": false,
