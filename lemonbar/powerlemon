@@ -56,24 +56,16 @@ mkfifo "$PANEL_FIFO"
 
 		# get battery info if applicable
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
-			read -r -a bat <<< $(upower -i $(upower -e | grep "BAT") | awk '/percentage:/{perc=$2} /state:/{state=$2}END {printf "%s %.0f",state,perc}')
+			read -r -a bat <<< $(upower -i $(upower -e | grep "BAT") | awk '/percentage:/{perc=$2} /state:/{state=$2}END {printf "%s %i",state,perc}')
 			local bat_perc=${bat[1]}
 
 			if [[ ${bat[0]} == "charging" ]]; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
 				local BATCOLOUR=${YELLOW}
-			elif (( ${bat_perc} < 25 )) ; then
-				local BATICON=$(echo -e "$(printf '%b'${BAT_QUART})")
-				local BATCOLOUR=${RED}
-			elif (( ${bat_perc} < 50 )) ; then
-				local BATICON=$(echo -e "$(printf '%b'${BAT_HALF})")
-				local BATCOLOUR=${YELLOW}
-			elif (( ${bat_perc} < 75 )); then
-				local BATICON=$(echo -e "$(printf '%b'${BAT_3QUART})")
-				local BATCOLOUR=${GREEN}
 			else
-				local BATICON=$(echo -e "$(printf '%b'${BAT_FULL})")
-				local BATCOLOUR=${GREEN}
+				local BAT_LEVEL=$((${bat_perc} / 25))
+				local BATICON=$(echo -e "$(printf '%b'${ICON_ARRAY[${BAT_LEVEL}]})")
+				local BATCOLOUR=${COLOUR_ARRAY[${BAT_LEVEL}]}
 			fi
 
 			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
