@@ -6,12 +6,15 @@
 	"installed_packages":
 	[
 		"A File Icon",
+		"Ansible",
+		"ApplySyntax",
 		"Dracula Color Scheme",
 		"Kotlin",
 		"LaTeXTools",
 		"LESS",
 		"LSP",
 		"LSP-bash",
+		"LSP-jdtls",
 		"LSP-json",
 		"LSP-pyright",
 		"LSP-rust-analyzer",
