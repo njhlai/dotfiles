@@ -4,3 +4,33 @@
 	pretty = format:%C(auto)%h%x09%C(28)%cN%x09%Creset%s [%C(82)%aN%C(reset):%C(6)%cr%C(reset)] %C(auto)%d
 [pretty]
 	format = format:%C(auto)%h%x09%C(28)%cN%x09%C(6)%cr%x09%Creset%s - %C(241)%aN %C(auto)%d
+[core]
+    pager = delta
+[delta]
+    dark = true
+    file-added-label = [+]
+    file-copied-label = [==]
+    file-modified-label = [*]
+    file-removed-label = [-]
+    file-renamed-label = [->]
+    light = false
+    keep-plus-minus-markers = false
+    line-numbers = true
+    line-numbers-left-format = "{nm:>3}│"
+    line-numbers-left-style = red
+    line-numbers-right-format = "{np:>3}│"
+    line-numbers-right-style = green
+    line-numbers-minus-style = red italic black
+    line-numbers-plus-style = green italic black
+    line-numbers-zero-style = italic
+    map-styles = \
+       bold purple => dimgray midnightblue, \
+       bold blue => syntax "#271344", \
+       bold cyan => syntax midnightblue, \
+       bold yellow => syntax "#222f14"
+    paging = never
+    zero-style = syntax
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
