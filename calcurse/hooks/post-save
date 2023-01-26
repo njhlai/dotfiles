@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# Post-save hook for calcurse: Calendar syncing via CalDAV
+
+# Do not do anything when synchronizing with a CalDAV server.
+[ -f $HOME/.local/share/calcurse/caldav/lock ] && exit
+
+# Run the CalDAV synchronization script in the background.
+if [[ -d $HOME/.local/share/calcurse/caldav ]] && command -v calcurse-caldav > /dev/null; then
+	(
+		echo "$(date +'%b %d %H:%M:%S'): Running calcurse-caldav from the post-save hook..."
+		calcurse-caldav --config=$HOME/.config/calcurse/caldav/config --syncdb=$HOME/.local/share/calcurse/caldav/sync.db --datadir=$HOME/.local/share/calcurse/
+		echo
+	) >> $HOME/.local/share/calcurse/caldav/log 2>&1 &
+fi

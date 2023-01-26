@@ -75,6 +75,7 @@ bspc rule -a puddletag desktop '^5' follow=on focus=on
 
 ## floating
 bspc rule -a floatterm state=floating rectangle=1010x450+455+315
+bspc rule -a calterm state=floating rectangle=700x1000+1201+46
 
 . ${BSPWM_RULES}
 

@@ -1,6 +1,9 @@
 # error logs
 **/*.log
 
+# calcurse-caldav settings
+calcurse/caldav/*
+
 # lazygit state
 lazygit/state.yml
 

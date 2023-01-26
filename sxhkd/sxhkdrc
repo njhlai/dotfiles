@@ -255,7 +255,7 @@ super + F1
 ## Calendar
 # Get current month's calendar
 super + q
-	calnotify
+	sakura --class calterm -e calcurse
 
 
 ## Screenshotting
