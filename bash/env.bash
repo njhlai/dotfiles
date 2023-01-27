@@ -12,6 +12,7 @@ export ICEAUTHORITY="${HOME}/.cache/ICEauthority"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${HOME}/.config/java"
 export KERAS_HOME="${HOME}/.cache/keras"
 export NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
+export NVM_SYMLINK_CURRENT=true
 export NVM_DIR="${HOME}/.local/share/nvm"
 export PSQLRC="${HOME}/.config/psql/psqlrc"
 export PSQL_HISTORY="${HOME}/.local/state/psql/history"

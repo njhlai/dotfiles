@@ -15,3 +15,8 @@ unclutter -b
 export EDITOR=/usr/bin/nano
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+# these needed to be up really early due to ST's LSP
+export CARGO_HOME="${HOME}/.local/share/cargo"
+export NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
+export RUSTUP_HOME="${HOME}/.local/share/rustup"
