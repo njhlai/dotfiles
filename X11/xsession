@@ -2,6 +2,7 @@
 #
 # Startup scripts
 
-# Autostart terminals
 . ~/.private/env.bash
+
+# Autostart terminals
 ${TERMINAL} --class primary -e zellij &
