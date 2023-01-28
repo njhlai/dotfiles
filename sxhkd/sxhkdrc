@@ -145,15 +145,11 @@ super + alt + {1-9}
 
 # Snap to {2:1,1:2} split ratio
 super + alt + {q,e}
-	bspc node @parent -r 0.{66,34}
+	bspc node @parent -r 0.{60,40}
 
-# Snap to 4x3 aspect ratio for current node
-super + alt + backslash
-	ratio 4 3
-
-# Snap to {16x9,21x9} aspect ratio for current node
-super + alt + {bracketleft,bracketright}
-	ratio {16 9,21 9}
+# Snap to {4x3,16x9,21x9} aspect ratio for current node
+super + alt + {backslash,bracketleft,bracketright}
+	ratio {4 3,16 9,21 9}
 
 # Revert to normal ratio
 super + alt + space
@@ -176,8 +172,8 @@ super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
 # Set the presel ratio at 1:2 or 2:1
-super + ctrl + alt + {h,l}
-	bspc node -o 0.{34 -p west,66 -p east}
+super + ctrl + {q,e}
+	bspc node -o 0.{40 -p west,60 -p east}
 
 # Cancel the presel for the focused node
 super + ctrl + space
