@@ -10,7 +10,7 @@ super + d
 	dunstctl history-pop
 
 # Dismiss the last notification
-super + c
+super + q
 	dunstctl close
 
 
@@ -250,8 +250,8 @@ super + F1
 
 ## Calendar
 # Get current month's calendar
-super + q
-	sakura --class calterm -e calcurse
+super + {_, shift} + c
+	{calnotify, sakura --class calterm -e calcurse}
 
 
 ## Screenshotting
