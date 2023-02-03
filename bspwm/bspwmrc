@@ -11,7 +11,7 @@ pkill dunst
 # set up monitors
 declare -i mon_count=0
 declare -a workspace
-workspace[0]="壹 贰 参 肆 伍 陆"
+workspace[0]="壹 贰 参 肆 伍"
 workspace[1]="捌 玖 拾"
 MONITORS=$(xrandr -q | grep -oP "\K[a-zA-Z0-9\-]+?(?= connected)")
 for mon in ${MONITORS}; do
@@ -57,26 +57,25 @@ bspc config presel_feedback_color 	"#ff5555"
 
 # Apps settings
 ## 参 (terminal)
-bspc rule -a primary desktop='^3' follow=on focus=on
+bspc rule -a primary desktop='^3' state=tiled follow=on focus=on
 
 ## 貳 (dev)
 bspc rule -a Sublime_text desktop='^2' follow=on focus=on
 
 ## 壹 (browser)
-bspc rule -a firefox desktop='^1' follow=on focus=on
+bspc rule -a firefox desktop='^1' state=tiled follow=on focus=on
 
 ## 肆 (media)
-bspc rule -a mpv desktop='^4' follow=on focus=on
-bspc rule -a vlc desktop='^4' follow=on focus=on
-bspc rule -a Vlc desktop='^4' follow=on focus=on
+bspc rule -a mpv desktop='^4' state=tiled follow=on focus=on
 
-## 伍 (others)
-bspc rule -a puddletag desktop '^5' follow=on focus=on
+## 肆/捌 (jukebox)
+bspc rule -a jukebox desktop=${JUKEBOX_DESKTOP} state=tiled follow=on focus=on
 
 ## floating
 bspc rule -a floatterm state=floating rectangle=1010x450+455+315
 bspc rule -a calterm state=floating rectangle=700x1000+1201+46
 
 . ${BSPWM_RULES}
+[[ ${FLOATING_DESKTOP} ]] && . ${HOME}/.config/bspwm/floating_rules
 
 echo "bspwm: finished setting up" 1>&2

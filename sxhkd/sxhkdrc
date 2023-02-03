@@ -123,7 +123,7 @@ super + shift + {h,j,k,l}
 
 # Send focused node to the given tiled desktop
 super + shift + {1-5,grave,8,9,0}
-	bspc node -d '^{1-5,6,7,8,9}'
+	bspc node -d '^{1-5,5,6,7,8}'
 
 # Send current node to a preselected node
 super + y
@@ -193,7 +193,7 @@ super + ctrl + space
 ## focus
 # Focus to the designated desktop
 super + {1-5,grave,8,9,0}
-	bspc desktop -f '^{1-5,6,7,8,9}'
+	bspc desktop -f '^{1-5,5,6,7,8}'
 
 # Focus the {previous,next} desktop in current monitor
 super + ctrl + {Left,Right}
