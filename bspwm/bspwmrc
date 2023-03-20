@@ -63,7 +63,7 @@ bspc rule -a primary desktop='^3' state=tiled follow=on focus=on
 bspc rule -a Sublime_text desktop='^2' follow=on focus=on
 
 ## 壹 (browser)
-bspc rule -a firefox desktop='^1' state=tiled follow=on focus=on
+bspc rule -a firefox:Navigator desktop='^1' state=tiled follow=on focus=on
 
 ## 肆 (media)
 bspc rule -a mpv desktop='^4' state=tiled follow=on focus=on
