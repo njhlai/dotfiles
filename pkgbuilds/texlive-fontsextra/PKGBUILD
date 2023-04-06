@@ -3,8 +3,8 @@
 # None of this is my own work, all credits should go to h3fang.
 
 pkgname=texlive-fontsextra
-pkgver=2022.62977
-_revnr=${pkgver#2022.}
+pkgver=2023.66328
+_revnr=${pkgver#2023.}
 pkgrel=1
 pkgdesc="TeX Live - extra fonts that I need"
 license=('GPL')
@@ -26,7 +26,7 @@ sha256sums=('b6cb795c466905d33f37f29d10fc9851bda1b517bfabf90c965dfe4206e8d89e'
 			'22d148a349b08c70b7f04cd8af2ebea2c400495efcaf81288bc0b1ccdfff4d55'
 			'981abbc90cbf776705154feed49ebf2f2e5f8402b8e2e58fc04d0bc19a9a35bf'
 			'4d85aab86f679d360e7c7c812a055d9c03dd658e31bccfca4a97604497b0cc1c'
-			'65e004cc5530a3f31d4213f56cae6b9318644ec14246e606819dbfda6109ab7f')
+			'4094810431f2496a2b8c6210520d8b363a030b90a26728e8514700554ac97b7a')
 
 build() {
 	cd "$srcdir"
