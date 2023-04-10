@@ -9,7 +9,6 @@ BARWIDTH=$((${SCREENWIDTH} - $((${EDGEWIDTH} * 2))))
 
 # Get stable constants
 OS=$(grep -oP 'NAME="\K[A-Za-z]+' -m 1 /etc/os-release | tr a-z A-Z)
-HOST="$(uname -n)"
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
@@ -22,7 +21,7 @@ mkfifo "$PANEL_FIFO"
 	host() {
 		local ICON=$(echo -e "$(printf '%b'${!OS})")
 		local SEP=$(echo -e "$(printf '%b'${LEFT_SOFT_DIVIDER})")
-		echo "%{B${SEC_0}}%{F${PURPLE}}  ${ICON}%{F-}  %{F${WHITE}}${SEP}%{F-}%{B-}"
+		echo "%{B${SEC_0}}%{F${PURPLE}} ${ICON}%{F-} %{F${WHITE}}${SEP} %{F-}%{B-}"
 	}
 	## End left section
 
@@ -30,12 +29,13 @@ mkfifo "$PANEL_FIFO"
 	## start centre section
 	getDay() {
 		local ICON=$(echo -e "$(printf '%b'${CLOCK})")
+		local SEP=$(echo -e "$(printf '%b'${INTERNAL_DIVIDER})")
 
 		local cmdDay=$(date '+%a')
 		local cmdDate=$(date '+%d %b')
 		local cmdHour=$(date +%H:%M)
 
-		local CMD=$(echo -e "%{B${SALMON}}%{F${BLACK}} ${ICON}  ${cmdDay}  ${cmdDate}  ${cmdHour} %{F-}%{B-}")
+		local CMD=$(echo -e "%{B${SALMON}}%{F${BLACK}} ${ICON} %{A:calnotify:}${cmdDay} ${SEP} ${cmdDate} ${SEP} ${cmdHour}%{A} %{F-}%{B-}")
 		echo "$CMD"
 	}
 	## end centre section
@@ -46,7 +46,7 @@ mkfifo "$PANEL_FIFO"
 		if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
-			local CMD=$(echo -e "%{F${RED}}%{B${TRANSPARENT}}%{T2}$(printf '%b'${RIGHT_HARD_DIVIDER})%{T-}%{B-}%{F-}%{B${RED}}%{F${BLACK}}${ICON} ${ads_b}% %{F-}%{B-}")
+			local CMD=$(echo -e "%{F${RED}}%{B${TRANSPARENT}}%{T2}$(printf '%b'${RIGHT_HARD_DIVIDER})%{T-}%{B-}%{F-}%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-}%{B-}")
 			echo "$CMD"
 		fi
 	}
@@ -68,7 +68,7 @@ mkfifo "$PANEL_FIFO"
 				local BATCOLOUR=${COLOUR_ARRAY[${BAT_LEVEL}]}
 			fi
 
-			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
+			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER}) ")
 			local PREVBCOLOUR=${TRANSPARENT}
 			if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 				PREVBCOLOUR=${RED}
@@ -81,7 +81,7 @@ mkfifo "$PANEL_FIFO"
 		local TEMPICON=$(echo -e "$(printf '%b'${TEMP})")
 		local UNIT=$(echo -e "$(printf '%b'${CELCIUS})")
 
-		local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
+		local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER}) ")
 		local PREVBCOLOUR=${TRANSPARENT}
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
 			PREVBCOLOUR=${BATCOLOUR}
