@@ -1,0 +1,7 @@
+cache=${HOME}/.cache/npm
+init-module=${HOME}/.config/npm/npm-init.js
+init-author-email = "nicholasjhlai@gmail.com"
+init-author-name = "njhlai"
+init-scripts-dev = "next dev"
+init-scripts-build = "next build"
+init-scripts-start = "next start"
