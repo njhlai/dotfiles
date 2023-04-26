@@ -68,32 +68,37 @@ mkfifo "$PANEL_FIFO"
 				local BATCOLOUR=${COLOUR_ARRAY[${BAT_LEVEL}]}
 			fi
 
-			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER}) ")
+			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
+			local SPACE=" "
 			local PREVBCOLOUR=${TRANSPARENT}
 			if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 				PREVBCOLOUR=${RED}
 				SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+				SPACE=""
 			fi
 
-			CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}}${BATICON} ${bat_perc}% %{F-}%{B-}")
+			CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}}${SPACE}${BATICON} ${bat_perc}% %{F-}%{B-}")
 		fi
 
 		local TEMPICON=$(echo -e "$(printf '%b'${TEMP})")
 		local UNIT=$(echo -e "$(printf '%b'${CELCIUS})")
 
-		local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER}) ")
+		local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
+		local SPACE=" "
 		local PREVBCOLOUR=${TRANSPARENT}
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
 			PREVBCOLOUR=${BATCOLOUR}
 			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+			SPACE=""
 		elif [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
 			PREVBCOLOUR=${RED}
 			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
+			SPACE=""
 		fi
 
 		local temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
 
-		CMD=$(echo -e "${CMD}%{F${WHITE}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${WHITE}}%{F${BLACK}}${TEMPICON} ${temp}${UNIT} %{F-}%{B-}")
+		CMD=$(echo -e "${CMD}%{F${WHITE}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${WHITE}}%{F${BLACK}}${SPACE}${TEMPICON} ${temp}${UNIT} %{F-}%{B-}")
 		echo "$CMD"
 	}
 
