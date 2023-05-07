@@ -5,6 +5,7 @@
 # configs
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export CUDA_CACHE_PATH="${HOME}/.cache/nv"
+export DOWNLOAD="${HOME}/downloads"
 export GDBHISTFILE="${HOME}/.local/state/gdb/history"
 export GRADLE_USER_HOME="${HOME}/.local/share/gradle"
 export HISTFILE="${HOME}/.local/state/bash/history"
