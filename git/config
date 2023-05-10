@@ -1,9 +1,9 @@
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [format]
-	pretty = format:%C(auto)%h%x09%C(28)%cN%x09%Creset%s [%C(82)%aN%C(reset):%C(6)%cr%C(reset)] %C(auto)%d
+    pretty = format:%C(auto)%h%x09%C(28)%cN%x09%Creset%s [%C(82)%aN%C(reset):%C(6)%cr%C(reset)] %C(auto)%d
 [pretty]
-	format = format:%C(auto)%h%x09%C(28)%cN%x09%C(6)%cr%x09%Creset%s - %C(241)%aN %C(auto)%d
+    format = format:%C(auto)%h%x09%C(28)%cN%x09%C(6)%cr%x09%Creset%s - %C(241)%aN %C(auto)%d
 [core]
     pager = delta
 [delta]

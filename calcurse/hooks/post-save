@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Post-save hook for calcurse: Calendar syncing via CalDAV
 
