@@ -3,6 +3,9 @@
 #
 
 # configs
+export ANSIBLE_GALAXY_CACHE_DIR="${HOME}/.cache/ansible/galaxy_cache"
+export ANSIBLE_HOME="${HOME}/.config/ansible"
+export ANSIBLE_SSH_CONTROL_PATH_DIR="${ANSIBLE_HOME}/cp"
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export CUDA_CACHE_PATH="${HOME}/.cache/nv"
 export DOWNLOAD="${HOME}/downloads"
