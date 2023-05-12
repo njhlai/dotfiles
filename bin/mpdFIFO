@@ -2,7 +2,7 @@
 #
 # mpd status FIFO
 
-. ~/.private/env.bash
+. ~/.config/private/env.bash
 . ~/.config/lemonbar/panelConfig
 
 case "${MPD_PLAYER_STATE}" in

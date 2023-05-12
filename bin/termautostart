@@ -2,7 +2,7 @@
 #
 # Autostart terminals
 
-. ~/.private/env.bash
+. ~/.config/private/env.bash
 
 run=(${TERMINAL} --class)
 shflag="-e"

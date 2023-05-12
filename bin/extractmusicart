@@ -2,7 +2,7 @@
 #
 # Extract art from music
 
-. ~/.private/env.bash
+. ~/.config/private/env.bash
 
 cover=/tmp/musicart.png
 

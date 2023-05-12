@@ -2,7 +2,7 @@
 #
 # Music info display via dunst
 
-. ~/.private/env.bash
+. ~/.config/private/env.bash
 
 title=$(mpc current -f "%title%|%file%" 2> /dev/null)
 

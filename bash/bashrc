@@ -19,7 +19,7 @@ shopt -s histappend
 . ~/.config/bash/functions.bash
 . ~/.config/bash/alias.bash
 . ~/.config/bash/colour.bash
-. ~/.private/env.bash
+. ~/.config/private/env.bash
 . /usr/share/nvm/init-nvm.sh
 
 eval "$(pyenv init -)"

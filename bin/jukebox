@@ -2,7 +2,7 @@
 #
 # Open mpd stream using mpv
 
-. ~/.private/env.bash
+. ~/.config/private/env.bash
 
 # probably better to check for mpv with mpd stream directly, but this workaround suffice for now
 # as long as I don't do anything stupid like deleting the pid file manually...
