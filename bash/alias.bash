@@ -34,3 +34,4 @@ alias play='mpv --no-audio-display'
 # misc
 alias lg='lazygit'
 alias np='nano -w PKGBUILD'
+alias soft='ssh ${SOFT_SERVER} -p ${SOFT_SERVER_PORT}'

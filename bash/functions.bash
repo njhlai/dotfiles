@@ -22,22 +22,11 @@ repo () {
 	fi
 }
 
-# soft - function to open Soft Serve TUI to Git server
-soft () {
-	repopwd="${REPOS}/$1"
-	if [[ -d ${repopwd} ]] ; then
-		ssh ${SOFT_SERVER} -p ${SOFT_SERVER_PORT} -t $1
-	else
-		ssh ${SOFT_SERVER} -p ${SOFT_SERVER_PORT}
-	fi
-}
-
 # completion
 _repo_completion () {
 	[[ ${#COMP_WORDS[@]} != 2 ]] || COMPREPLY=($(compgen -W "$(ls ${REPOS} | sed -z 's,\n, ,g')" "${COMP_WORDS[1]}"))
 }
 complete -F _repo_completion repo
-complete -F _repo_completion soft
 
 
 # ex - archive extractor
