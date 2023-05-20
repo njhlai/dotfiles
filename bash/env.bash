@@ -26,6 +26,7 @@ export PYENV_ROOT="${HOME}/.local/share/pyenv"
 export PYTHONSTARTUP="${HOME}/.config/python/pythonrc"
 export R_ENVIRON_USER="${HOME}/.config/r/Renviron"
 export RUSTUP_HOME="${HOME}/.local/share/rustup"
+export SQLITE_HISTORY=${HOME}/.local/share/sqlite/sqlite_history
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 export TEXMFHOME="${HOME}/latex"
 export TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
