@@ -39,4 +39,5 @@ Network share is through sshfs.
 
 ## Caveats
 * The `texlive-fontsextra` is very, very bloated, with a lot of unnecessary fonts for me. Debloated `texlive-fontsextra` using this [guide](https://h3fang.github.io/post/2019/texlive-fontsextra/).
+* If using the XDG base directory recommended directory for `GnuPG`, you'll need to update each associated user`systemd` sockets' `ListenStream` location. See [here](https://wiki.archlinux.org/title/GnuPG#gpg-agent).
 * Currently, System76's power management for its laptops, `system76-power`, is not persistent, so every setting for power is reset on reboot. To prevent that, refer to this [guide](https://support.system76.com/articles/laptop-battery-thresholds/#at-boot).
