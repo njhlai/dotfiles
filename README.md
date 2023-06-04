@@ -14,7 +14,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Compositor | picom |
 | Shell | bash |
 | Terminal | Alacritty, Sakura |
-| Font | Iosevka |
+| Font | IosevkaTerm |
 | Notification | Dunst |
 | Launcher | Rofi, dmenu |
 | Wallpaper | feh |

@@ -80,7 +80,7 @@
 
 	### Text ###
 
-	font = Iosevka Nerd Font 12
+	font = IosevkaTerm Nerd Font 12
 
 	# The spacing between lines.
 	line_height = 0
