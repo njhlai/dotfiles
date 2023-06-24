@@ -414,7 +414,8 @@
 
 		"linux" : {
 			"env": {
-				"TEXMFHOME": "$HOME/latex"
+				"TEXMFHOME": "$HOME/latex",
+				"TEXMFVAR": "$HOME/.cache/texlive/texmf-var"
 			}
 		}
 	},

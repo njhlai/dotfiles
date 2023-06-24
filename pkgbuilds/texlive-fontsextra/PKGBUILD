@@ -3,14 +3,15 @@
 # None of this is my own work, all credits should go to h3fang.
 
 pkgname=texlive-fontsextra
-pkgver=2023.66328
+pkgver=2023.66594
 _revnr=${pkgver#2023.}
-pkgrel=1
+pkgrel=15
 pkgdesc="TeX Live - extra fonts that I need"
 license=('GPL')
 arch=(any)
-depends=('texlive-core')
-groups=('texlive-most' 'modified')
+depends=('texlive-bin' 'texlive-basic')
+groups=('texlive' 'modified')
+provides=('texlive-calligra' 'texlive-calligra-type1' 'texlive-fontawesome5' 'texlive-mathabx' 'texlive-mathabx-type1' 'texlive-rsfs')
 url='http://tug.org/texlive/'
 source=(
 	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/mathabx.tar.xz"
@@ -18,34 +19,25 @@ source=(
 	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/calligra.tar.xz"
 	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/calligra-type1.tar.xz"
 	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/fontawesome5.tar.xz"
-	"https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/texlive-fontsextra/trunk/texlive-fontsextra.maps"
+	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/rsfs.tar.xz"
 )
-options=('!emptydirs')
+options=('!emptydirs' '!strip')
 sha256sums=('b6cb795c466905d33f37f29d10fc9851bda1b517bfabf90c965dfe4206e8d89e'
 			'7a3df592ec65c261221db2c82f256844d646f2e72cd1b96cf0121580a8bad41b'
 			'22d148a349b08c70b7f04cd8af2ebea2c400495efcaf81288bc0b1ccdfff4d55'
 			'981abbc90cbf776705154feed49ebf2f2e5f8402b8e2e58fc04d0bc19a9a35bf'
 			'4d85aab86f679d360e7c7c812a055d9c03dd658e31bccfca4a97604497b0cc1c'
-			'4094810431f2496a2b8c6210520d8b363a030b90a26728e8514700554ac97b7a')
+			'1afec0c5e9711f652675e38b7cd7e88101c44aa0d0ff317ad6ac06f1d2cc7043')
 
 build() {
 	cd "$srcdir"
-	touch CONTENTS
-	touch MAPS
-	for p in tlpkg/tlpobj/*.tlpobj; do
-		pstem=${p#tlpkg/tlpobj/}
-		pstem=${pstem%.tlpobj}
-		echo $pstem $(grep revision $p | awk '{print $2}') >> CONTENTS
-		echo $(grep -i $pstem.map $pkgname.maps) >> MAPS
-	done
-	sed -i '/^$/d' MAPS
+	grep -E "^execute add(Kanji|Mixed|)Map" tlpkg/tlpobj/*.tlpobj | awk '{print $2" "$3}' | sed 's/^add//' > MAPS
 	rm -rf {tlpkg,doc,source} || true
 }
 
 package() {
 	cd "$srcdir"
 	install -m755 -d "$pkgdir"/var/lib/texmf/arch/installedpkgs
-	install -m644 CONTENTS "$pkgdir"/var/lib/texmf/arch/installedpkgs/${pkgname}_${_revnr}.pkgs
 	install -m644 MAPS "$pkgdir"/var/lib/texmf/arch/installedpkgs/$pkgname.maps
 	install -m755 -d "$pkgdir"/usr/share
 	wanteddirs=$(for d in *; do test -d $d && [[ $d != texmf* ]] && echo $d; done) || true
