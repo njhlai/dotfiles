@@ -3,7 +3,7 @@
 # Post-save hook for calcurse: Calendar syncing via CalDAV
 
 # Do not do anything when synchronizing with a CalDAV server.
-[ -f $HOME/.local/share/calcurse/caldav/lock ] && exit
+[[ -f $HOME/.local/share/calcurse/caldav/lock ]] && exit
 
 # Run the CalDAV synchronization script in the background.
 if [[ -d $HOME/.local/share/calcurse/caldav ]] && command -v calcurse-caldav > /dev/null; then

@@ -20,13 +20,13 @@ while read -r line ; do
 			wm=
 			IFS=':'
 			set -- ${line#?}
-			while [ $# -gt 0 ] ; do
+			while [[ $# -gt 0 ]] ; do
 				item=$1
 				name=${item#?}
 				case ${item} in
 					# [mM]*)
 						# monitor state
-						# [ $num_mon -lt 2 ] && shift && continue
+						# [[ $num_mon -lt 2 ]] && shift && continue
 						# wm="${wm}%{F${WHITE}}%{B${SEC_0}}%{A:bspc monitor -f ${name}:} ${name} %{A}%{B-}%{F-}"
 						# ;;
 					[fFoOuU]*)
