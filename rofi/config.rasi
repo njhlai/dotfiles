@@ -6,7 +6,7 @@ configuration {
 	modi: "window,drun,ssh,filebrowser";
 	monitor: "primary";
 
-	font: "IosevkaTerm Nerd Font 12";
+	font: "IosevkaTerm NF 12";
 	show-icons: true;
 
 	display-ssh: "  ";
@@ -67,7 +67,7 @@ element-icon  selected {
 
 prompt {
 	enabled: true;
-	font: "IosevkaTerm Nerd Font 12";
+	font: "IosevkaTerm NF 12";
 	padding: 12 0 0 12;
 	text-color: @text;
 	background-color: inherit;
