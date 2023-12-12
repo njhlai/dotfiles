@@ -414,7 +414,7 @@
 
 		"linux" : {
 			"env": {
-				"TEXMFHOME": "$HOME/lake/latex",
+				"TEXMFHOME": "$DATALAKE/latex",
 				"TEXMFVAR": "$HOME/.cache/texlive/texmf-var"
 			}
 		}

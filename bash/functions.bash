@@ -30,8 +30,7 @@ complete -F _repo_completion repo
 
 
 # ex - archive extractor
-ex ()
-{
+ex () {
 	if [[ -f $1 ]] ; then
 		case $1 in
 			*.tar.bz2)   tar xjf $1   ;;

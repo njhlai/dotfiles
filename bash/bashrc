@@ -15,11 +15,11 @@ shopt -s expand_aliases
 shopt -s histappend
 
 ## List of stuff to source for bash
+. ~/.config/private/env.bash
 . ~/.config/bash/env.bash
 . ~/.config/bash/functions.bash
 . ~/.config/bash/alias.bash
 . ~/.config/bash/colour.bash
-. ~/.config/private/env.bash
 . /usr/share/nvm/init-nvm.sh
 
 eval "$(pyenv init -)"
