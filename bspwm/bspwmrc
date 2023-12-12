@@ -78,4 +78,6 @@ bspc rule -a calterm state=floating rectangle=700x1000+1201+46
 . ${BSPWM_RULES}
 [[ ${FLOATING_DESKTOP} ]] && . ${HOME}/.config/bspwm/floating_rules
 
+bspc config external_rules_command ${HOME}/.config/bspwm/external_rules
+
 echo "bspwm: finished setting up" 1>&2

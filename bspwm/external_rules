@@ -1,0 +1,19 @@
+#!/bin/bash
+
+title=$(xdotool getwindowname $1)
+case $2 in
+    puddletag)
+        if [[ "$title" = "Import directory..." || "$title" = "Please Wait..." ]]; then
+            echo "state=floating rectangle=621x415+647+330"
+        fi
+        ;;
+    steam)
+        if [[ "$title" = "Steam" ]]; then
+            echo ""
+        elif [[ "$title" = "Sign in to Steam" ]]; then
+            echo "state=floating rectangle=705x440+607+320"
+        else
+            echo "state=floating rectangle=850x723+533+176 center=on"
+        fi
+        ;;
+esac
