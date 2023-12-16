@@ -10,8 +10,13 @@ FIREFOX_DIRECTORY?=$(shell find ${HOME}/.mozilla/firefox/ -maxdepth 1 -name "*.d
 
 all: | /etc/profile.d/home-local-bin.sh git/config
 	@echo "=> Installing ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
-	@[[ ! -f ${HOME}/.bashrc ]] || mv -v ${HOME}/.bashrc ${HOME}/.bashrc.bak
+	@[[ ! -f ${HOME}/.bashrc || -L ${HOME}/.bashrc ]] || mv -v ${HOME}/.bashrc ${HOME}/.bashrc.bak
+ifeq ($(wildcard ${HOME}/.bashrc),)
 	@ln -rsv bash/bashrc ${HOME}/.bashrc
+else
+	@echo "${COLOUR_YELLOW}WARNING${END_COLOUR}: ${COLOUR_RED}${HOME}/.bashrc${END_COLOUR} already exists as a symlink"
+	@echo "Skipping installing ${COLOUR_YELLOW}${HOME}/.bashrc${END_COLOUR}"
+endif
 
 	@echo
 
@@ -50,7 +55,7 @@ git/config:
 
 clean:
 	@echo "=> Uninstalling ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
-	@rm -fv ${HOME}/.bashrc
+	@[[ ! -L ${HOME}/.bashrc ]] || rm -fv ${HOME}/.bashrc
 
 	@echo
 
