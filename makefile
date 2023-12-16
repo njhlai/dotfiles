@@ -5,8 +5,8 @@ END_COLOUR:=$(shell tput -Txterm sgr0)
 
 XDG_CONFIG_HOME?=${HOME}/.config
 USER_BIN?=${HOME}/.local/bin
-EMAIL?=$(shell bash -c 'read -p "Email (for git config): " email; echo $$email')
-FIREFOX_DIRECTORY?=${HOME}/.mozilla/firefox/${FF}.default-release
+EMAIL?=$(shell bash -c 'read -p "Email (for git config): " email ; echo $$email')
+FIREFOX_DIRECTORY?=$(shell find ${HOME}/.mozilla/firefox/ -maxdepth 1 -name "*.default-release" 2> /dev/null | head -1)
 
 all: | /etc/profile.d/home-local-bin.sh
 	@echo "=> Installing ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
@@ -59,7 +59,7 @@ clean:
 ifneq ($(wildcard $(FIREFOX_DIRECTORY)),)
 	@stow -v --target=${FIREFOX_DIRECTORY} --delete firefox
 else
-	@echo "${COLOUR_YELLOW}WARNING${END_COLOUR}: Can't find specified Firefox profile directory ${COLOUR_RED}${FIREFOX_DIRECTORY}${END_COLOUR}";
+	@echo "${COLOUR_YELLOW}WARNING${END_COLOUR}: Can't find specified Firefox profile directory ${COLOUR_RED}${FIREFOX_DIRECTORY}${END_COLOUR}"
 	@echo "Skipping uninstalling ${COLOUR_YELLOW}firefox user settings${END_COLOUR}"
 endif
 

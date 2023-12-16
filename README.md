@@ -22,12 +22,12 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Text Editor | Sublime Text, nano |
 
 ## Usage
-Requires [stow](https://www.gnu.org/software/stow/). Also, obtain the id of your current (i.e. default-release) Firefox profile from [about:profiles](about:profiles).
+Requires [stow](https://www.gnu.org/software/stow/).
 
 ### Install
 Once the base OS and all needed packages are installed, run:
 ```sh
-FF=[FIREFOX PROFILE ID] make all
+make all
 ```
 
 ### Network Share Mounting
@@ -38,7 +38,7 @@ Network share is through sshfs.
 ### Uninstall
 To uninstall configurations provided by this dotfile repo, run:
 ```sh
-FF=[FIREFOX PROFILE ID] make clean
+make clean
 ```
 
 ## Screenshots
