@@ -7,7 +7,6 @@
 # ignored directories
 bin
 firefox
-git
 keymaps
 pacman\.d
 pkgbuilds

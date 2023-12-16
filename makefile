@@ -8,7 +8,7 @@ USER_BIN?=${HOME}/.local/bin
 EMAIL?=$(shell bash -c 'read -p "Email (for git config): " email ; echo $$email')
 FIREFOX_DIRECTORY?=$(shell find ${HOME}/.mozilla/firefox/ -maxdepth 1 -name "*.default-release" 2> /dev/null | head -1)
 
-all: | /etc/profile.d/home-local-bin.sh
+all: | /etc/profile.d/home-local-bin.sh git/config
 	@echo "=> Installing ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
 	@[[ ! -f ${HOME}/.bashrc ]] || mv -v ${HOME}/.bashrc ${HOME}/.bashrc.bak
 	@ln -rsv bash/bashrc ${HOME}/.bashrc
@@ -17,10 +17,6 @@ all: | /etc/profile.d/home-local-bin.sh
 
 	@echo "=> Installing ${COLOUR_YELLOW}configs${END_COLOUR} to target dir ${COLOUR_GREEN}${XDG_CONFIG_HOME}${END_COLOUR}"
 	@stow -v --target=${XDG_CONFIG_HOME} --restow .
-	@mkdir -pv ${XDG_CONFIG_HOME}/git
-	@[[ ! -f ${XDG_CONFIG_HOME}/git/config ]] || mv -v ${XDG_CONFIG_HOME}/git/config ${XDG_CONFIG_HOME}/git/config.bak
-	@echo -e "[user]\n\temail = ${EMAIL}\n\tname = ${USER}" > ${XDG_CONFIG_HOME}/git/config
-	@cat git/config >> ${XDG_CONFIG_HOME}/git/config && echo "CREATE: git/config"
 
 	@echo
 
@@ -43,15 +39,28 @@ endif
 	@echo -e 'case ":$${PATH}:" in\n\t*:"$${HOME}/.local/bin":*) ;;\n\t*) export PATH="$${HOME}/.local/bin:$${PATH}" ;;\nesac' | sudo tee /etc/profile.d/home-local-bin.sh > /dev/null
 	@echo "CREATE: /etc/profile.d/home-local-bin.sh"
 
+	@echo
+
+git/config:
+	@echo "=> Generating ${COLOUR_GREEN}$@${END_COLOUR}"
+	@echo -e "[user]\n\temail = ${EMAIL}\n\tname = ${USER}" > $@
+	@cat git/config.template >> $@ && echo "CREATE: $@"
+
+	@echo
+
 clean:
 	@echo "=> Uninstalling ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
 	@rm -fv ${HOME}/.bashrc
 
 	@echo
 
+	@echo "=> Removing ${COLOUR_GREEN}git/config${END_COLOUR}"
+	@rm -fv git/config
+
+	@echo
+
 	@echo "=> Uninstalling ${COLOUR_YELLOW}configs${END_COLOUR} from target dir ${COLOUR_GREEN}${XDG_CONFIG_HOME}${END_COLOUR}"
 	@stow -vv --target=${XDG_CONFIG_HOME} --delete .
-	@rm -fv ${XDG_CONFIG_HOME}/git/config
 
 	@echo
 
