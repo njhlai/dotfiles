@@ -18,7 +18,7 @@ bspc rule -a steam desktop='^4' state=tiled follow=on focus=on
 
 ### games are all in 肆
 mygames=$(ls ${DATALAKE}/games/steam/steamapps/ | grep appmanifest | sed 's,[^0-9]*,,g')
-for game in ${mygames}; do
+for game in ${mygames} ; do
 	bspc rule -a steam_app_$game desktop='^4' state=fullscreen follow=on
 done &
 bspc rule -a Overwatch.exe desktop='^4' state=fullscreen follow=on

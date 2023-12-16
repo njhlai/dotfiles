@@ -14,7 +14,7 @@ declare -a workspace
 workspace[0]="壹 贰 参 肆 伍"
 workspace[1]="捌 玖 拾"
 MONITORS=$(xrandr -q | grep -oP "\K[a-zA-Z0-9\-]+?(?= connected)")
-for mon in ${MONITORS}; do
+for mon in ${MONITORS} ; do
 	bspc monitor ${mon} -d ${workspace[${mon_count}]}
 	mon_count=$((${mon_count}+1))
 done

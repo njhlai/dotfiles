@@ -6,7 +6,7 @@
 [[ -f $HOME/.local/share/calcurse/caldav/lock ]] && exit
 
 # Run the CalDAV synchronization script in the background.
-if [[ -d $HOME/.local/share/calcurse/caldav ]] && command -v calcurse-caldav > /dev/null; then
+if [[ -d $HOME/.local/share/calcurse/caldav ]] && command -v calcurse-caldav > /dev/null ; then
 	(
 		echo "$(date +'%b %d %H:%M:%S'): Running calcurse-caldav from the post-save hook..."
 		calcurse-caldav --config=$HOME/.config/calcurse/caldav/config --syncdb=$HOME/.local/share/calcurse/caldav/sync.db --datadir=$HOME/.local/share/calcurse/

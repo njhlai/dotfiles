@@ -10,7 +10,7 @@ BARWIDTH=$((${SCREENWIDTH} - $((${EDGEWIDTH} * 2))))
 # Get stable constants
 OS=$(grep -oP 'NAME="\K[A-Za-z]+' -m 1 /etc/os-release | tr a-z A-Z)
 
-trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+trap 'trap - TERM ; kill 0' INT TERM QUIT EXIT
 
 [[ -e "$PANEL_FIFO" ]] && rm "$PANEL_FIFO"
 mkfifo "$PANEL_FIFO"
@@ -59,7 +59,7 @@ mkfifo "$PANEL_FIFO"
 			read -r -a bat <<< $(upower -i $(upower -e | grep "BAT") | awk '/percentage:/{perc=$2} /state:/{state=$2}END {printf "%s %i",state,perc}')
 			local bat_perc=${bat[1]}
 
-			if [[ ${bat[0]} == "charging" ]]; then
+			if [[ ${bat[0]} == "charging" ]] ; then
 				local BATICON=$(echo -e "$(printf '%b'${BAT_CHARGE})")
 				local BATCOLOUR=${YELLOW}
 			else
@@ -146,7 +146,7 @@ mkfifo "$PANEL_FIFO"
 	# 	local CMD=""
 
 	# 	local players=$(playerctl -p mpv -l 2>/dev/null)
-	# 	for player in $players; do
+	# 	for player in $players ; do
 	# 		if [[ -z $CMD ]] ; then
 	# 			local stat="$(playerctl -p ${player} status)"
 	# 			if [[ ${stat} && ${stat} == "Playing" ]] ; then
@@ -187,7 +187,7 @@ mkfifo "$PANEL_FIFO"
 	# }
 
 	declare -i counter=0
-	while :; do
+	while : ; do
 		# if pihole is not originally on, then keep querrying
 		if [[ -z ${pihole_s} || ${pihole_s} != "enabled" ]] ; then
 			pihole_s=$(ssh $PIHOLE pihole status 2>/dev/null | awk '/Pi-hole/{print $5}')
@@ -218,7 +218,7 @@ $(dirname $0)/panelFIFO < "$PANEL_FIFO" | lemonbar \
 		-f "${ICONS}" \
 		-f "${CNFONT}" \
 		-F "${WHITE}" \
-		-B "${TRANSPARENT}" | sh | while read line; do eval "$line"; done &
+		-B "${TRANSPARENT}" | sh | while read line ; do eval "$line" ; done &
 
 
 wid=$(xdo id -a "$PANEL_WM_NAME" | sort | head -n 1)

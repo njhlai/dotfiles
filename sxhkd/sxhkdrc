@@ -63,10 +63,10 @@ super + e
 super + m
 	[[ -n $(pgrep ncmpcpp) ]] && \
 		bspc query -N -n .leaf -d ${JUKEBOX_DESKTOP} | \
-		while read id; do bspc query -T -n $id; done | \
+		while read id ; do bspc query -T -n $id ; done | \
 		jq 'select(.client.className=="jukebox").id' | \
 		head -n 1 | \
-		if read id; then bspc node $id -f; fi \
+		if read id ; then bspc node $id -f ; fi \
 	|| sakura --class jukebox -e 'ncmpcpp'
 
 # Get currently playing music
@@ -111,8 +111,8 @@ alt + {_,shift + }Tab
 
 # Cycle historically through nodes across desktops
 super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
+	bspc wm -h off ; \
+	bspc node {older,newer} -f ; \
 	bspc wm -h on
 
 

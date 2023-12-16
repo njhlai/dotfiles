@@ -6,10 +6,10 @@
 
 run=(${TERMINAL} --class)
 shflag="-e"
-shcom=(sh -c 'neofetch; exec ${SHELL}')
+shcom=(sh -c 'neofetch ; exec ${SHELL}')
 if [[ ${TERMINAL} == "sakura" ]] ; then
 	shflag="-x"
-	shcom=('sh -c "neofetch; exec ${SHELL}"')
+	shcom=('sh -c "neofetch ; exec ${SHELL}"')
 fi
 
 startup_lock_file=/tmp/bspwm-startup.lock
