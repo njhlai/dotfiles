@@ -8,7 +8,7 @@ USER_BIN?=${HOME}/.local/bin
 EMAIL?=$(shell bash -c 'read -p "Email (for git config): " email; echo $$email')
 FIREFOX_DIRECTORY?=${HOME}/.mozilla/firefox/${FF}.default-release
 
-all:
+all: | /etc/profile.d/home-local-bin.sh
 	@echo "=> Installing ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
 	@[[ ! -f ${HOME}/.bashrc ]] || mv -v ${HOME}/.bashrc ${HOME}/.bashrc.bak
 	@ln -rsv bash/bashrc ${HOME}/.bashrc
@@ -37,6 +37,11 @@ endif
 	@echo "=> Installing ${COLOUR_YELLOW}user scripts${END_COLOUR} to target dir ${COLOUR_GREEN}${USER_BIN}${END_COLOUR}"
 	@mkdir -pv ${USER_BIN}
 	@stow -v --target=${USER_BIN} --restow bin
+
+/etc/profile.d/home-local-bin.sh:
+	@echo "=> Installing ${COLOUR_GREEN}/etc/profile.d/home-local-bin.sh${END_COLOUR}"
+	@echo -e 'case ":$${PATH}:" in\n\t*:"$${HOME}/.local/bin":*) ;;\n\t*) export PATH="$${HOME}/.local/bin:$${PATH}" ;;\nesac' | sudo tee /etc/profile.d/home-local-bin.sh > /dev/null
+	@echo "CREATE: /etc/profile.d/home-local-bin.sh"
 
 clean:
 	@echo "=> Uninstalling ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
