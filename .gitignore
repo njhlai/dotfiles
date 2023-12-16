@@ -4,6 +4,9 @@
 # calcurse-caldav settings
 calcurse/caldav/*
 
+# actual git config
+git/config
+
 # lazygit state
 lazygit/state.yml
 
