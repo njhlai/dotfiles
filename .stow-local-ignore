@@ -1,0 +1,16 @@
+# git
+\.git.*
+
+# markdown files
+.+\.md
+
+# ignored directories
+bin
+firefox
+git
+keymaps
+pacman\.d
+pkgbuilds
+
+# makefile
+makefile

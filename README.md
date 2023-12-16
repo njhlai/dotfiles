@@ -21,13 +21,25 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Lock Screen | i3lock-color |
 | Text Editor | Sublime Text, nano |
 
-## Installation
-Will write an install script at some point...
+## Usage
+Requires [stow](https://www.gnu.org/software/stow/). Also, obtain the id of your current (i.e. default-release) Firefox profile from [about:profiles](about:profiles).
+
+### Install
+Once the base OS and all needed packages are installed, run:
+```sh
+FF=[FIREFOX PROFILE ID] make all
+```
 
 ### Network Share Mounting
 Network share is through sshfs.
 1. Make sure to manually mount the sshfs as root at least once, using user ssh keys, to ensure host's public key is in root's known_hosts file.
 2. Edit fstab [accordingly](https://wiki.archlinux.org/title/SSHFS#Secure_user_access).
+
+### Uninstall
+To uninstall configurations provided by this dotfile repo, run:
+```sh
+FF=[FIREFOX PROFILE ID] make clean
+```
 
 ## Screenshots
 ![Clean](https://raw.githubusercontent.com/njhlai/dotfiles/master/.github/clean.png)
