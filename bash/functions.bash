@@ -8,6 +8,8 @@ function cd {
 	builtin cd "$@"
 	if [[ -d $PWD/.git/ || -f $PWD/.git ]] ; then
 		[[ $LASTREPO != $(basename $(git rev-parse --show-toplevel)) ]] && onefetch
+	elif [[ -f $PWD/.glow ]] ; then
+		glow
 	fi
 }
 
