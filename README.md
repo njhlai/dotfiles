@@ -22,7 +22,7 @@ Personal dotfiles, almost all of which was assimilated and modified from all ove
 | Text Editor | Sublime Text, nano |
 
 ## Usage
-Requires [stow](https://www.gnu.org/software/stow/).
+Requires [make](https://www.gnu.org/software/make) and [stow](https://www.gnu.org/software/stow/).
 
 ### Install
 Once the base OS and all needed packages are installed, run:
@@ -31,7 +31,7 @@ make all
 ```
 
 ### Network Share Mounting
-Network share is through sshfs.
+Network share is through [sshfs](https://github.com/libfuse/sshfs).
 1. Make sure to manually mount the sshfs as root at least once, using user ssh keys, to ensure host's public key is in root's known_hosts file.
 2. Edit fstab [accordingly](https://wiki.archlinux.org/title/SSHFS#Secure_user_access).
 
