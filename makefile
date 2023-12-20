@@ -8,6 +8,8 @@ USER_BIN?=${HOME}/.local/bin
 EMAIL?=$(shell bash -c 'read -p "Email (for git config): " email ; echo $$email')
 FIREFOX_DIRECTORY?=$(shell find ${HOME}/.mozilla/firefox/ -maxdepth 1 -name "*.default-release" 2> /dev/null | head -1)
 
+.PHONY: all clean
+
 all: | /etc/profile.d/home-local-bin.sh git/config
 	@echo "=> Installing ${COLOUR_YELLOW}bashrc${END_COLOUR} to target dir ${COLOUR_GREEN}${HOME}${END_COLOUR}"
 	@[[ ! -f ${HOME}/.bashrc || -L ${HOME}/.bashrc ]] || mv -v ${HOME}/.bashrc ${HOME}/.bashrc.bak
@@ -40,9 +42,9 @@ endif
 	@stow -v --target=${USER_BIN} --restow bin
 
 /etc/profile.d/home-local-bin.sh:
-	@echo "=> Installing ${COLOUR_GREEN}/etc/profile.d/home-local-bin.sh${END_COLOUR}"
-	@echo -e 'case ":$${PATH}:" in\n\t*:"$${HOME}/.local/bin":*) ;;\n\t*) export PATH="$${HOME}/.local/bin:$${PATH}" ;;\nesac' | sudo tee /etc/profile.d/home-local-bin.sh > /dev/null
-	@echo "CREATE: /etc/profile.d/home-local-bin.sh"
+	@echo "=> Installing ${COLOUR_GREEN}$@${END_COLOUR}"
+	@echo -e 'case ":$${PATH}:" in\n\t*:"$${HOME}/.local/bin":*) ;;\n\t*) export PATH="$${HOME}/.local/bin:$${PATH}" ;;\nesac' | sudo tee $@ > /dev/null
+	@echo "CREATE: $@"
 
 	@echo
 
