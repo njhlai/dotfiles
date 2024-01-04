@@ -16,7 +16,6 @@ trap 'trap - TERM ; kill 0' INT TERM QUIT EXIT
 mkfifo "$PANEL_FIFO"
 	
 {
-
 	## start left section
 	host() {
 		local ICON=$(echo -e "$(printf '%b'${!OS})")
@@ -139,52 +138,6 @@ mkfifo "$PANEL_FIFO"
 		echo "$CMD"
 	}
 
-
-	## Unused components
-	# music() {
-	# 	local ICON=$(echo -e "$(printf '%b'${MUSIC})")
-	# 	local CMD=""
-
-	# 	local players=$(playerctl -p mpv -l 2>/dev/null)
-	# 	for player in $players ; do
-	# 		if [[ -z $CMD ]] ; then
-	# 			local stat="$(playerctl -p ${player} status)"
-	# 			if [[ ${stat} && ${stat} == "Playing" ]] ; then
-	# 				local artist=$(playerctl -p ${player} metadata artist 2>/dev/null)
-	# 				local title=$(playerctl -p ${player} metadata title)
-	# 				local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${artist} - ${title} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
-	# 			elif [[ ${stat} && ${stat} == "Paused" ]] ; then
-	# 				local CMD=$(echo -e "%{B${YELLOW}}%{F${BLACK}} ${ICON} ${player}: ${stat} %{F-}%{B-}%{F${YELLOW}}%{B${TRANSPARENT}}$(printf '%b'${LEFT_HARD_DIVIDER})%{B-}%{F-}")
-	# 			fi
-	# 		fi
-	# 	done
-	# 	echo "$CMD"
-	# }
-	
-	# disk() {
-	# 	local icon=$(pIcon ${BG} ${CDISK})
-	# 	local SEP=$(pIcon ${BG} ${RIGHT_SOFT_DIVIDER})
-	# 	read -r -a disk_raw <<< "$(df -B1 / 2> /dev/null | awk 'END{ print $3,$2,$5 }')"
-	# 	disk_used="${disk_raw[0]}"
-	# 	disk_total="${disk_raw[1]}"
-	# 	disk_perc="${disk_raw[2]}"
-	# 	local cmd="$(df -h /home | tail -1 | awk '{print int($4/$2*100)"%"}')"
-	# 	local cmdEnd=$(pText ${FG} "${cmd}" )
-	# 	local extinf=$(powerTextR ${SEC_4} ${FG} "${icon} ${disk_perc} $SEP Used: $(hrBytes "$disk_used") of $(hrBytes "$disk_total")" ${SEC_1} ${RIGHT_HARD_DIVIDER})
-	# 	echo "${extinf}"
-	# }
-
-	# mail() {
-	# 	local gmaildir=/home/user/.mails/Gmail/\[Gmail\].All\ Mail/new
-	# 	local cmd=$(pAction ${BLUE} ${BG} "i3 'exec termite -e mutt'" ${CMAIL})
-	# 	local count=0
-	# 	if [[ ! -n $(ls "${gmaildir}") ]] ; then
-	# 			count=0
-	# 	else
-	# 			count=$(ls -1 "${gmaildir}" | wc -l)
-	# 	fi
-	# 	echo "${cmd} ${count}"
-	# }
 
 	declare -i counter=0
 	while : ; do
