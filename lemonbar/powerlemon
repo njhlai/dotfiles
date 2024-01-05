@@ -42,10 +42,10 @@ mkfifo "$PANEL_FIFO"
 
 	## start right section
 	pihole() {
-		if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
+		if [[ ${pihole_status} && ${pihole_status} == "enabled" ]] ; then
 			local ICON=$(echo -e "$(printf '%b'${PI})")
 
-			local CMD=$(echo -e "%{F${RED}}%{B${TRANSPARENT}}%{T2}$(printf '%b'${RIGHT_HARD_DIVIDER})%{T-}%{B-}%{F-}%{B${RED}}%{F${BLACK}} ${ICON} ${ads_b}% %{F-}%{B-}")
+			local CMD=$(echo -e "%{F${RED}}%{B${TRANSPARENT}}%{T2}$(printf '%b'${RIGHT_HARD_DIVIDER})%{T-}%{B-}%{F-}%{B${RED}}%{F${BLACK}} ${ICON} ${ads_blocked}% %{F-}%{B-}")
 			echo "$CMD"
 		fi
 	}
@@ -70,7 +70,7 @@ mkfifo "$PANEL_FIFO"
 			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
 			local SPACE=" "
 			local PREVBCOLOUR=${TRANSPARENT}
-			if [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
+			if [[ ${pihole_status} && ${pihole_status} == "enabled" ]] ; then
 				PREVBCOLOUR=${RED}
 				SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 				SPACE=""
@@ -89,7 +89,7 @@ mkfifo "$PANEL_FIFO"
 			PREVBCOLOUR=${BATCOLOUR}
 			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 			SPACE=""
-		elif [[ ${pihole_s} && ${pihole_s} == "enabled" ]] ; then
+		elif [[ ${pihole_status} && ${pihole_status} == "enabled" ]] ; then
 			PREVBCOLOUR=${RED}
 			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
 			SPACE=""
@@ -141,17 +141,19 @@ mkfifo "$PANEL_FIFO"
 
 	declare -i counter=0
 	while : ; do
-		# if pihole is not originally on, then keep querrying
-		if [[ -z ${pihole_s} || ${pihole_s} != "enabled" ]] ; then
-			pihole_s=$(ssh $PIHOLE pihole status 2>/dev/null | awk '/Pi-hole/{print $5}')
-			counter=0
+		if [[ $counter == 0 ]] ; then
+			pihole_response=( $(curl -s "http://${PIHOLE}/admin/api.php?summary&auth=${PIHOLE_AUTH}" | jq -r .status,.ads_percentage_today 2> /dev/null) )
+			pihole_status=${pihole_response[0]}
+			ads_blocked=${pihole_response[1]}
 		fi
 
-		# get pihole stats every 15 minutes
-		if [[ "${pihole_s}" && ${pihole_s} == "enabled" && $counter == 0 ]] ; then
-			ads_b=$(ssh ${PIHOLE} pihole -c -j | jq | awk '/"ads_percentage_today":/{printf "%0.1f\n",$2}')
+		if [[ -z ${pihole_status} || ${pihole_status} != "enabled" ]] ; then
+			# if pihole is not originally on, then keep querrying
+			counter=0
+		else
+			# get pihole stats every 15 minutes
+			counter=$(($(($counter+1)) % 900))
 		fi
-		counter=$(($(($counter+1)) % 900))
 
 		echo "H$(host)"
 		echo "T$(SEP_R)$(get_day)$(SEP_L)"
