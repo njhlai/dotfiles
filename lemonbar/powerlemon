@@ -26,15 +26,15 @@ mkfifo "$PANEL_FIFO"
 
 
 	## start centre section
-	getDay() {
+	get_day() {
 		local ICON=$(echo -e "$(printf '%b'${CLOCK})")
 		local SEP=$(echo -e "$(printf '%b'${INTERNAL_DIVIDER})")
 
-		local cmdDay=$(date '+%a')
-		local cmdDate=$(date '+%d %b')
-		local cmdHour=$(date +%H:%M)
+		local cmd_day=$(date '+%a')
+		local cmd_date=$(date '+%d %b')
+		local cmd_hour=$(date +%H:%M)
 
-		local CMD=$(echo -e "%{B${SALMON}}%{F${BLACK}} ${ICON} %{A:calnotify:}${cmdDay} ${SEP} ${cmdDate} ${SEP} ${cmdHour}%{A} %{F-}%{B-}")
+		local CMD=$(echo -e "%{B${SALMON}}%{F${BLACK}} ${ICON} %{A:calnotify:}${cmd_day} ${SEP} ${cmd_date} ${SEP} ${cmd_hour}%{A} %{F-}%{B-}")
 		echo "$CMD"
 	}
 	## end centre section
@@ -154,7 +154,7 @@ mkfifo "$PANEL_FIFO"
 		counter=$(($(($counter+1)) % 900))
 
 		echo "H$(host)"
-		echo "T$(SEP_R)$(getDay)$(SEP_L)"
+		echo "T$(SEP_R)$(get_day)$(SEP_L)"
 		echo "S$(pihole)$(battemp)$(ram)$(cpu)"
 		sleep 1
 	done
