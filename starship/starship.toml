@@ -31,9 +31,9 @@ modified = "[!\\(${count}\\)](fg:#ffa500 bold)"
 stashed = "[?\\(${count}\\)](fg:yellow bold)"
 renamed = "[r\\(${count}\\)](fg:cyan bold)"
 deleted = "[d\\(${count}\\)](fg:#808080 bold)"
-ahead = "[\uf63e${count}](fg:green bold)"
-diverged = "[\u21d5\\(](fg:#979997 bold)[\uf63e${ahead_count}](fg:green bold)[\uf63b${behind_count}](fg:red bold)[\\)](fg:#979997 bold)"
-behind = "[\uf63b${count}](fg:red bold)"
+ahead = "[\uf102${count}](fg:green bold)"
+diverged = "[\u21d5\\(](fg:#979997 bold)[\uf102${ahead_count}](fg:green bold)[\uf103${behind_count}](fg:red bold)[\\)](fg:#979997 bold)"
+behind = "[\uf103${count}](fg:red bold)"
 style = "bold blue"
 
 [aws]

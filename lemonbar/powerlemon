@@ -68,36 +68,31 @@ mkfifo "$PANEL_FIFO"
 			fi
 
 			local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
-			local SPACE=" "
 			local PREVBCOLOUR=${TRANSPARENT}
 			if [[ ${pihole_status} && ${pihole_status} == "enabled" ]] ; then
 				PREVBCOLOUR=${RED}
 				SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
-				SPACE=""
 			fi
 
-			CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}}${SPACE}${BATICON} ${bat_perc}% %{F-}%{B-}")
+			CMD=$(echo -e "%{F${BATCOLOUR}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${BATCOLOUR}}%{F${BLACK}} ${BATICON} ${bat_perc}% %{F-}%{B-}")
 		fi
 
 		local TEMPICON=$(echo -e "$(printf '%b'${TEMP})")
 		local UNIT=$(echo -e "$(printf '%b'${CELCIUS})")
 
 		local SEP=$(echo -e "$(printf '%b'${RIGHT_HARD_DIVIDER})")
-		local SPACE=" "
 		local PREVBCOLOUR=${TRANSPARENT}
 		if [[ -f /sys/class/power_supply/BAT0/charge_full ]] ; then
 			PREVBCOLOUR=${BATCOLOUR}
 			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
-			SPACE=""
 		elif [[ ${pihole_status} && ${pihole_status} == "enabled" ]] ; then
 			PREVBCOLOUR=${RED}
 			SEP=$(echo -e "$(printf '%b'${RIGHT_SOFT_DIVIDER})")
-			SPACE=""
 		fi
 
 		local temp=$(sensors | grep -oP '(T(die|ctl)|Package id 0).*?\+\K[0-9.]+' -m 1)
 
-		CMD=$(echo -e "${CMD}%{F${WHITE}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${WHITE}}%{F${BLACK}}${SPACE}${TEMPICON} ${temp}${UNIT} %{F-}%{B-}")
+		CMD=$(echo -e "${CMD}%{F${WHITE}}%{B${PREVBCOLOUR}}%{T2}${SEP}%{T-}%{B-}%{F-}%{B${WHITE}}%{F${BLACK}} ${TEMPICON} ${temp}${UNIT} %{F-}%{B-}")
 		echo "$CMD"
 	}
 
@@ -110,7 +105,7 @@ mkfifo "$PANEL_FIFO"
 		ram_used="${ram_raw[0]}"
 		# ram_immutable="${ram_raw[1]}"
 
-		CMD=$(echo -e "${CMD}%{F${CYAN}}%{B${WHITE}}%{T2}$(printf '%b'${RIGHT_SOFT_DIVIDER})%{T-}%{B-}%{F-}%{B${CYAN}}%{F${BLACK}}${ICON} ${ram_used}GB %{F-}%{B-}")
+		CMD=$(echo -e "${CMD}%{F${CYAN}}%{B${WHITE}}%{T2}$(printf '%b'${RIGHT_SOFT_DIVIDER})%{T-}%{B-}%{F-}%{B${CYAN}}%{F${BLACK}} ${ICON} ${ram_used}GB %{F-}%{B-}")
 		echo "$CMD"
 	}
 
@@ -121,7 +116,7 @@ mkfifo "$PANEL_FIFO"
 		local cpu_raw=$(ps -eo pcpu,rss --no-headers | grep -E -v "    0")
 		local cpu_perc=$(awk '{sum+=$1} END {printf "%02d\n", sum/'"$sys_cores"'}' <<< "$cpu_raw")
 
-		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}%{T2}$(printf '%b'${RIGHT_SOFT_DIVIDER})%{T-}%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}}${ICON} ${cpu_perc}% %{F-}%{B-}")
+		local CMD=$(echo -e "%{F${PURPLE}}%{B${CYAN}}%{T2}$(printf '%b'${RIGHT_SOFT_DIVIDER})%{T-}%{B-}%{F-}%{B${PURPLE}}%{F${BLACK}} ${ICON} ${cpu_perc}% %{F-}%{B-}")
 		echo "$CMD"
 	}
 	## End right section
