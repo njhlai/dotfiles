@@ -264,7 +264,7 @@ super + {_,shift,ctrl} + Print
 	maim -u {-i $(printf %i $(xdo id)),-s,_} $HOME/pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png
 
 
-## Media keys (mainly to control MPD)
+## Media keys
 # MPD controls via jukebox (mpc wrapper)
 XF86Audio{Prev,Play,Stop,Next}
 	jukebox {prev,toggle,stop,next}

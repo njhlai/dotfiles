@@ -49,6 +49,6 @@ ex () {
 			*)           echo "'$1' cannot be extracted via ex()" ;;
 		esac
 	else
-	echo "'$1' is not a valid file"
+		echo "'$1' is not a valid file"
 	fi
 }

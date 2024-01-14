@@ -3,7 +3,7 @@
 #
 
 # Enable colors for ls, etc.
-if type -P dircolors >/dev/null ; then
+if type -P dircolors > /dev/null ; then
 	if [[ -f ${HOME}/.config/dir_colors ]] ; then
 		eval $(dircolors ${HOME}/.config/dir_colors)
 	elif [[ -f ~/.dir_colors ]] ; then
