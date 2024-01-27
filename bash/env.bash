@@ -8,6 +8,7 @@ export ANSIBLE_HOME="${HOME}/.config/ansible"
 export ANSIBLE_SSH_CONTROL_PATH_DIR="${ANSIBLE_HOME}/cp"
 export CARGO_HOME="${HOME}/.local/share/cargo"
 export CUDA_CACHE_PATH="${HOME}/.cache/nv"
+export DIFFPROG=difft
 export DOWNLOAD="${HOME}/downloads"
 export GDBHISTFILE="${HOME}/.local/state/gdb/history"
 export GRADLE_USER_HOME="${HOME}/.local/share/gradle"
@@ -32,7 +33,7 @@ export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
 export TEXMFHOME="${DATALAKE}/latex"
 export TEXMFVAR="${HOME}/.cache/texlive/texmf-var"
 export TEXMFCONFIG="${HOME}/.config/texlive/texmf-config"
-export WGETRC="${HOME}/.config/wgetrc"
+export WGETRC="${HOME}/.config/wget/wgetrc"
 
 # wine prefixes
 export WINEPREFIX="${HOME}/.local/share/wineprefixes"
