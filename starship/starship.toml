@@ -40,6 +40,12 @@ style = "bold blue"
 disabled = true
 
 # programming languages settings
+[c]
+symbol = "\ue61d "
+commands = [ [ 'clang', '--version' ], [ 'gcc', '--version' ], [ 'cc', '--version' ] ]
+detect_extensions = ["c", "h", "cc", "cpp", "hh", "hpp"]
+format = "via [$symbol($name(-$version) )]($style)"
+
 [golang]
 symbol = "\ufcd1 "
 
