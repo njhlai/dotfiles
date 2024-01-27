@@ -39,6 +39,9 @@ style = "bold blue"
 [aws]
 disabled = true
 
+[battery]
+disabled = true
+
 # programming languages settings
 [c]
 symbol = "\ue61d "
@@ -53,7 +56,7 @@ symbol = "\ufcd1 "
 symbol = "\ue256 "
 
 [kotlin]
-symbol = "\uf533 "
+symbol = "\ue634 "
 
 [lua]
 symbol = "\ue620 "
@@ -78,6 +81,3 @@ symbol = "\ue7a8 "
 
 [scala]
 format = "via [$symbol ($version )]($style)"
-
-[battery]
-disabled = true
