@@ -11,16 +11,16 @@ MPD_MPV_PID_FILE=/tmp/mpdstream.pid
 
 mpc $1 > /dev/null 2>&1
 case "$1" in
-	"toggle")
-		if [[ ! -f /proc/${MPD_MPV_PID}/status ]] ; then
-			sleep 0.5
-			mpv --no-cache --cache-secs=0 --demuxer-readahead-secs=0 http://${MPD_URL}/mpd.mp3 > /dev/null 2>&1 &
-			echo $! > ${MPD_MPV_PID_FILE}
-		fi
-		;;
+    "toggle")
+        if [[ ! -f /proc/${MPD_MPV_PID}/status ]] ; then
+            sleep 0.5
+            mpv --no-cache --cache-secs=0 --demuxer-readahead-secs=0 http://${MPD_URL}/mpd.mp3 > /dev/null 2>&1 &
+            echo $! > ${MPD_MPV_PID_FILE}
+        fi
+        ;;
 
-	"stop")
-		[[ -f /proc/${MPD_MPV_PID}/status ]] && kill -9 ${MPD_MPV_PID}
-		rm ${MPD_MPV_PID_FILE}
-		;;
+    "stop")
+        [[ -f /proc/${MPD_MPV_PID}/status ]] && kill -9 ${MPD_MPV_PID}
+        rm ${MPD_MPV_PID_FILE}
+        ;;
 esac
