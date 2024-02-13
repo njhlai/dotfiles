@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# Clean home directory
+
+rm -rf ~/{.pki,.steampath}
