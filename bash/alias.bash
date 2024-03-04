@@ -32,6 +32,6 @@ alias aria2bt='aria2c --conf-path=${HOME}/.config/aria2/aria2.bittorrent'
 alias play='mpv --no-audio-display'
 
 # misc
-alias lg='lazygit'
+alias lg='git rev-parse --show-toplevel 1> /dev/null && lazygit'
 alias np='nano -w PKGBUILD'
 alias soft='ssh ${SOFT_SERVER} -p ${SOFT_SERVER_PORT}'
