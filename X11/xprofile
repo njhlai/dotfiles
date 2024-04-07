@@ -22,5 +22,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # these needed to be up really early due to ST's LSP
 export CARGO_HOME="${HOME}/.local/share/cargo"
+export GOCACHE="${HOME}/.cache/go/build"
+export GOMODCACHE="${HOME}/.cache/go/mod"
+export GOPATH="${HOME}/.local/share/go"
 export NPM_CONFIG_USERCONFIG="${HOME}/.config/npm/npmrc"
 export RUSTUP_HOME="${HOME}/.local/share/rustup"
