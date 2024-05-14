@@ -3,15 +3,16 @@
 # None of this is my own work, all credits should go to h3fang.
 
 pkgname=texlive-fontsextra
-pkgver=2023.66594
-pkgrel=20
+_rev=70897
+pkgver=2024.2
+pkgrel=1
 pkgdesc="TeX Live - extra fonts that I need"
 license=('GPL')
 arch=(any)
 depends=('texlive-bin' 'texlive-basic')
 groups=('texlive' 'modified')
 provides=('texlive-calligra' 'texlive-calligra-type1' 'texlive-fontawesome5' 'texlive-mathabx' 'texlive-mathabx-type1' 'texlive-rsfs')
-url='http://tug.org/texlive/'
+url='https://tug.org/texlive/'
 source=(
 	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/mathabx.tar.xz"
 	"https://ctan.org/tex-archive/systems/texlive/tlnet/archive/mathabx-type1.tar.xz"
