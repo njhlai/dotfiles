@@ -8,6 +8,34 @@
         "command": "prev_view"
     },
     {
+        "keys": ["ctrl+j", "ctrl+alt+shift+k"],
+        "command": "unselect_others"
+    },
+    {
+        "keys": ["ctrl+j", "ctrl+alt+shift+h"],
+        "command": "unselect_to_left"
+    },
+    {
+        "keys": ["ctrl+j", "ctrl+alt+shift+l"],
+        "command": "unselect_to_right"
+    },
+    {
+        "keys": ["ctrl+j", "ctrl+shift+h"],
+        "command": "select_to_left"
+    },
+    {
+        "keys": ["ctrl+j", "ctrl+shift+l"],
+        "command": "select_to_right"
+    },
+    {
+        "keys": ["ctrl+j", "H"],
+        "command": "focus_to_left"
+    },
+    {
+        "keys": ["ctrl+j", "L"],
+        "command": "focus_to_right"
+    },
+    {
         "keys": ["L"],
         "command": "next_view",
         "context":

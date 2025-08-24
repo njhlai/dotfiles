@@ -22,6 +22,7 @@
 		"LSP-jdtls",
 		"LSP-json",
 		"LSP-pyright",
+		"LSP-ruff",
 		"LSP-rust-analyzer",
 		"LSP-typescript",
 		"LSP-yaml",
@@ -29,4 +30,5 @@
 		"Package Control",
 		"TOML",
 	],
+	"debug": true,
 }
