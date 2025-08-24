@@ -29,7 +29,7 @@ alias ytxa='yt-dlp -x --audio-quality 0 --audio-format flac'
 alias aria2bt='aria2c --conf-path=${HOME}/.config/aria2/aria2.bittorrent'
 
 # mpv as a music player
-alias play='mpv --no-audio-display'
+alias play='mpv --no-video --shuffle'
 
 # misc
 alias lg='git rev-parse --show-toplevel 1> /dev/null && lazygit'
