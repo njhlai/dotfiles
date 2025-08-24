@@ -1,9 +1,9 @@
 git:
   log:
     showGraph: 'always'
-  allBranchesLogCmd: 'git log --graph --all --color=always --pretty="%C(auto)%h%x09%C(82)%aN%x09%Creset%s [%C(6)%cr%C(reset)] %C(auto)%d"'
   branchLogCmd: 'git log --graph --color=always --pretty="%C(auto)%h%x09%C(82)%aN%x09%Creset%s [%C(6)%cr%C(reset)] %C(auto)%d" {{branchName}} --'
-
   paging:
     colorArg: always
     useConfig: true
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --pretty="%C(auto)%h%x09%C(82)%aN%x09%Creset%s [%C(6)%cr%C(reset)] %C(auto)%d"
