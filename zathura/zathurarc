@@ -52,7 +52,7 @@ set recolor-darkcolor           "#f8f8f2" # Foreground
 #
 set adjust-open width
 set statusbar-basename true
-
+set database sqlite
 
 # Adding reverse search between sublime and zathura
 set synctex true
